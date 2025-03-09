@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block title %}
+    ROOT - Visión y Misión
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{%block content %}
+<section id="vision-mision">
+    <h2>Visión y Misión</h2>
+    <h3>Misión</h3>
+    <p>"Proporcionar una solución innovadora y efectiva para que los consumidores puedan realizar compras de manera simple y rápida, ya sea en cualquier establecimiento físico o comercio electrónico, siendo Root una opción satisfactoria para los usuarios".</p>
+    <h3>Visión</h3>
+    <p>"Ser líderes en tecnología de compra y venta de productos, promoviendo un impacto positivo y sostenible en nuestra sociedad".</p>
+</section>
+{% endblock %}

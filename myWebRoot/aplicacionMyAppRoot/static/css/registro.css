@@ -1,0 +1,128 @@
+.contenedor-autenticación {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.caja-autenticación {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.caja-autenticación h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.descripción-autenticación {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.grupo-formulario {
+    margin-bottom: 20px;
+}
+
+.grupo-formulario label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.grupo-formulario input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.grupo-formulario input:focus {
+    border-color: #1103d4;
+    outline: none;
+}
+
+.opciones-formulario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.recordar-usuario {
+    display: flex;
+    align-items: center;
+}
+
+.recordar-usuario input {
+    margin-right: 8px;
+}
+
+.contraseña-olvidada {
+    color: #1103d4;
+    text-decoration: none;
+}
+
+.contraseña-olvidada:hover {
+    text-decoration: underline;
+}
+
+.boton-principal {
+    background-color: #1103d4;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton-principal:hover {
+    background-color: #1103d4;
+}
+
+.pie-autenticación {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pie-autenticación a {
+    color: #1103d4;
+    text-decoration: none;
+}
+
+.pie-autenticación a:hover {
+    text-decoration: underline;
+}
+
+.mensajes {
+    margin-bottom: 20px;
+}
+
+.mensaje {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.mensaje-éxito {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.mensaje-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Promociona tu producto a grandes empresas con nuestra página web interactiva. Conoce nuestra visión, misión y quiénes somos.">
+    <meta name="keywords" content="promoción, producto, grandes empresas, visión, misión, quiénes somos">
+    <meta name="author" content="Tu Empresa">
+    <title>
+        {% block title %}
+            ROOT
+        {% endblock %}
+    </title>
+    {% load static %}
+    
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>ROOT</h1>
+            </div>
+            <div class="menu">
+                <a href="{% url 'home' %}">Producto</a>
+                <a href="{% url 'visionMision' %}">Visión y Misión</a>
+                <a href="{% url 'contacto' %}">Contacto</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'scanner' %}">Escáner</a>
+                    <a href="{% url 'perfil' %}" class="boton-login">Mi Perfil</a>
+                    <a href="{% url 'logout' %}" class="boton-logout">Cerrar Sesión</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="boton-login">Ingresar</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+        <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    {% block content %}
+    {% endblock %}
+    
+    <footer>
+        <p>Redes sociales.</p>
+        <div class="social">
+            <a href="#" target="_blank">
+                <img src="{% static 'img/icon-7.jpg' %}" alt="Instagram">
+            </a>
+            <a href="#" target="_blank">
+                <img src="{% static 'img/icon-8.jpg' %}" alt="LinkedIn">
+            </a>
+        </div>
+        <p>&copy; 2025 ROOT. Todos los derechos reservados.</p>
+    </footer>
+    
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

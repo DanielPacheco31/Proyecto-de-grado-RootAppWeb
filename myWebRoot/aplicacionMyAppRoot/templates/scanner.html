@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    ROOT - Escáner
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/scanner.css' %}">
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<section id="scanner" class="scanner-section">
+    <div class="scanner-container">
+        <h2>Escanea tu producto</h2>
+        <p>Apunta la cámara al código de barras o QR del producto que deseas pagar</p>
+        <div class="video-container">
+            <video id="video" width="300" height="200"></video>
+        </div>
+        <div id="result">Esperando iniciar escáner...</div>
+        <button id="startButton" class="btn">Iniciar escáner</button>
+        
+        <!-- Formulario para enviar el resultado al backend -->
+        <form method="post" id="scanForm" style="display: none;">
+            {% csrf_token %}
+            <input type="hidden" id="scannedCode" name="scannedCode">
+            <button type="submit" class="btn">Agregar al carrito</button>
+        </form>
+    </div>
+</section>
+{% else %}
+<section class="auth-required">
+    <div class="message-container">
+        <h2>Acceso Restringido</h2>
+        <p>Debes iniciar sesión para acceder al escáner.</p>
+        <a href="{% url 'login' %}" class="btn">Iniciar Sesión</a>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('video');
+        const resultDiv = document.getElementById('result');
+        const startButton = document.getElementById('startButton');
+        const scanForm = document.getElementById('scanForm');
+        const scannedCodeInput = document.getElementById('scannedCode');
+        
+        if ('BarcodeDetector' in window) {
+            const barcodeDetector = new BarcodeDetector({
+                formats: ['qr_code', 'ean_13', 'ean_8', 'code_128', 'code_39', 'code_93', 'upc_a', 'upc_e']
+            });
+            
+            startButton.addEventListener('click', async () => {
+                try {
+                    // Cambiar texto del botón y añadir estado visual
+                    startButton.textContent = 'Escaneando...';
+                    startButton.disabled = true;
+                    video.classList.add('scanning');
+                    
+                    resultDiv.textContent = 'Inicializando cámara...';
+                    
+                    const stream = await navigator.mediaDevices.getUserMedia({
+                        video: { facingMode: 'environment' }
+                    });
+                    
+                    video.srcObject = stream;
+                    video.play();
+                    
+                    resultDiv.textContent = 'Buscando código...';
+                    detectCodes();
+                    
+                } catch (err) {
+                    console.error('Error al acceder a la cámara:', err);
+                    resultDiv.textContent = 'Error al acceder a la cámara: ' + err.message;
+                    
+                    // Restablecer botón
+                    startButton.textContent = 'Intentar de nuevo';
+                    startButton.disabled = false;
+                }
+            });
+            
+            async function detectCodes() {
+                if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                    try {
+                        const barcodes = await barcodeDetector.detect(video);
+                        
+                        if (barcodes.length > 0) {
+                            const code = barcodes[0].rawValue;
+                            resultDiv.textContent = 'Código detectado: ' + code;
+                            
+                            // Quitar animación
+                            video.classList.remove('scanning');
+                            
+                            // Completar el formulario con el código y mostrarlo
+                            scannedCodeInput.value = code;
+                            scanForm.style.display = 'block';
+                            
+                            // Opcional: detener la cámara después de una detección exitosa
+                            video.srcObject.getTracks().forEach(track => track.stop());
+                            return;
+                        } else {
+                            resultDiv.textContent = 'Buscando código...';
+                        }
+                    } catch (err) {
+                        resultDiv.textContent = 'Error en la detección: ' + err.message;
+                    }
+                }
+                
+                requestAnimationFrame(detectCodes);
+            }
+        } else {
+            resultDiv.textContent = 'BarcodeDetector no es compatible con este navegador. Intenta con Chrome o Edge actualizados.';
+            startButton.disabled = true;
+        }
+    });
+</script>
+{% endblock %}
