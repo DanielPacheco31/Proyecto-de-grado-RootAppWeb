@@ -15,11 +15,11 @@
         <h2>Crear una cuenta</h2>
         <p class="descripción-autenticación">Regístrate para comenzar a usar ROOT y agilizar tus compras</p>
         
-        {% if mensajes %}
+        {% if messages %}
         <div class="mensajes">
-            {% for mensaje in mensajes %}
-            <div class="mensaje {% if mensaje.tags %}{{ mensaje.tags }}{% endif %}">
-                {{ mensaje }}
+            {% for message in messages %}
+            <div class="mensaje {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
             </div>
             {% endfor %}
         </div>
