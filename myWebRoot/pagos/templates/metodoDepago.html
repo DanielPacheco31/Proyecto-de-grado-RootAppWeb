@@ -1,0 +1,151 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+    Seleccionar Método de Pago - ROOT
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+<style>
+    .metodos-pago-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .metodo-pago-card {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .metodo-pago-card:hover {
+        border-color: #4a90e2;
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .metodo-pago-card.seleccionado {
+        border-color: #4a90e2;
+        background-color: #f0f7ff;
+    }
+    
+    .metodo-icono {
+        font-size: 48px;
+        margin-bottom: 15px;
+    }
+    
+    .metodo-nombre {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    
+    .metodo-descripcion {
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .acciones-pago {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+    
+    .btn-volver {
+        padding: 10px 20px;
+        background-color: #f5f5f5;
+        color: #333;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    .btn-continuar {
+        padding: 12px 25px;
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    .btn-continuar:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+    }
+    
+    .resumen-compra {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .resumen-titulo {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+    
+    .resumen-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    
+    .resumen-total {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 20px;
+        border-top: 1px solid #ddd;
+        padding-top: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section id="metodo-pago" class="checkout-section">
+    <div class="container">
+        <h2>Seleccionar Método de Pago</h2>
+        
+        <div class="resumen-compra">
+            <div class="resumen-titulo">Resumen de tu Compra #{{ compra.id }}</div>
+            
+            <div class="resumen-item">
+                <div>Fecha:</div>
+                <div>{{ compra.fecha_compra|date:"d/m/Y H:i" }}</div>
+            </div>
+            
+            <div class="resumen-item">
+                <div>Productos:</div>
+                <div>{{ compra.detalles.count }} ítem(s)</div>
+            </div>
+            
+            <div class="resumen-item">
+                <div>Dirección de entrega:</div>
+                <div>{{ compra.direccion_entrega|truncatechars:30 }}</div>
+            </div>
+            
+            <div class="resumen-total">
+                <div>Total a pagar:</div>
+                <div>${{ compra.total|floatformat:2 }}</div>
+            </div>
+        </div>
+        
+        <form method="post" action="{% url 'procesar_pago' compra.id %}" id="formPago">
+            {% csrf_token %}
+            <h3>Elige un método de pago</h3>
+            
+            <input type="hidden" name="metodo_pago" id="metodo_pago_seleccionado" value="">

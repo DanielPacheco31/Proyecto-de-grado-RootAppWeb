@@ -1,0 +1,323 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+    Mi Perfil - ROOT
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/scripts.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+<section id="perfil" class="perfil-section">
+    <div class="container">
+        <h2>Mi Perfil</h2>
+        
+        <div class="perfil-grid">
+            <!-- Panel de navegación lateral -->
+            <div class="perfil-nav">
+                <div class="perfil-foto-container">
+                    <img src="{{ user.perfil.foto.url }}" alt="Foto de perfil" class="perfil-foto">
+                    <div class="perfil-foto-overlay">
+                        <form method="post" action="{% url 'usuarios:actualizar_foto' %}" enctype="multipart/form-data" id="formFoto">
+                            {% csrf_token %}
+                            <input type="file" name="foto" id="inputFoto" accept="image/*" style="display: none;">
+                            <button type="button" id="cambiarFoto" class="btn-cambiar-foto">
+                                <i data-lucide="camera" class="icono-cambiar"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="perfil-nombre">{{ user.get_full_name|default:user.username }}</div>
+                <nav class="perfil-menu">
+                    <a href="#info-personal" class="perfil-menu-item activo" data-target="info-personal">
+                        <i data-lucide="user" class="icono-usuario"></i> Información Personal
+                    </a>
+                    <a href="#historial-compras" class="perfil-menu-item" data-target="historial-compras">
+                        <i data-lucide="shopping-bag" class="icono-compras"></i> Historial de Compras
+                    </a>
+                    <a href="#carrito-actual" class="perfil-menu-item" data-target="carrito-actual">
+                        <i data-lucide="shopping-cart" class="icono-carrito"></i> Carrito Actual
+                        {% if user.carrito.cantidad_items > 0 %}
+                            <span class="badge">{{ user.carrito.cantidad_items }}</span>
+                        {% endif %}
+                    </a>
+                    <a href="#preferencias" class="perfil-menu-item" data-target="preferencias">
+                        <i data-lucide="settings" class="icono-config"></i> Preferencias
+                    </a>
+                    <a href="#seguridad" class="perfil-menu-item" data-target="seguridad">
+                        <i data-lucide="shield" class="icono-seguridad"></i> Seguridad
+                    </a>
+                </nav>
+            </div>
+            
+            <!-- Contenido principal -->
+            <div class="perfil-contenido">
+                {% if messages %}
+                <div class="mensajes">
+                    {% for message in messages %}
+                    <div class="mensaje {% if message.tags %}{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <!-- Información Personal -->
+                <div id="info-personal" class="perfil-panel activo">
+                    <h3>Información Personal</h3>
+                    <form method="post" action="{% url 'usuarios:actualizar_perfil' %}">
+                        {% csrf_token %}
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="first_name" value="{{ user.first_name }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="apellido">Apellido</label>
+                                <input type="text" id="apellido" name="last_name" value="{{ user.last_name }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" value="{{ user.email }}" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono" value="{{ user.perfil.telefono|default:'' }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="id_documento">Documento de Identidad</label>
+                                <input type="text" id="id_documento" name="id_documento" value="{{ user.perfil.id_documento|default:'' }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ user.perfil.fecha_nacimiento|date:'Y-m-d'|default:'' }}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="direccion">Dirección</label>
+                            <textarea id="direccion" name="direccion" rows="3">{{ user.perfil.direccion|default:'' }}</textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-guardar">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Resto de paneles sin cambios -->
+                <!-- Historial de Compras -->
+                <div id="historial-compras" class="perfil-panel">
+                    <h3>Historial de Compras</h3>
+                    
+                    {% if user.compras.all %}
+                        <div class="tabla-contenedor">
+                            <table class="tabla-compras">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Fecha</th>
+                                        <th>Productos</th>
+                                        <th>Total</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for compra in user.compras.all|dictsortreversed:"fecha_compra" %}
+                                    <tr>
+                                        <td>#{{ compra.id }}</td>
+                                        <td>{{ compra.fecha_compra|date:"d/m/Y H:i" }}</td>
+                                        <td>
+                                            <div class="productos-lista">
+                                                {% for detalle in compra.detalles.all %}
+                                                <div class="producto-item">
+                                                    {{ detalle.cantidad }}x {{ detalle.producto.nombre }}
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </td>
+                                        <td>${{ compra.total|floatformat:2 }}</td>
+                                        <td>
+                                            <span class="estado estado-{{ compra.estado }}">
+                                                {{ compra.get_estado_display }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'facturas:detalle_compra' compra.id %}" class="btn-detalle">
+                                                <i data-lucide="eye"></i> Ver Detalles
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="mensaje-vacio">
+                            <div class="icono-vacio"></div>
+                            <p>No tienes compras realizadas aún.</p>
+                            <a href="{% url 'core:home' %}" class="btn-comprar">
+                                <i data-lucide="shopping-cart"></i> Comprar ahora
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Carrito Actual -->
+                <div id="carrito-actual" class="perfil-panel">
+                    <h3>Carrito Actual</h3>
+                    
+                    {% if user.carrito.items.all %}
+                        <div class="tabla-contenedor">
+                            <table class="tabla-carrito">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th>Subtotal</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in user.carrito.items.all %}
+                                    <tr>
+                                        <td>
+                                            <div class="carrito-producto">
+                                                {% if item.producto.imagen %}
+                                                <img src="{{ item.producto.imagen.url }}" alt="{{ item.producto.nombre }}">
+                                                {% endif %}
+                                                <div>
+                                                    <h4>{{ item.producto.nombre }}</h4>
+                                                    <p class="codigo-producto">{{ item.producto.codigo }}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>${{ item.producto.precio|floatformat:2 }}</td>
+                                        <td>
+                                            <div class="control-cantidad">
+                                                <form method="post" action="{% url 'carrito:actualizar_cantidad' item.id %}">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="accion" value="restar">
+                                                    <button type="submit" class="btn-cantidad btn-restar" {% if item.cantidad <= 1 %}disabled{% endif %}>
+                                                        <i data-lucide="minus"></i>
+                                                    </button>
+                                                </form>
+                                                <span class="cantidad">{{ item.cantidad }}</span>
+                                                <form method="post" action="{% url 'carrito:actualizar_cantidad' item.id %}">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="accion" value="sumar">
+                                                    <button type="submit" class="btn-cantidad btn-sumar">
+                                                        <i data-lucide="plus"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        <td>${{ item.subtotal|floatformat:2 }}</td>
+                                        <td>
+                                            <form method="post" action="{% url 'carrito:eliminar_item' item.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn-eliminar">
+                                                    <i data-lucide="trash-2"></i> Eliminar
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="3" class="texto-derecha">Total del Carrito:</th>
+                                        <th>${{ user.carrito.total|floatformat:2 }}</th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="acciones-carrito">
+                            <a href="{% url 'scanner:scanner' %}" class="btn-seguir">
+                                <i data-lucide="shopping-cart"></i> Seguir comprando
+                            </a>
+                            <a href="{% url 'carrito:finalizar_compra' %}" class="btn-finalizar">
+                                <i data-lucide="credit-card"></i> Finalizar Compra
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="mensaje-vacio">
+                            <div class="icono-carrito-vacio"></div>
+                            <p>Tu carrito está vacío.</p>
+                            <a href="{% url 'scanner:scanner' %}" class="btn-comprar">
+                                <i data-lucide="camera"></i> Escanear productos
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Preferencias -->
+                <div id="preferencias" class="perfil-panel">
+                    <h3>Preferencias</h3>
+                    <form method="post" action="{% url 'usuarios:actualizar_preferencias' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="switch-container">
+                                <label for="notificaciones">Recibir notificaciones por correo</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="notificaciones" name="preferencias_notificacion" {% if user.perfil.preferencias_notificacion %}checked{% endif %}>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-guardar">
+                                <i data-lucide="save"></i> Guardar Preferencias
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Seguridad -->
+                <div id="seguridad" class="perfil-panel">
+                    <h3>Seguridad</h3>
+                    <form method="post" action="{% url 'usuarios:cambiar_password' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="current_password">Contraseña actual</label>
+                            <input type="password" id="current_password" name="current_password" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="new_password1">Nueva contraseña</label>
+                            <input type="password" id="new_password1" name="new_password1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="new_password2">Confirmar nueva contraseña</label>
+                            <input type="password" id="new_password2" name="new_password2" required>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-guardar">
+                                <i data-lucide="lock"></i> Cambiar Contraseña
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

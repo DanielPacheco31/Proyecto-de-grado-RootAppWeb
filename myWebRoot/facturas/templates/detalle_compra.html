@@ -1,0 +1,147 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+    Detalle de Compra #{{ compra.id }} - ROOT
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/detalle_compra.css' %}">
+<link rel="stylesheet" href="{% static 'css/factura-print.css' %}" media="print">
+{% endblock %}
+
+{% block content %}
+<section id="detalle-compra" class="detalle-compra-section">
+    <div class="container">
+        <h2>Detalle de Compra #{{ compra.id }}</h2>
+        
+        <div class="estado-compra estado-{{ compra.estado }}">
+            <div class="estado-titulo">Estado: {{ compra.get_estado_display }}</div>
+            <div class="progreso-estado">
+                <div class="paso-estado {% if compra.estado == 'pendiente' or compra.estado == 'pagado' or compra.estado == 'enviado' or compra.estado == 'entregado' %}activo{% endif %}">
+                    <div class="numero-paso">1</div>
+                    <div class="texto-paso">Pendiente</div>
+                </div>
+                <div class="linea-estado"></div>
+                <div class="paso-estado {% if compra.estado == 'pagado' or compra.estado == 'enviado' or compra.estado == 'entregado' %}activo{% endif %}">
+                    <div class="numero-paso">2</div>
+                    <div class="texto-paso">Pagado</div>
+                </div>
+                <div class="linea-estado"></div>
+                <div class="paso-estado {% if compra.estado == 'enviado' or compra.estado == 'entregado' %}activo{% endif %}">
+                    <div class="numero-paso">3</div>
+                    <div class="texto-paso">Enviado</div>
+                </div>
+                <div class="linea-estado"></div>
+                <div class="paso-estado {% if compra.estado == 'entregado' %}activo{% endif %}">
+                    <div class="numero-paso">4</div>
+                    <div class="texto-paso">Entregado</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-compra">
+            <div class="seccion-info">
+                <h3>Información General</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Fecha de compra:</div>
+                        <div class="info-valor">{{ compra.fecha_compra|date:"d/m/Y H:i" }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Usuario:</div>
+                        <div class="info-valor">{{ compra.usuario.get_full_name|default:compra.usuario.username }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Total:</div>
+                        <div class="info-valor total">${{ compra.total|floatformat:2 }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Estado:</div>
+                        <div class="info-valor">
+                            <span class="estado-badge estado-{{ compra.estado }}">
+                                {{ compra.get_estado_display }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="seccion-info">
+                <h3>Dirección de Entrega</h3>
+                <div class="direccion-entrega">
+                    {{ compra.direccion_entrega|default:"No se ha especificado una dirección de entrega." }}
+                </div>
+            </div>
+            
+            {% if compra.codigo_seguimiento %}
+            <div class="seccion-info">
+                <h3>Seguimiento</h3>
+                <div class="codigo-seguimiento">
+                    <div class="info-label">Código de seguimiento:</div>
+                    <div class="info-valor">{{ compra.codigo_seguimiento }}</div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="seccion-productos">
+            <h3>Productos</h3>
+            <div class="tabla-contenedor">
+                <table class="tabla-productos">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio Unitario</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for detalle in compra.detalles.all %}
+                        <tr>
+                            <td>
+                                <div class="producto-info">
+                                    {% if detalle.producto.imagen %}
+                                    <img src="{{ detalle.producto.imagen.url }}" alt="{{ detalle.producto.nombre }}" class="producto-imagen">
+                                    {% endif %}
+                                    <div>
+                                        <div class="producto-nombre">{{ detalle.producto.nombre }}</div>
+                                        <div class="producto-codigo">{{ detalle.producto.codigo }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>${{ detalle.precio_unitario|floatformat:2 }}</td>
+                            <td>{{ detalle.cantidad }}</td>
+                            <td>${{ detalle.subtotal|floatformat:2 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="total-label">Total</td>
+                            <td class="total-valor">${{ compra.total|floatformat:2 }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+        <div class="acciones-compra">
+            <a href="{% url 'usuarios:perfil' %}" class="btn-volver">Volver al Perfil</a>
+            
+            {% if compra.estado == 'pendiente' %}
+            <form method="post" action="#" class="form-cancelar">
+                {% csrf_token %}
+                <button type="submit" class="btn-cancelar">Cancelar Compra</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/facturas.js' %}"></script>
+{% endblock %}

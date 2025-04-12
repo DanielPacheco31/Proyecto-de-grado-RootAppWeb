@@ -3,3 +3,9 @@ Django==5.1.6
 djangorestframework==3.15.2
 sqlparse==0.5.3
 tzdata==2025.1
+Pillow>=10.0.0  # Para ImageField
+celery>=5.3.0   # Para tareas asíncronas
+redis>=5.0.0    # Si usas Redis como broker
+django-debug-toolbar>=4.0.0  # Opcional, para desarrollo
+python-dotenv>=1.0.0
+django-environ>=0.10.0

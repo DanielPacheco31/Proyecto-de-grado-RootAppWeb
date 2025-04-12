@@ -1,0 +1,235 @@
+/* Estilos para la impresión de facturas */
+@page {
+    size: A4;
+    margin: 2cm;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.5;
+}
+
+.no-print {
+    display: none !important;
+}
+
+.print-only {
+    display: block !important;
+}
+
+.factura-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.factura-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.factura-logo {
+    max-width: 180px;
+    height: auto;
+}
+
+.factura-info {
+    text-align: right;
+}
+
+.factura-titulo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1877F2;
+    margin-bottom: 5px;
+}
+
+.factura-numero {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.factura-fecha {
+    font-size: 14px;
+}
+
+.factura-separador {
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.factura-secciones {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.factura-seccion {
+    width: 48%;
+}
+
+.factura-seccion-titulo {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #1877F2;
+}
+
+.factura-seccion-contenido {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.empresa-info p,
+.cliente-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.empresa-nombre,
+.cliente-nombre {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.table-container {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.factura-tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.factura-tabla th {
+    background-color: #1877F2;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.factura-tabla td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.factura-tabla tr:last-child td {
+    border-bottom: none;
+}
+
+.factura-tabla .text-right {
+    text-align: right;
+}
+
+.factura-tabla .font-bold {
+    font-weight: bold;
+}
+
+.factura-totales {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+}
+
+.factura-total-tabla {
+    width: 300px;
+    border-collapse: collapse;
+}
+
+.factura-total-tabla td {
+    padding: 8px;
+    font-size: 14px;
+}
+
+.factura-total-tabla .total-row {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.factura-total-tabla .total-row td {
+    border-top: 2px solid #1877F2;
+    padding-top: 10px;
+}
+
+.factura-total-label {
+    text-align: right;
+}
+
+.factura-total-valor {
+    text-align: right;
+}
+
+.factura-notas {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.factura-notas-titulo {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #1877F2;
+}
+
+.factura-notas-contenido {
+    font-size: 14px;
+    color: #666;
+}
+
+.factura-footer {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+}
+
+.factura-metodos-pago {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.factura-gracias {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #1877F2;
+    font-weight: bold;
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .factura-container {
+        padding: 0;
+    }
+    
+    .factura-tabla th {
+        background-color: #1877F2 !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    .factura-seccion-contenido {
+        background-color: #f9f9f9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+}

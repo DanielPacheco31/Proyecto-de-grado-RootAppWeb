@@ -1,0 +1,113 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+    Finalizar Compra - ROOT
+{% endblock %}
+
+{% block content %}
+<div class="container-checkout">
+    <h1>Finalizar Compra</h1>
+    
+    {% if carrito and carrito.items.exists %}
+        <div class="carrito-detalles">
+            <h2>Detalles del Carrito</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in carrito.items.all %}
+                    <tr>
+                        <td>{{ item.producto.nombre }}</td>
+                        <td>{{ item.cantidad }}</td>
+                        <td>${{ item.producto.precio|floatformat:2 }}</td>
+                        <td>${{ item.subtotal|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total:</td>
+                        <td>${{ carrito.total|floatformat:2 }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="formulario-pago">
+            <h2>Información de Pago</h2>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-pagar">Confirmar Compra</button>
+            </form>
+        </div>
+    {% else %}
+        <p>Tu carrito está vacío.</p>
+        <a href="{% url 'productos:lista_productos' %}" class="btn-continuar-compra">Continuar Comprando</a>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.container-checkout {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.carrito-detalles table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.carrito-detalles th, 
+.carrito-detalles td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.formulario-pago .form-group {
+    margin-bottom: 15px;
+}
+
+.formulario-pago label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.formulario-pago input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn-pagar, 
+.btn-continuar-compra {
+    display: inline-block;
+    background-color: #1877F2;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pagar:hover, 
+.btn-continuar-compra:hover {
+    background-color: #0a5dc7;
+}
+</style>
+{% endblock %}

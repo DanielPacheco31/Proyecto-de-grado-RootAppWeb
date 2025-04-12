@@ -1,0 +1,92 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+    ROOT - Escáner
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/scanner.css' %}">
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<section id="scanner" class="scanner-section">
+    <div class="scanner-container">
+        <h2>Escanea tu producto</h2>
+        <p>Apunta la cámara al código de barras o QR del producto que deseas pagar</p>
+        
+        <!-- Estado de la cámara -->
+        <div id="cameraStatus" class="camera-status">
+            Estado de la cámara: <span>No inicializada</span>
+        </div>
+        
+        <div class="scanner-type-selector">
+            <div class="type-selector-container">
+                <div id="selectorPill" class="selector-pill"></div>
+                <div id="barcodeOption" class="selector-option active" data-type="barcode">Código de Barras</div>
+                <div id="qrcodeOption" class="selector-option" data-type="qrcode">Código QR</div>
+            </div>
+        </div>
+        
+        <div id="scannerContainer">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas"></canvas>
+            <div id="scannerOverlay" class="scanner-overlay" style="display: none;">
+                <div class="scanner-marker">
+                    <div class="corner top-left"></div>
+                    <div class="corner top-right"></div>
+                    <div class="corner bottom-left"></div>
+                    <div class="corner bottom-right"></div>
+                    <div class="scan-line"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="result">Esperando iniciar escáner...</div>
+        <button id="startButton">Iniciar escáner</button>
+        
+        <!-- Formulario para enviar el resultado al backend -->
+         
+        <form method="post" id="scanForm" style="display: none;">
+            {% csrf_token %}
+            <input type="hidden" id="scannedCode" name="scannedCode">
+            <div class="scan-actions">
+                <button type="submit" class="btn-add-to-cart" name="action" value="add">Agregar al carrito</button>
+                <button type="submit" class="btn-pay-now" name="action" value="pay">Pagar ahora</button>
+            </div>
+        </form>
+        
+        <!-- Alternativa para ingreso manual de código -->
+        <div class="manual-input-container">
+            <h3>O ingresa el código manualmente</h3>
+            <form method="post" class="manual-input-form">
+                {% csrf_token %}
+                <input type="text" name="scannedCode" placeholder="Ingresa código del producto">
+                <div class="scan-actions">
+                    <button type="submit" class="btn-add-to-cart" name="action" value="add">Agregar al carrito</button>
+                    <button type="submit" class="btn-pay-now" name="action" value="pay">Pagar ahora</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="auth-required">
+    <div class="message-container">
+        <h2>Acceso Restringido</h2>
+        <p>Debes iniciar sesión para acceder al escáner.</p>
+        <a href="{% url 'usuarios:login' %}" class="btn">Iniciar Sesión</a>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<!-- Usar la CDN más reciente y confiable para QuaggaJS -->
+<script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2@1.8.2/dist/quagga.min.js"></script>
+<!-- Añadir jsQR para códigos QR -->
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+<!-- Script principal de la aplicación -->
+<script src="{% static 'js/scanner.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Promociona tu producto a grandes empresas con nuestra página web interactiva. Conoce nuestra visión, misión y quiénes somos.">
+    <meta name="keywords" content="promoción, producto, grandes empresas, visión, misión, quiénes somos">
+    <meta name="author" content="Tu Empresa">
+    <title>
+        {% block title %}
+            ROOT
+        {% endblock %}
+    </title>
+    {% load static %}
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'core/img/favicon.ico' %}" type="image/x-icon">
+    
+    <!-- Estilos principales -->
+    <link href="{% static 'core/css/style.css' %}" rel="stylesheet">
+    
+    <!-- Estilos adicionales -->
+    {% block extra_css %}{% endblock %}
+    
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .contenido-principal {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        footer {
+            width: 100%;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>ROOT</h1>
+            </div>
+            <div class="menu">
+                <a href="{% url 'core:home' %}">Producto</a>
+                <a href="{% url 'core:vision_mision' %}">Visión y Misión</a>
+                <a href="{% url 'core:contacto' %}">Contacto</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'scanner:scanner' %}">Escáner</a>
+                    <a href="{% url 'usuarios:perfil' %}" class="boton-login">Mi Perfil</a>
+                    <a href="{% url 'usuarios:logout' %}" class="boton-logout">Cerrar Sesión</a>
+                {% else %}
+                <a href="{% url 'usuarios:login' %}" class="boton-login">Ingresar</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+        <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <div class="contenido-principal">
+        {% block content %}
+        {% endblock %}
+    </div>
+    
+    <footer>
+        <p>Redes sociales.</p>
+        <div class="social">
+            <a href="#" target="_blank">
+                <img src="{% static 'core/img/icon-7.jpg' %}" alt="Instagram">
+            </a>
+            <a href="#" target="_blank">
+                <img src="{% static 'core/img/icon-8.jpg' %}" alt="LinkedIn">
+            </a>
+        </div>
+        <p>&copy; 2025 ROOT. Todos los derechos reservados.</p>
+    </footer>
+    
+    <!-- Scripts principales -->
+    <script src="{% static 'core/js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide-static@0.321.0/icons.min.js"></script>
+    
+    <!-- Iconos SVG -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+    
+    <!-- Scripts adicionales -->
+    {% block scripts %}{% endblock %}
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
