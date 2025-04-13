@@ -101,10 +101,15 @@ WSGI_APPLICATION = 'myWebRoot.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default=f'sqlite:///{BASE_DIR / "db.sqlite3"}')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'data-app-root',
+        'USER': 'postgres',
+        'PASSWORD': '6160264Reni',  # Asegúrate de que esta sea tu contraseña real
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 

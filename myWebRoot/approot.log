@@ -6003,3 +6003,26 @@ INFO 2025-04-12 14:09:05,834 basehttp 16376 15328 "POST /admin/logout/ HTTP/1.1"
 INFO 2025-04-12 14:09:05,846 basehttp 16376 15328 "GET / HTTP/1.1" 200 4974
 INFO 2025-04-12 14:09:07,870 basehttp 16376 15328 "GET /usuarios/login/ HTTP/1.1" 200 4046
 INFO 2025-04-12 14:09:12,477 basehttp 16376 15328 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-04-12 18:54:14,489 autoreload 14868 17232 Watching for file changes with StatReloader
+INFO 2025-04-12 18:54:24,622 basehttp 14868 10236 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-04-12 18:54:24,722 basehttp 14868 10236 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4228
+WARNING 2025-04-12 18:54:24,850 log 14868 10236 Not Found: /favicon.ico
+WARNING 2025-04-12 18:54:24,851 basehttp 14868 10236 "GET /favicon.ico HTTP/1.1" 404 4062
+INFO 2025-04-12 18:54:35,516 basehttp 14868 10236 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4429
+INFO 2025-04-12 18:54:49,892 basehttp 14868 10236 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4429
+INFO 2025-04-12 18:55:09,104 basehttp 14868 10236 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4429
+INFO 2025-04-12 18:57:25,596 autoreload 14472 8112 Watching for file changes with StatReloader
+INFO 2025-04-12 18:57:34,595 basehttp 14472 9816 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-04-12 18:57:34,668 basehttp 14472 9816 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4228
+INFO 2025-04-12 18:57:45,885 basehttp 14472 9816 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-04-12 18:57:46,005 basehttp 14472 9816 "GET /admin/ HTTP/1.1" 200 8192
+INFO 2025-04-12 18:57:51,545 basehttp 14472 9816 "GET /admin/productos/producto/ HTTP/1.1" 200 10694
+INFO 2025-04-12 18:57:51,690 basehttp 14472 9816 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-04-12 18:57:55,209 basehttp 14472 9816 "GET /admin/auth/user/ HTTP/1.1" 200 13004
+INFO 2025-04-12 18:57:55,475 basehttp 14472 9816 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-04-12 18:57:57,557 basehttp 14472 9816 "GET /admin/facturas/factura/ HTTP/1.1" 200 9191
+INFO 2025-04-12 18:57:57,672 basehttp 14472 9816 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-04-12 18:57:59,202 basehttp 14472 9816 "GET /admin/productos/producto/ HTTP/1.1" 200 10694
+INFO 2025-04-12 18:57:59,339 basehttp 14472 9816 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-04-12 18:58:00,261 basehttp 14472 9816 "GET /admin/productos/categoria/ HTTP/1.1" 200 9328
+INFO 2025-04-12 18:58:00,371 basehttp 14472 9816 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
