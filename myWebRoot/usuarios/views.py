@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth import get_user_model, authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage
@@ -10,6 +9,9 @@ from django.utils import timezone
 import os
 from carrito.models import Carrito
 from datetime import datetime
+
+# Obtener el modelo de usuario personalizado
+User = get_user_model()
 
 def registro_view(request):
     # Si el usuario ya está autenticado, redirigir al home
@@ -45,7 +47,7 @@ def registro_view(request):
             user = User.objects.create_user(username=username, email=email, password=password1)
             user.save()
             
-            # El perfil se crea automáticamente por la señal post_save
+            # Ya no necesitamos crear el perfil porque todos los campos están en el modelo User
             
             # Crear carrito para el usuario
             Carrito.objects.create(usuario=user)
@@ -98,9 +100,6 @@ def login_view(request):
     
     return render(request, 'usuarios/login.html')
 
-from django.contrib.auth import logout
-from django.shortcuts import redirect
-
 def logout_view(request):
     logout(request)  # Cierra la sesión completamente
     return redirect('core:home')  # Redirige a la página de inicio
@@ -132,22 +131,20 @@ def actualizar_perfil(request):
         user.first_name = request.POST.get('first_name', '')
         user.last_name = request.POST.get('last_name', '')
         user.email = request.POST.get('email', '')
-        user.save()
         
-        # Actualizar datos del perfil
-        perfil = user.perfil
-        perfil.telefono = request.POST.get('telefono', '')
-        perfil.direccion = request.POST.get('direccion', '')
-        perfil.id_documento = request.POST.get('id_documento', '')
+        # Actualizar datos adicionales directamente en el modelo de usuario
+        user.telefono = request.POST.get('telefono', '')
+        user.direccion = request.POST.get('direccion', '')
+        user.id_documento = request.POST.get('id_documento', '')
         
         fecha_str = request.POST.get('fecha_nacimiento', '')
         if fecha_str:
             try:
-                perfil.fecha_nacimiento = datetime.strptime(fecha_str, '%Y-%m-%d').date()
+                user.fecha_nacimiento = datetime.strptime(fecha_str, '%Y-%m-%d').date()
             except ValueError:
                 pass
-                
-        perfil.save()
+        
+        user.save()
         
         messages.success(request, 'Perfil actualizado correctamente')
     
@@ -171,17 +168,17 @@ def actualizar_foto(request):
             messages.error(request, 'La imagen no debe superar los 5MB')
             return redirect('usuarios:perfil')
             
-        # Guardar la imagen
-        perfil = request.user.perfil
+        # Guardar la imagen directamente en el usuario
+        user = request.user
         
         # Eliminar foto anterior si no es la predeterminada
-        if perfil.foto and 'default.png' not in perfil.foto.name:
-            if default_storage.exists(perfil.foto.name):
-                default_storage.delete(perfil.foto.name)
+        if user.foto and 'default.png' not in user.foto.name:
+            if default_storage.exists(user.foto.name):
+                default_storage.delete(user.foto.name)
         
         # Generar nombre único para la foto
-        filename = f"perfiles/user_{request.user.id}_{timezone.now().strftime('%Y%m%d%H%M%S')}{ext}"
-        perfil.foto.save(filename, ContentFile(foto.read()))
+        filename = f"perfiles/user_{user.id}_{timezone.now().strftime('%Y%m%d%H%M%S')}{ext}"
+        user.foto.save(filename, ContentFile(foto.read()))
         
         messages.success(request, 'Foto de perfil actualizada correctamente')
     
@@ -190,9 +187,9 @@ def actualizar_foto(request):
 @login_required
 def actualizar_preferencias(request):
     if request.method == 'POST':
-        perfil = request.user.perfil
-        perfil.preferencias_notificacion = 'preferencias_notificacion' in request.POST
-        perfil.save()
+        user = request.user
+        user.preferencias_notificacion = 'preferencias_notificacion' in request.POST
+        user.save()
         
         messages.success(request, 'Preferencias actualizadas correctamente')
     

@@ -23,7 +23,7 @@
             <!-- Panel de navegación lateral -->
             <div class="perfil-nav">
                 <div class="perfil-foto-container">
-                    <img src="{{ user.perfil.foto.url }}" alt="Foto de perfil" class="perfil-foto">
+                    <img src="{{ user.foto.url }}" alt="Foto de perfil" class="perfil-foto">
                     <div class="perfil-foto-overlay">
                         <form method="post" action="{% url 'usuarios:actualizar_foto' %}" enctype="multipart/form-data" id="formFoto">
                             {% csrf_token %}
@@ -92,23 +92,23 @@
                             
                             <div class="form-group">
                                 <label for="telefono">Teléfono</label>
-                                <input type="tel" id="telefono" name="telefono" value="{{ user.perfil.telefono|default:'' }}">
+                                <input type="tel" id="telefono" name="telefono" value="{{ user.telefono|default:'' }}">
                             </div>
                             
                             <div class="form-group">
                                 <label for="id_documento">Documento de Identidad</label>
-                                <input type="text" id="id_documento" name="id_documento" value="{{ user.perfil.id_documento|default:'' }}">
+                                <input type="text" id="id_documento" name="id_documento" value="{{ user.id_documento|default:'' }}">
                             </div>
                             
                             <div class="form-group">
                                 <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-                                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ user.perfil.fecha_nacimiento|date:'Y-m-d'|default:'' }}">
+                                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ user.fecha_nacimiento|date:'Y-m-d'|default:'' }}">
                             </div>
                         </div>
                         
                         <div class="form-group full-width">
                             <label for="direccion">Dirección</label>
-                            <textarea id="direccion" name="direccion" rows="3">{{ user.perfil.direccion|default:'' }}</textarea>
+                            <textarea id="direccion" name="direccion" rows="3">{{ user.direccion|default:'' }}</textarea>
                         </div>
                         
                         <div class="form-actions">
@@ -275,7 +275,7 @@
                             <div class="switch-container">
                                 <label for="notificaciones">Recibir notificaciones por correo</label>
                                 <label class="switch">
-                                    <input type="checkbox" id="notificaciones" name="preferencias_notificacion" {% if user.perfil.preferencias_notificacion %}checked{% endif %}>
+                                    <input type="checkbox" id="notificaciones" name="preferencias_notificacion" {% if user.preferencias_notificacion %}checked{% endif %}>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
