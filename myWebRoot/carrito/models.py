@@ -1,9 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from productos.models import Producto
 
 class Carrito(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='carrito')
+    usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='carrito')
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):

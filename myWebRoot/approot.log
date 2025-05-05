@@ -6003,3 +6003,194 @@ INFO 2025-04-12 14:09:05,834 basehttp 16376 15328 "POST /admin/logout/ HTTP/1.1"
 INFO 2025-04-12 14:09:05,846 basehttp 16376 15328 "GET / HTTP/1.1" 200 4974
 INFO 2025-04-12 14:09:07,870 basehttp 16376 15328 "GET /usuarios/login/ HTTP/1.1" 200 4046
 INFO 2025-04-12 14:09:12,477 basehttp 16376 15328 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-04-12 18:54:14,489 autoreload 14868 17232 Watching for file changes with StatReloader
+INFO 2025-04-12 18:54:24,622 basehttp 14868 10236 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-04-12 18:54:24,722 basehttp 14868 10236 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4228
+WARNING 2025-04-12 18:54:24,850 log 14868 10236 Not Found: /favicon.ico
+WARNING 2025-04-12 18:54:24,851 basehttp 14868 10236 "GET /favicon.ico HTTP/1.1" 404 4062
+INFO 2025-04-12 18:54:35,516 basehttp 14868 10236 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4429
+INFO 2025-04-12 18:54:49,892 basehttp 14868 10236 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4429
+INFO 2025-04-12 18:55:09,104 basehttp 14868 10236 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4429
+INFO 2025-04-12 18:57:25,596 autoreload 14472 8112 Watching for file changes with StatReloader
+INFO 2025-04-12 18:57:34,595 basehttp 14472 9816 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-04-12 18:57:34,668 basehttp 14472 9816 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4228
+INFO 2025-04-12 18:57:45,885 basehttp 14472 9816 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-04-12 18:57:46,005 basehttp 14472 9816 "GET /admin/ HTTP/1.1" 200 8192
+INFO 2025-04-12 18:57:51,545 basehttp 14472 9816 "GET /admin/productos/producto/ HTTP/1.1" 200 10694
+INFO 2025-04-12 18:57:51,690 basehttp 14472 9816 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-04-12 18:57:55,209 basehttp 14472 9816 "GET /admin/auth/user/ HTTP/1.1" 200 13004
+INFO 2025-04-12 18:57:55,475 basehttp 14472 9816 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-04-12 18:57:57,557 basehttp 14472 9816 "GET /admin/facturas/factura/ HTTP/1.1" 200 9191
+INFO 2025-04-12 18:57:57,672 basehttp 14472 9816 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-04-12 18:57:59,202 basehttp 14472 9816 "GET /admin/productos/producto/ HTTP/1.1" 200 10694
+INFO 2025-04-12 18:57:59,339 basehttp 14472 9816 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-04-12 18:58:00,261 basehttp 14472 9816 "GET /admin/productos/categoria/ HTTP/1.1" 200 9328
+INFO 2025-04-12 18:58:00,371 basehttp 14472 9816 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-04-12 20:43:03,192 autoreload 15672 2336 Watching for file changes with StatReloader
+INFO 2025-04-12 20:43:15,291 basehttp 15672 7672 "GET / HTTP/1.1" 200 5121
+WARNING 2025-04-12 20:43:15,456 basehttp 15672 7672 "GET /static/core/img/favicon.ico HTTP/1.1" 404 1874
+INFO 2025-04-12 20:43:18,601 basehttp 15672 12052 "GET /scanner/ HTTP/1.1" 200 6268
+INFO 2025-04-12 20:43:18,635 basehttp 15672 12052 "GET /static/js/scanner.js HTTP/1.1" 304 0
+INFO 2025-04-12 20:43:24,030 basehttp 15672 12052 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-04-12 20:43:24,035 basehttp 15672 12052 "GET / HTTP/1.1" 200 5121
+INFO 2025-04-12 20:43:25,565 basehttp 15672 12052 "GET /usuarios/perfil/ HTTP/1.1" 302 0
+INFO 2025-04-12 20:43:25,579 basehttp 15672 12052 "GET /usuarios/login/?next=/usuarios/perfil/ HTTP/1.1" 200 4046
+INFO 2025-04-12 20:43:26,777 basehttp 15672 12052 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-04-12 20:43:33,867 basehttp 15672 12052 "POST /usuarios/login/ HTTP/1.1" 200 4392
+INFO 2025-04-12 20:43:42,700 basehttp 15672 12052 "POST /usuarios/login/ HTTP/1.1" 200 4392
+INFO 2025-04-12 20:43:44,737 basehttp 15672 12052 "GET /usuarios/registro/ HTTP/1.1" 200 4398
+INFO 2025-04-12 20:43:54,541 basehttp 15672 12052 "POST /usuarios/registro/ HTTP/1.1" 302 0
+INFO 2025-04-12 20:43:54,552 basehttp 15672 12052 "GET /usuarios/registro/ HTTP/1.1" 200 4774
+INFO 2025-04-12 20:44:35,887 basehttp 15672 12052 "POST /usuarios/registro/ HTTP/1.1" 302 0
+INFO 2025-04-12 20:44:36,013 basehttp 15672 12052 "GET /usuarios/perfil/ HTTP/1.1" 200 12939
+WARNING 2025-04-12 20:44:36,060 log 15672 12052 Not Found: /media/perfiles/default.png
+WARNING 2025-04-12 20:44:36,061 basehttp 15672 12052 "GET /media/perfiles/default.png HTTP/1.1" 404 4340
+INFO 2025-04-12 20:44:42,408 basehttp 15672 12052 "GET /scanner/ HTTP/1.1" 200 6268
+INFO 2025-04-12 20:45:05,618 basehttp 15672 12052 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-04-12 20:45:05,754 basehttp 15672 12052 "GET /scanner/ HTTP/1.1" 200 6445
+INFO 2025-04-12 20:45:10,723 basehttp 15672 12052 "GET /usuarios/perfil/ HTTP/1.1" 200 12485
+WARNING 2025-04-12 20:45:10,766 log 15672 12052 Not Found: /media/perfiles/default.png
+WARNING 2025-04-12 20:45:10,770 basehttp 15672 12052 "GET /media/perfiles/default.png HTTP/1.1" 404 4340
+INFO 2025-04-12 20:45:43,251 basehttp 15672 12052 "POST /usuarios/perfil/actualizar-foto/ HTTP/1.1" 302 0
+INFO 2025-04-12 20:45:43,401 basehttp 15672 12052 "GET /usuarios/perfil/ HTTP/1.1" 200 12948
+INFO 2025-04-12 20:45:43,556 basehttp 15672 12052 "GET /media/perfiles/perfiles/user_2_20250413014543.png HTTP/1.1" 200 1952610
+INFO 2025-04-12 20:45:52,630 basehttp 15672 12052 "GET /scanner/ HTTP/1.1" 200 6268
+INFO 2025-04-12 20:46:28,165 basehttp 15672 12052 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-04-12 20:46:46,445 basehttp 15672 12052 "GET /usuarios/perfil/ HTTP/1.1" 302 0
+INFO 2025-04-12 20:46:46,456 basehttp 15672 12052 "GET /usuarios/login/?next=/usuarios/perfil/ HTTP/1.1" 200 4046
+INFO 2025-04-12 20:46:49,660 basehttp 15672 12052 "GET /contacto/ HTTP/1.1" 200 4403
+INFO 2025-04-14 00:57:56,405 autoreload 6624 7780 Watching for file changes with StatReloader
+INFO 2025-04-14 00:58:06,472 basehttp 6624 6256 "GET / HTTP/1.1" 200 4974
+INFO 2025-04-14 00:58:06,489 basehttp 6624 10748 "GET /static/core/img/icon-2.jpg HTTP/1.1" 304 0
+INFO 2025-04-14 00:58:06,489 basehttp 6624 6256 "GET /static/core/css/style.css HTTP/1.1" 304 0
+INFO 2025-04-14 00:58:06,490 basehttp 6624 9536 "GET /static/core/img/icon-1.jpg HTTP/1.1" 304 0
+INFO 2025-04-14 00:58:06,505 basehttp 6624 6256 "GET /static/core/img/icon-3.jpg HTTP/1.1" 304 0
+INFO 2025-04-14 00:58:06,505 basehttp 6624 10748 "GET /static/core/img/icon-4.jpg HTTP/1.1" 304 0
+INFO 2025-04-14 00:58:06,505 basehttp 6624 9536 "GET /static/core/js/main.js HTTP/1.1" 304 0
+INFO 2025-04-14 00:58:06,516 basehttp 6624 9536 "GET /static/core/img/icon-5.jpg HTTP/1.1" 304 0
+INFO 2025-04-14 00:58:06,516 basehttp 6624 6256 "GET /static/core/img/icon-6.jpg HTTP/1.1" 304 0
+INFO 2025-04-14 00:58:06,521 basehttp 6624 6256 "GET /static/core/img/icon-7.jpg HTTP/1.1" 304 0
+INFO 2025-04-14 00:58:06,523 basehttp 6624 9536 "GET /static/core/img/icon-8.jpg HTTP/1.1" 304 0
+INFO 2025-04-14 00:58:07,459 basehttp 6624 9536 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-04-14 00:58:07,555 basehttp 6624 9536 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4228
+ERROR 2025-04-14 00:58:18,653 log 6624 9536 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: no existe la relación «usuarios_user»
+LINE 1: ...encias_notificacion", "usuarios_user"."foto" FROM "usuarios_...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\admin\sites.py", line 444, in login
+    return LoginView.as_view(**defaults)(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\generic\edit.py", line 150, in post
+    if form.is_valid():
+       ~~~~~~~~~~~~~^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\forms\forms.py", line 326, in full_clean
+    self._clean_form()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\forms\forms.py", line 342, in _clean_form
+    cleaned_data = self.clean()
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\forms.py", line 363, in clean
+    self.user_cache = authenticate(
+                      ~~~~~~~~~~~~^
+        self.request, username=username, password=password
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\decorators\debug.py", line 75, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\__init__.py", line 79, in authenticate
+    user = backend.authenticate(request, **credentials)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\base_user.py", line 37, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: no existe la relación «usuarios_user»
+LINE 1: ...encias_notificacion", "usuarios_user"."foto" FROM "usuarios_...
+                                                             ^
+
+ERROR 2025-04-14 00:58:18,667 basehttp 6624 9536 "POST /admin/login/?next=/admin/ HTTP/1.1" 500 248494

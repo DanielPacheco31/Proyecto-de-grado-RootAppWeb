@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings 
 from productos.models import Producto
 
 class Compra(models.Model):
@@ -11,7 +11,7 @@ class Compra(models.Model):
         ('cancelado', 'Cancelado'),
     )
     
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='compras')
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='compras')
     fecha_compra = models.DateTimeField(auto_now_add=True)
     estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='pendiente')
     total = models.DecimalField(max_digits=10, decimal_places=2)
