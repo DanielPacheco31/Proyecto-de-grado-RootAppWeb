@@ -61,7 +61,7 @@ def finalizar_compra(request):
         # Redirigir a la selección de método de pago
         return redirect('pagos:seleccionar_metodo_pago', compra_id=compra.id)
     
-    return render(request, 'checkout.html', {'carrito': carrito})
+    return render(request, 'carrito/checkout.html', {'carrito': carrito})
 
 @login_required
 def actualizar_cantidad(request, item_id):
