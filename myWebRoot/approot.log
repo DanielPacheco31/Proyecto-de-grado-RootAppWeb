@@ -7457,3 +7457,6 @@ INFO 2025-05-06 20:24:47,828 basehttp 11556 14268 "GET /usuarios/registro/ HTTP/
 INFO 2025-05-06 20:24:51,080 basehttp 11556 14268 "GET /usuarios/login/ HTTP/1.1" 200 4046
 INFO 2025-05-06 20:24:53,012 basehttp 11556 14268 "GET /usuarios/login/ HTTP/1.1" 200 4046
 INFO 2025-05-06 20:24:54,967 basehttp 11556 14268 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:37:06,769 basehttp 11556 15200 "POST /usuarios/registro/ HTTP/1.1" 302 0
+INFO 2025-05-06 20:37:06,777 basehttp 11556 15200 "GET /usuarios/registro/ HTTP/1.1" 200 5950
+INFO 2025-05-06 20:37:13,621 basehttp 11556 15200 "GET /usuarios/login/ HTTP/1.1" 200 4046
