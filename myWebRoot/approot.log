@@ -7447,3 +7447,13 @@ INFO 2025-05-06 20:24:12,993 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/
 INFO 2025-05-06 20:24:13,104 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
 INFO 2025-05-06 20:24:13,282 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
 INFO 2025-05-06 20:24:22,717 autoreload 11556 8160 Watching for file changes with StatReloader
+INFO 2025-05-06 20:24:30,494 basehttp 11556 14268 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-06 20:24:32,176 basehttp 11556 14268 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:46,682 basehttp 11556 14268 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:47,282 basehttp 11556 14268 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:47,472 basehttp 11556 14268 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:47,650 basehttp 11556 14268 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:47,828 basehttp 11556 14268 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:51,080 basehttp 11556 14268 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-06 20:24:53,012 basehttp 11556 14268 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-06 20:24:54,967 basehttp 11556 14268 "GET /usuarios/registro/ HTTP/1.1" 200 5592
