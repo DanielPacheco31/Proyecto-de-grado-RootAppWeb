@@ -18,24 +18,14 @@
         <div class="estado-compra estado-{{ compra.estado }}">
             <div class="estado-titulo">Estado: {{ compra.get_estado_display }}</div>
             <div class="progreso-estado">
-                <div class="paso-estado {% if compra.estado == 'pendiente' or compra.estado == 'pagado' or compra.estado == 'enviado' or compra.estado == 'entregado' %}activo{% endif %}">
+                <div class="paso-estado {% if compra.estado == 'pendiente' or compra.estado == 'pagado' %}activo{% endif %}">
                     <div class="numero-paso">1</div>
                     <div class="texto-paso">Pendiente</div>
                 </div>
                 <div class="linea-estado"></div>
-                <div class="paso-estado {% if compra.estado == 'pagado' or compra.estado == 'enviado' or compra.estado == 'entregado' %}activo{% endif %}">
+                <div class="paso-estado {% if compra.estado == 'pagado' %}activo{% endif %}">
                     <div class="numero-paso">2</div>
                     <div class="texto-paso">Pagado</div>
-                </div>
-                <div class="linea-estado"></div>
-                <div class="paso-estado {% if compra.estado == 'enviado' or compra.estado == 'entregado' %}activo{% endif %}">
-                    <div class="numero-paso">3</div>
-                    <div class="texto-paso">Enviado</div>
-                </div>
-                <div class="linea-estado"></div>
-                <div class="paso-estado {% if compra.estado == 'entregado' %}activo{% endif %}">
-                    <div class="numero-paso">4</div>
-                    <div class="texto-paso">Entregado</div>
                 </div>
             </div>
         </div>

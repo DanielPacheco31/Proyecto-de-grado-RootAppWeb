@@ -37,13 +37,13 @@ class DetalleCompra(models.Model):
 # En pagos/models.py
 class MetodoPago(models.Model):
     TIPO_CHOICES = (
-        
-        ('transferencia', 'Transferencia Bancaria'),
-        ('paypal', 'PayPal'),
-        ('mercadopago', 'MercadoPago'),
-        # Añadir métodos de pago móviles:
-        ('movil', 'Pago Móvil'),
-    )
+    ('nequi', 'Nequi'),
+    ('bancolombia', 'Bancolombia'),
+    ('pse', 'PSE'),
+    ('tarjeta', 'Tarjeta de Crédito'),
+    ('movil', 'Pago Móvil'),
+    ('transferencia', 'Transferencia Bancaria'),
+)
     
     nombre = models.CharField(max_length=100)
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
@@ -55,12 +55,10 @@ class MetodoPago(models.Model):
 
 class Pago(models.Model):
     ESTADO_CHOICES = (
-        ('pendiente', 'Pendiente'),
-        ('procesando', 'Procesando'),
-        ('completado', 'Completado'),
-        ('fallido', 'Fallido'),
-        ('reembolsado', 'Reembolsado'),
-    )
+    ('pendiente', 'Pendiente'),
+    ('pagado', 'Pagado'),
+    ('cancelado', 'Cancelado'),
+)
     
     compra = models.OneToOneField(Compra, on_delete=models.CASCADE, related_name='pago')
     metodo_pago = models.ForeignKey(MetodoPago, on_delete=models.PROTECT, related_name='pagos')

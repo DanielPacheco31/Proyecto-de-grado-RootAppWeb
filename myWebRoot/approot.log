@@ -6884,3 +6884,566 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'procesar_pago' not found. 'p
 ERROR 2025-05-05 21:09:12,824 basehttp 10916 13168 "GET /pagos/8/metodo/ HTTP/1.1" 500 163849
 INFO 2025-05-05 21:14:08,573 basehttp 10916 13168 "GET /usuarios/logout/ HTTP/1.1" 302 0
 INFO 2025-05-05 21:14:08,580 basehttp 10916 13168 "GET / HTTP/1.1" 200 4974
+INFO 2025-05-06 15:59:01,399 autoreload 8980 14504 Watching for file changes with StatReloader
+INFO 2025-05-06 15:59:47,008 basehttp 8980 13732 "GET / HTTP/1.1" 200 4974
+WARNING 2025-05-06 15:59:47,790 basehttp 8980 13732 "GET /static/core/img/favicon.ico HTTP/1.1" 404 1874
+INFO 2025-05-06 15:59:49,472 basehttp 8980 16276 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-06 15:59:58,807 basehttp 8980 16276 "POST /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-06 15:59:58,843 basehttp 8980 16276 "GET /scanner/ HTTP/1.1" 200 6424
+INFO 2025-05-06 16:00:40,619 basehttp 8980 16276 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-06 16:00:40,773 basehttp 8980 16276 "GET /usuarios/perfil/ HTTP/1.1" 200 29180
+INFO 2025-05-06 16:00:51,221 basehttp 8980 16276 "GET /carrito/finalizar/ HTTP/1.1" 200 5145
+INFO 2025-05-06 16:00:53,603 basehttp 8980 16276 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+ERROR 2025-05-06 16:00:53,869 log 8980 16276 Internal Server Error: /pagos/9/metodo/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\views.py", line 21, in seleccionar_metodo_pago
+    return render(request, 'pagos/metodoDepago.html', {
+        'compra': compra,
+        'metodos_pago': metodos_pago
+    })
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'procesar_pago' not found. 'procesar_pago' is not a valid view function or pattern name.
+ERROR 2025-05-06 16:00:53,880 basehttp 8980 16276 "GET /pagos/9/metodo/ HTTP/1.1" 500 163849
+WARNING 2025-05-06 16:00:54,071 log 8980 16276 Not Found: /favicon.ico
+WARNING 2025-05-06 16:00:54,072 basehttp 8980 16276 "GET /favicon.ico HTTP/1.1" 404 4062
+INFO 2025-05-06 16:07:07,194 basehttp 8980 11104 "GET /pagos/9/metodo/ HTTP/1.1" 200 6445
+WARNING 2025-05-06 16:07:07,223 basehttp 8980 11104 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+INFO 2025-05-06 16:07:43,063 basehttp 8980 14536 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-06 16:07:43,106 basehttp 8980 14536 "GET /usuarios/perfil/ HTTP/1.1" 200 25998
+ERROR 2025-05-06 16:07:51,202 log 8980 14536 Internal Server Error: /facturas/9/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py", line 19, in detalle_compra
+    return render(request, 'facturas/detalle_compra.html', {
+        'compra': compra,
+        'factura': factura
+    })
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: facturas/detalle_compra.html
+ERROR 2025-05-06 16:07:51,204 basehttp 8980 14536 "GET /facturas/9/ HTTP/1.1" 500 93400
+INFO 2025-05-06 16:10:17,940 autoreload 8980 14504 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-06 16:10:19,495 autoreload 15332 15252 Watching for file changes with StatReloader
+ERROR 2025-05-06 16:10:20,114 log 15332 3440 Internal Server Error: /facturas/9/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py", line 19, in detalle_compra
+    return render(request, 'facturas:detalle_compra.html', {
+        'compra': compra,
+        'factura': factura
+    })
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: facturas:detalle_compra.html
+ERROR 2025-05-06 16:10:20,120 basehttp 15332 3440 "GET /facturas/9/ HTTP/1.1" 500 93537
+INFO 2025-05-06 16:11:16,905 autoreload 15332 15252 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-06 16:11:18,247 autoreload 7392 15904 Watching for file changes with StatReloader
+INFO 2025-05-06 16:11:22,642 basehttp 7392 2092 "GET /facturas/9/ HTTP/1.1" 200 7881
+INFO 2025-05-06 16:11:22,811 basehttp 7392 11768 "GET /static/css/factura-print.css HTTP/1.1" 200 3936
+INFO 2025-05-06 16:11:22,820 basehttp 7392 2092 "GET /static/css/detalle_compra.css HTTP/1.1" 200 10160
+INFO 2025-05-06 16:11:22,838 basehttp 7392 8344 "GET /static/js/facturas.js HTTP/1.1" 200 8689
+INFO 2025-05-06 16:11:57,424 basehttp 7392 8344 "POST /facturas/9/ HTTP/1.1" 200 7881
+INFO 2025-05-06 16:12:03,129 basehttp 7392 8344 "POST /facturas/9/ HTTP/1.1" 200 7881
+INFO 2025-05-06 16:12:07,132 basehttp 7392 8344 "POST /facturas/9/ HTTP/1.1" 200 7881
+INFO 2025-05-06 16:12:09,793 basehttp 7392 8344 "POST /facturas/9/ HTTP/1.1" 200 7881
+INFO 2025-05-06 16:12:12,825 basehttp 7392 8344 "POST /facturas/9/ HTTP/1.1" 200 7881
+INFO 2025-05-06 16:12:14,729 basehttp 7392 8344 "POST /facturas/9/ HTTP/1.1" 200 7881
+INFO 2025-05-06 16:12:17,690 basehttp 7392 8344 "GET /usuarios/perfil/ HTTP/1.1" 200 25596
+INFO 2025-05-06 16:12:29,562 basehttp 7392 8344 "GET /facturas/9/ HTTP/1.1" 200 7881
+INFO 2025-05-06 16:15:56,931 autoreload 7392 15904 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-06 16:15:58,552 autoreload 1520 12528 Watching for file changes with StatReloader
+INFO 2025-05-06 16:16:02,217 autoreload 1520 12528 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-06 16:16:03,554 autoreload 4420 16452 Watching for file changes with StatReloader
+INFO 2025-05-06 16:16:07,192 autoreload 4420 16452 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-06 16:16:08,411 autoreload 948 2288 Watching for file changes with StatReloader
+INFO 2025-05-06 16:16:09,948 basehttp 948 2216 "GET /facturas/9/ HTTP/1.1" 200 7427
+INFO 2025-05-06 16:16:32,836 basehttp 948 2216 "POST /facturas/9/ HTTP/1.1" 200 7427
+INFO 2025-05-06 16:21:26,345 basehttp 948 2216 "POST /facturas/9/ HTTP/1.1" 200 7427
+INFO 2025-05-06 16:21:33,332 basehttp 948 2216 "POST /facturas/9/ HTTP/1.1" 200 7427
+INFO 2025-05-06 16:21:35,609 basehttp 948 2216 "GET /facturas/9/ HTTP/1.1" 200 7427
+INFO 2025-05-06 16:21:41,195 basehttp 948 2216 "GET /scanner/ HTTP/1.1" 200 6268
+INFO 2025-05-06 16:21:44,932 basehttp 948 2216 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-06 16:21:44,954 basehttp 948 2216 "GET /carrito/finalizar/ HTTP/1.1" 200 5337
+INFO 2025-05-06 16:21:47,123 basehttp 948 2216 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-06 16:21:47,139 basehttp 948 2216 "GET /pagos/10/metodo/ HTTP/1.1" 200 6611
+WARNING 2025-05-06 16:21:47,174 basehttp 948 2216 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+INFO 2025-05-06 16:22:12,073 basehttp 948 16644 "GET /usuarios/perfil/ HTTP/1.1" 200 27000
+INFO 2025-05-06 16:22:17,999 basehttp 948 16644 "GET /facturas/10/ HTTP/1.1" 200 7429
+INFO 2025-05-06 16:22:58,642 basehttp 948 16644 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-05-06 16:22:58,647 basehttp 948 16644 "GET / HTTP/1.1" 200 4974
+INFO 2025-05-06 16:23:00,705 basehttp 948 16644 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-06 16:23:02,909 basehttp 948 16644 "GET /usuarios/registro/ HTTP/1.1" 200 4398
+INFO 2025-05-06 16:30:20,412 autoreload 948 2288 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-06 16:30:21,938 autoreload 3588 13776 Watching for file changes with StatReloader
+INFO 2025-05-06 16:30:26,118 basehttp 3588 6552 "GET /usuarios/registro/ HTTP/1.1" 200 4398
+INFO 2025-05-06 16:30:26,734 basehttp 3588 6552 "GET /usuarios/registro/ HTTP/1.1" 200 4398
+INFO 2025-05-06 16:30:26,907 basehttp 3588 6552 "GET /usuarios/registro/ HTTP/1.1" 200 4398
+INFO 2025-05-06 16:30:27,061 basehttp 3588 6552 "GET /usuarios/registro/ HTTP/1.1" 200 4398
+INFO 2025-05-06 16:30:29,684 basehttp 3588 6552 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-06 16:30:42,704 basehttp 3588 6552 "POST /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-06 16:30:42,713 basehttp 3588 6552 "GET /scanner/ HTTP/1.1" 200 6424
+INFO 2025-05-06 16:30:47,828 basehttp 3588 6552 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-06 16:30:47,853 basehttp 3588 6552 "GET /carrito/finalizar/ HTTP/1.1" 200 5337
+INFO 2025-05-06 16:30:49,385 basehttp 3588 6552 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+ERROR 2025-05-06 16:30:49,536 log 3588 6552 Internal Server Error: /pagos/11/metodo/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\views.py", line 21, in seleccionar_metodo_pago
+    return render(request, 'pagos/metodoDepago.html', {
+        'compra': compra,
+        'metodos_pago': metodos_pago
+    })
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'checkout' not found. 'checkout' is not a valid view function or pattern name.
+ERROR 2025-05-06 16:30:49,544 basehttp 3588 6552 "GET /pagos/11/metodo/ HTTP/1.1" 500 165729
+ERROR 2025-05-06 16:33:41,478 log 3588 6552 Internal Server Error: /pagos/11/metodo/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\views.py", line 21, in seleccionar_metodo_pago
+    return render(request, 'pagos/metodoDepago.html', {
+        'compra': compra,
+        'metodos_pago': metodos_pago
+    })
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'ver_carrito' not found. 'ver_carrito' is not a valid view function or pattern name.
+ERROR 2025-05-06 16:33:41,483 basehttp 3588 6552 "GET /pagos/11/metodo/ HTTP/1.1" 500 165545
+INFO 2025-05-06 16:33:58,999 basehttp 3588 6552 "GET /pagos/11/metodo/ HTTP/1.1" 200 8930
+WARNING 2025-05-06 16:33:59,023 basehttp 3588 6552 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+WARNING 2025-05-06 16:34:15,994 log 3588 10880 Not Found: /pagos/11/procesar/
+WARNING 2025-05-06 16:34:15,995 basehttp 3588 10880 "POST /pagos/11/procesar/ HTTP/1.1" 404 4234
+INFO 2025-05-06 16:34:26,138 basehttp 3588 10880 "GET / HTTP/1.1" 200 5121
+INFO 2025-05-06 16:34:29,417 basehttp 3588 10880 "GET /usuarios/perfil/ HTTP/1.1" 200 28404
+INFO 2025-05-06 16:36:04,378 basehttp 3588 10880 "GET /usuarios/perfil/ HTTP/1.1" 200 28404
+INFO 2025-05-06 16:36:08,395 basehttp 3588 10880 "GET /scanner/ HTTP/1.1" 200 6268
+INFO 2025-05-06 16:36:12,333 basehttp 3588 10880 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-06 16:36:12,351 basehttp 3588 10880 "GET /carrito/finalizar/ HTTP/1.1" 200 5337
+INFO 2025-05-06 16:36:13,679 basehttp 3588 10880 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+ERROR 2025-05-06 16:36:13,763 log 3588 10880 Internal Server Error: /pagos/12/metodo/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\views.py", line 21, in seleccionar_metodo_pago
+    return render(request, 'pagos/metodoDepago.html', {
+        'compra': compra,
+        'metodos_pago': metodos_pago
+    })
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'perfil.html' not found. 'perfil.html' is not a valid view function or pattern name.
+ERROR 2025-05-06 16:36:13,768 basehttp 3588 10880 "GET /pagos/12/metodo/ HTTP/1.1" 500 165775
+ERROR 2025-05-06 16:36:38,406 log 3588 10880 Internal Server Error: /pagos/12/metodo/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\views.py", line 21, in seleccionar_metodo_pago
+    return render(request, 'pagos/metodoDepago.html', {
+        'compra': compra,
+        'metodos_pago': metodos_pago
+    })
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'perfil.html' not found. 'perfil.html' is not a valid view function or pattern name.
+ERROR 2025-05-06 16:36:38,415 basehttp 3588 10880 "GET /pagos/12/metodo/ HTTP/1.1" 500 165560
+ERROR 2025-05-06 16:36:39,540 log 3588 10880 Internal Server Error: /pagos/12/metodo/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\views.py", line 21, in seleccionar_metodo_pago
+    return render(request, 'pagos/metodoDepago.html', {
+        'compra': compra,
+        'metodos_pago': metodos_pago
+    })
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'perfil.html' not found. 'perfil.html' is not a valid view function or pattern name.
+ERROR 2025-05-06 16:36:39,547 basehttp 3588 10880 "GET /pagos/12/metodo/ HTTP/1.1" 500 165560
+INFO 2025-05-06 16:36:48,750 basehttp 3588 10880 "GET /pagos/12/metodo/ HTTP/1.1" 200 8946
+WARNING 2025-05-06 16:36:48,775 basehttp 3588 10880 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+INFO 2025-05-06 16:36:50,763 basehttp 3588 16260 "GET /usuarios/perfil/ HTTP/1.1" 200 29808
+INFO 2025-05-06 16:37:02,457 basehttp 3588 16260 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-05-06 16:37:02,464 basehttp 3588 16260 "GET / HTTP/1.1" 200 5121
+INFO 2025-05-06 20:06:39,493 autoreload 10856 660 Watching for file changes with StatReloader
+INFO 2025-05-06 20:06:47,602 basehttp 10856 10004 "GET / HTTP/1.1" 200 4974
+WARNING 2025-05-06 20:06:48,379 basehttp 10856 10004 "GET /static/core/img/favicon.ico HTTP/1.1" 404 1874
+INFO 2025-05-06 20:06:50,207 basehttp 10856 7760 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-06 20:07:02,045 basehttp 10856 7760 "POST /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-06 20:07:02,059 basehttp 10856 7760 "GET /scanner/ HTTP/1.1" 200 6424
+INFO 2025-05-06 20:07:07,952 basehttp 10856 7760 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-06 20:07:07,983 basehttp 10856 7760 "GET /carrito/finalizar/ HTTP/1.1" 200 5337
+INFO 2025-05-06 20:07:16,823 basehttp 10856 7760 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-06 20:07:16,842 basehttp 10856 7760 "GET /pagos/13/metodo/ HTTP/1.1" 200 9110
+WARNING 2025-05-06 20:07:16,877 basehttp 10856 7760 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+INFO 2025-05-06 20:07:36,184 basehttp 10856 13328 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-06 20:07:36,304 basehttp 10856 13328 "GET /usuarios/perfil/ HTTP/1.1" 200 36198
+INFO 2025-05-06 20:07:39,741 basehttp 10856 13328 "GET /carrito/finalizar/ HTTP/1.1" 200 5145
+INFO 2025-05-06 20:07:43,136 basehttp 10856 13328 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-06 20:07:43,152 basehttp 10856 13328 "GET /pagos/14/metodo/ HTTP/1.1" 200 9110
+WARNING 2025-05-06 20:07:43,195 basehttp 10856 13328 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+WARNING 2025-05-06 20:07:58,877 log 10856 14548 Not Found: /pagos/14/procesar/
+WARNING 2025-05-06 20:07:58,878 basehttp 10856 14548 "POST /pagos/14/procesar/ HTTP/1.1" 404 4234
+WARNING 2025-05-06 20:07:58,978 log 10856 14548 Not Found: /favicon.ico
+WARNING 2025-05-06 20:07:58,979 basehttp 10856 14548 "GET /favicon.ico HTTP/1.1" 404 4062
+WARNING 2025-05-06 20:08:02,103 log 10856 14548 Not Found: /pagos/14/procesar/
+WARNING 2025-05-06 20:08:02,104 basehttp 10856 14548 "POST /pagos/14/procesar/ HTTP/1.1" 404 4234
+WARNING 2025-05-06 20:08:05,908 log 10856 14548 Not Found: /pagos/14/procesar/
+WARNING 2025-05-06 20:08:05,909 basehttp 10856 14548 "POST /pagos/14/procesar/ HTTP/1.1" 404 4234
+WARNING 2025-05-06 20:08:08,740 log 10856 14548 Not Found: /pagos/14/procesar/
+WARNING 2025-05-06 20:08:08,741 basehttp 10856 14548 "POST /pagos/14/procesar/ HTTP/1.1" 404 4234
+INFO 2025-05-06 20:08:15,140 basehttp 10856 14548 "GET /usuarios/perfil/ HTTP/1.1" 200 32616
+INFO 2025-05-06 20:09:58,984 basehttp 10856 14548 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-05-06 20:09:58,993 basehttp 10856 14548 "GET / HTTP/1.1" 200 4974
+INFO 2025-05-06 20:10:00,788 basehttp 10856 14548 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-06 20:10:03,097 basehttp 10856 14548 "GET /usuarios/registro/ HTTP/1.1" 200 4398
+INFO 2025-05-06 20:14:37,882 basehttp 10856 14548 "GET /usuarios/registro/ HTTP/1.1" 200 5672
+INFO 2025-05-06 20:22:18,090 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:22:18,733 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:22:18,897 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:22:19,082 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:22:19,226 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:22:19,532 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:24,707 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:25,368 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:25,537 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:25,704 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:28,931 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:29,090 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:29,249 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:29,394 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:50,735 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:51,304 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:51,489 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:51,649 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:51,817 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:52,017 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:52,200 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:52,430 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:53,114 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:53,282 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:53,444 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:23:53,659 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:12,153 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:12,658 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:12,816 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:12,993 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:13,104 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:13,282 basehttp 10856 17388 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-06 20:24:22,717 autoreload 11556 8160 Watching for file changes with StatReloader

@@ -43,15 +43,15 @@
 
 .grupo-formulario label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-weight: 500;
     color: #0a5dc7;
 }
 
 .grupo-formulario input {
-    width: 100%;
+    width: 60%;
     padding: 15px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid #f0e2e2;
     border-radius: 12px;
     font-size: 16px;
     transition: all 0.3s ease;

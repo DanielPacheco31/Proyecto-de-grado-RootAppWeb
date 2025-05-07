@@ -27,27 +27,57 @@
         
         <form method="post" action="{% url 'usuarios:registro' %}">
             {% csrf_token %}
-            
+        
             <div class="grupo-formulario">
-                <label for="nombre-usuario">Nombre de usuario</label>
-                <input type="text" id="nombre-usuario" name="nombre-usuario" required>
+                <label for="nombre_usuario">Nombre de usuario</label>
+                <input type="text" id="nombre_usuario" name="nombre_usuario" required>
             </div>
-            
+        
             <div class="grupo-formulario">
-                <label for="correo-electrónico">Correo electrónico</label>
-                <input type="email" id="correo-electrónico" name="correo-electrónico" required>
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required>
             </div>
-            
+        
+            <div class="grupo-formulario">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" name="apellido" required>
+            </div>
+        
+            <div class="grupo-formulario">
+                <label for="edad">Edad</label>
+                <input type="number" id="edad" name="edad" required>
+            </div>
+        
+            <div class="grupo-formulario">
+                <label for="cedula">Cédula</label>
+                <input type="text" id="cedula" name="cedula" required>
+            </div>
+        
+            <div class="grupo-formulario">
+                <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+            </div>
+        
+            <div class="grupo-formulario">
+                <label for="correo_electronico">Correo electrónico</label>
+                <input type="email" id="correo_electronico" name="correo_electronico" required>
+            </div>
+        
+            <div class="grupo-formulario">
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" name="direccion" required>
+            </div>
+        
             <div class="grupo-formulario">
                 <label for="contraseña1">Contraseña</label>
                 <input type="password" id="contraseña1" name="contraseña1" required>
             </div>
-            
+        
             <div class="grupo-formulario">
                 <label for="contraseña2">Confirmar contraseña</label>
                 <input type="password" id="contraseña2" name="contraseña2" required>
             </div>
-            
+        
             <button type="submit" class="boton-principal">Registrarse</button>
         </form>
         

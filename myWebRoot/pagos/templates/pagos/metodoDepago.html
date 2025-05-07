@@ -134,8 +134,8 @@
             </div>
             
             <div class="resumen-item">
-                <div>Dirección de entrega:</div>
-                <div>{{ compra.direccion_entrega|truncatechars:30 }}</div>
+                <div>Retiro en tienda:</div>
+                <div>Tienda Principal</div>
             </div>
             
             <div class="resumen-total">
@@ -144,9 +144,71 @@
             </div>
         </div>
         
-        <form method="post" action="{% url 'procesar_pago' compra.id %}" id="formPago">
+        <form method="post" action="{% url 'pagos:procesar_pago' compra.id %}" id="formPago">
             {% csrf_token %}
             <h3>Elige un método de pago</h3>
             
             <input type="hidden" name="metodo_pago" id="metodo_pago_seleccionado" value="">
+            
+            <div class="metodos-pago-container">
+                <!-- Nequi -->
+                <div class="metodo-pago-card" data-id="1">
+                    <div class="metodo-icono">📱</div>
+                    <div class="metodo-nombre">Nequi</div>
+                    <div class="metodo-descripcion">Pago móvil</div>
+                </div>
+                
+                <!-- Bancolombia -->
+                <div class="metodo-pago-card" data-id="2">
+                    <div class="metodo-icono">🏦</div>
+                    <div class="metodo-nombre">Bancolombia</div>
+                    <div class="metodo-descripcion">Transferencia bancaria</div>
+                </div>
+                
+                <!-- PSE -->
+                <div class="metodo-pago-card" data-id="3">
+                    <div class="metodo-icono">💻</div>
+                    <div class="metodo-nombre">PSE</div>
+                    <div class="metodo-descripcion">Pago seguro electrónico</div>
+                </div>
+                
+                <!-- Tarjeta de Crédito -->
+                <div class="metodo-pago-card" data-id="4">
+                    <div class="metodo-icono">💳</div>
+                    <div class="metodo-nombre">Tarjeta de Crédito</div>
+                    <div class="metodo-descripcion">Visa, MasterCard, American Express</div>
+                </div>
+            </div>
+
+            <div class="acciones-pago">
+                <a href="{% url 'usuarios:perfil' %}" class="btn-volver">Volver</a>
+                <button type="submit" class="btn-continuar" disabled>Continuar</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const metodoCards = document.querySelectorAll('.metodo-pago-card');
+    const inputMetodoPago = document.getElementById('metodo_pago_seleccionado');
+    const btnContinuar = document.querySelector('.btn-continuar');
+    
+    metodoCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Quitar selección anterior
+            metodoCards.forEach(c => c.classList.remove('seleccionado'));
+            
+            // Seleccionar este método
+            this.classList.add('seleccionado');
+            
+            // Actualizar input hidden
+            inputMetodoPago.value = this.dataset.id;
+            
+            // Habilitar botón continuar
+            btnContinuar.disabled = false;
+        });
+    });
+});
+</script>
 {% endblock %}
