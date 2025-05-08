@@ -7460,3 +7460,34 @@ INFO 2025-05-06 20:24:54,967 basehttp 11556 14268 "GET /usuarios/registro/ HTTP/
 INFO 2025-05-06 20:37:06,769 basehttp 11556 15200 "POST /usuarios/registro/ HTTP/1.1" 302 0
 INFO 2025-05-06 20:37:06,777 basehttp 11556 15200 "GET /usuarios/registro/ HTTP/1.1" 200 5950
 INFO 2025-05-06 20:37:13,621 basehttp 11556 15200 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-07 20:29:40,313 autoreload 16724 7352 Watching for file changes with StatReloader
+INFO 2025-05-07 20:29:51,742 basehttp 16724 11452 "GET / HTTP/1.1" 200 4974
+WARNING 2025-05-07 20:29:52,476 basehttp 16724 11452 "GET /static/core/img/favicon.ico HTTP/1.1" 404 1874
+INFO 2025-05-07 20:29:57,685 basehttp 16724 15916 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-07 20:30:00,284 basehttp 16724 15916 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:10,915 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:12,008 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:13,529 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:13,688 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:14,006 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:14,192 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:20,272 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:20,450 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:20,619 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:20,872 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:21,068 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:21,242 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:21,468 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:34:21,672 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5592
+INFO 2025-05-07 20:36:27,855 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5801
+INFO 2025-05-07 20:36:28,521 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5801
+INFO 2025-05-07 20:36:28,696 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5801
+INFO 2025-05-07 20:36:28,868 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5801
+INFO 2025-05-07 20:36:29,051 basehttp 16724 6192 "GET /usuarios/registro/ HTTP/1.1" 200 5801
+INFO 2025-05-07 20:36:58,264 autoreload 9164 18752 Watching for file changes with StatReloader
+INFO 2025-05-07 20:37:03,391 basehttp 9164 17596 "GET / HTTP/1.1" 200 4974
+INFO 2025-05-07 20:37:03,543 basehttp 9164 17596 "GET /static/core/css/style.css HTTP/1.1" 200 15752
+INFO 2025-05-07 20:37:03,543 basehttp 9164 10732 "GET /static/core/img/icon-2.jpg HTTP/1.1" 200 32800
+INFO 2025-05-07 20:37:03,553 basehttp 9164 17596 "GET /static/core/js/main.js HTTP/1.1" 200 0
+INFO 2025-05-07 20:37:03,559 basehttp 9164 8188 "GET /static/core/img/icon-1.jpg HTTP/1.1" 200 35675
+INFO 2025-05-07 20:37:03,571 basehttp 9164 10732 "GET /static/core/img/icon-3.jpg HTTP/1.1" 200 20577

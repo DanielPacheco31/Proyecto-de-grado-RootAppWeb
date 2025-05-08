@@ -39,6 +39,7 @@
 
 .grupo-formulario {
     margin-bottom: 25px;
+    position: relative;
 }
 
 .grupo-formulario label {
@@ -49,13 +50,14 @@
 }
 
 .grupo-formulario input {
-    width: 60%;
+    width: 100%; /* Cambiado de 60% a 100% para mejor alineación */
     padding: 15px;
     border: 2px solid #f0e2e2;
     border-radius: 12px;
     font-size: 16px;
     transition: all 0.3s ease;
     background-color: #f8fafc;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
 }
 
 .grupo-formulario input:focus {
@@ -63,6 +65,23 @@
     outline: none;
     box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.1);
     background-color: #fff;
+}
+
+/* Estilo para inputs con iconos (opcional) */
+.grupo-formulario.con-icono {
+    position: relative;
+}
+
+.grupo-formulario.con-icono input {
+    padding-left: 45px;
+}
+
+.icono-input {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
 }
 
 .opciones-formulario {
@@ -197,9 +216,6 @@
     }
 }
 
-/* Archivo registro.css */
-/* (contenido anterior se mantiene) */
-
 /* Nuevas reglas para layout responsivo y footer */
 html, body {
     height: 100%;
@@ -233,6 +249,36 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+/* Estilos para campos en línea */
+.campos-horizontales {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.campos-horizontales .grupo-formulario {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Para otros formularios en dos columnas (opcional) */
+@media (min-width: 768px) {
+    .formulario-columnas {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .formulario-columnas .grupo-formulario {
+        margin-bottom: 20px;
+    }
+    
+    /* Elementos que deberían ocupar toda la fila */
+    .formulario-columnas .ancho-completo {
+        grid-column: span 2;
+    }
 }
 
 @media (max-width: 768px) {
