@@ -9,18 +9,18 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('pagos', '0001_initial'),
+        ("pagos", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Factura',
+            name="Factura",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('numero', models.CharField(max_length=50, unique=True)),
-                ('fecha_emision', models.DateTimeField(auto_now_add=True)),
-                ('pdf', models.FileField(blank=True, null=True, upload_to='facturas/')),
-                ('compra', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='factura', to='pagos.compra')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("numero", models.CharField(max_length=50, unique=True)),
+                ("fecha_emision", models.DateTimeField(auto_now_add=True)),
+                ("pdf", models.FileField(blank=True, null=True, upload_to="facturas/")),
+                ("compra", models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name="factura", to="pagos.compra")),
             ],
         ),
     ]

@@ -12,19 +12,19 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Producto',
+            name="Producto",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nombre', models.CharField(db_index=True, max_length=100)),
-                ('codigo', models.CharField(db_index=True, max_length=50, unique=True)),
-                ('descripcion', models.TextField(blank=True, null=True)),
-                ('precio', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('imagen', models.ImageField(blank=True, null=True, upload_to='productos/')),
-                ('stock', models.PositiveIntegerField(default=0)),
-                ('fecha_creacion', models.DateTimeField(auto_now_add=True)),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("nombre", models.CharField(db_index=True, max_length=100)),
+                ("codigo", models.CharField(db_index=True, max_length=50, unique=True)),
+                ("descripcion", models.TextField(blank=True, null=True)),
+                ("precio", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("imagen", models.ImageField(blank=True, null=True, upload_to="productos/")),
+                ("stock", models.PositiveIntegerField(default=0)),
+                ("fecha_creacion", models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'indexes': [models.Index(fields=['nombre'], name='productos_p_nombre_456643_idx'), models.Index(fields=['precio'], name='productos_p_precio_d043df_idx')],
+                "indexes": [models.Index(fields=["nombre"], name="productos_p_nombre_456643_idx"), models.Index(fields=["precio"], name="productos_p_precio_d043df_idx")],
             },
         ),
     ]

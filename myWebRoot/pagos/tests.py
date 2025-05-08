@@ -1,4 +1,3 @@
-from django.test import TestCase
 
 try:
     from celery import shared_task

@@ -1,4 +1,3 @@
-from django.test import TestCase
 
 # test_reportlab.py
 from reportlab.pdfgen import canvas
