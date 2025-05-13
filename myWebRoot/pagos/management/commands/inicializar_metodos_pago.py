@@ -4,7 +4,7 @@ from pagos.models import MetodoPago
 class Command(BaseCommand):
     help = 'Inicializa los métodos de pago predeterminados'
 
-    def handle(self, *args, **kwargs):
+    def handle(self, *args, **options):
         metodos_pago = [
             {
                 'tipo': 'nequi',
@@ -29,18 +29,6 @@ class Command(BaseCommand):
                 'nombre': 'Tarjeta de Crédito',
                 'activo': True,
                 'configuracion': {'descripcion': 'Visa, MasterCard, American Express'}
-            },
-            {
-                'tipo': 'transferencia',
-                'nombre': 'Transferencia Bancaria',
-                'activo': True,
-                'configuracion': {'descripcion': 'Transferencia desde cualquier banco'}
-            },
-            {
-                'tipo': 'movil',
-                'nombre': 'Pago Móvil',
-                'activo': True,
-                'configuracion': {'descripcion': 'Pagos desde tu celular'}
             }
         ]
         
