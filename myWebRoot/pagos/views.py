@@ -8,8 +8,57 @@ from .models import Compra, MetodoPago, Pago
 from .tasks import enviar_correo_confirmacion
 
 
+def inicializar_metodos_pago():
+    """
+    Función auxiliar para inicializar los métodos de pago predeterminados.
+    Puedes llamar a esta función manualmente o desde una vista.
+    """
+    metodos_pago = [
+        {
+            'tipo': 'nequi',
+            'nombre': 'Nequi',
+            'activo': True,
+            'configuracion': {'descripcion': 'Pago móvil rápido y seguro'}
+        },
+        {
+            'tipo': 'bancolombia',
+            'nombre': 'Bancolombia',
+            'activo': True,
+            'configuracion': {'descripcion': 'Transferencia bancaria'}
+        },
+        {
+            'tipo': 'pse',
+            'nombre': 'PSE',
+            'activo': True,
+            'configuracion': {'descripcion': 'Pago seguro electrónico'}
+        },
+        {
+            'tipo': 'tarjeta',
+            'nombre': 'Tarjeta de Crédito',
+            'activo': True,
+            'configuracion': {'descripcion': 'Visa, MasterCard, American Express'}
+        }
+    ]
+    
+    for metodo in metodos_pago:
+        MetodoPago.objects.get_or_create(
+            tipo=metodo['tipo'],
+            defaults={
+                'nombre': metodo['nombre'],
+                'activo': metodo['activo'],
+                'configuracion': metodo['configuracion']
+            }
+        )
+    
+    return len(metodos_pago)
+
+
 @login_required
 def seleccionar_metodo_pago(request, compra_id):
+    # Asegurarse de que existan los métodos de pago
+    if MetodoPago.objects.count() == 0:
+        inicializar_metodos_pago()
+    
     compra = get_object_or_404(Compra, id=compra_id, usuario=request.user)
 
     # Si la compra ya está pagada, redirigir al detalle
@@ -37,6 +86,23 @@ def procesar_pago(request, compra_id):
         messages.info(request, "Esta compra ya ha sido procesada")
         return redirect("facturas:detalle_compra", compra_id=compra.id)
 
+    # Verificar si ya existe un Pago para esta compra
+    try:
+        pago_existente = Pago.objects.get(compra=compra)
+        # Si ya existe, redirigir según el tipo de método de pago
+        if pago_existente.metodo_pago.tipo == "nequi":
+            messages.info(request, "Ya existe un pago en proceso para esta compra")
+            return redirect("pagos:pago_movil", pago_id=pago_existente.id)
+        elif pago_existente.metodo_pago.tipo == "bancolombia":
+            messages.info(request, "Ya existe un pago en proceso para esta compra")
+            return redirect("pagos:pago_transferencia", pago_id=pago_existente.id)
+        else:
+            messages.info(request, "Ya existe un pago en proceso para esta compra")
+            return redirect("pagos:confirmar_pago", pago_id=pago_existente.id)
+    except Pago.DoesNotExist:
+        # Si no existe, continuamos con el proceso normal
+        pass
+
     metodo_pago_id = request.POST.get("metodo_pago")
     if not metodo_pago_id:
         messages.error(request, "Debes seleccionar un método de pago")
@@ -58,25 +124,30 @@ def procesar_pago(request, compra_id):
         metodo_pago = _obtener_o_crear_metodo_pago(tipo_metodo)
 
     # Crear el registro de pago
-    pago = Pago.objects.create(
-        compra=compra,
-        metodo_pago=metodo_pago,
-        monto=compra.total,
-        estado="pendiente",
-    )
+    try:
+        pago = Pago.objects.create(
+            compra=compra,
+            metodo_pago=metodo_pago,
+            monto=compra.total,
+            estado="pendiente",
+        )
+    except Exception as e:
+        # En caso de cualquier error al crear el pago, mostrar un mensaje
+        messages.error(request, f"Error al procesar el pago: {str(e)}")
+        return redirect("pagos:seleccionar_metodo_pago", compra_id=compra.id)
 
     # Redirigir según el método de pago
     if metodo_pago.tipo == "nequi":
         return redirect("pagos:pago_movil", pago_id=pago.id)
-    elif metodo_pago.tipo in ["bancolombia", "transferencia"]:
+    elif metodo_pago.tipo == "bancolombia":
         return redirect("pagos:pago_transferencia", pago_id=pago.id)
-    elif metodo_pago.tipo in ["pse", "tarjeta"]:
+    elif metodo_pago.tipo == "pse" or metodo_pago.tipo == "tarjeta":
         messages.error(request, "Este método de pago aún no está implementado")
         return redirect("pagos:seleccionar_metodo_pago", compra_id=compra.id)
     else:
         messages.error(request, f"Método de pago no válido: {metodo_pago.tipo}")
         return redirect("pagos:seleccionar_metodo_pago", compra_id=compra.id)
-
+        
 def _get_tipo_metodo_por_id_frontend(id_frontend):
     """
     Mapea los IDs del frontend a tipos de método de pago
@@ -87,7 +158,7 @@ def _get_tipo_metodo_por_id_frontend(id_frontend):
         "3": "pse",
         "4": "tarjeta",
     }
-    return mapa_ids.get(id_frontend, "transferencia")  # Por defecto transferencia
+    return mapa_ids.get(id_frontend, "bancolombia")  # Por defecto bancolombia
 
 def _obtener_o_crear_metodo_pago(tipo_metodo):
     """
@@ -97,9 +168,7 @@ def _obtener_o_crear_metodo_pago(tipo_metodo):
         "nequi": "Nequi",
         "bancolombia": "Bancolombia",
         "pse": "PSE",
-        "tarjeta": "Tarjeta de Crédito",
-        "transferencia": "Transferencia Bancaria",
-        "movil": "Pago Móvil"
+        "tarjeta": "Tarjeta de Crédito"
     }
     
     metodo_pago, created = MetodoPago.objects.get_or_create(

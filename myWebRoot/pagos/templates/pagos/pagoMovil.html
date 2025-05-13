@@ -1,0 +1,345 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+    Pago Móvil - ROOT
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+<style>
+    .pago-movil-container {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .metodo-info {
+        background-color: #f8f9fa;
+        padding: 25px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        border-left: 4px solid #3b5998;
+        text-align: center;
+    }
+    
+    .metodo-icon {
+        font-size: 48px;
+        margin-bottom: 15px;
+    }
+    
+    .metodo-nombre {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    
+    .metodo-descripcion {
+        color: #666;
+        margin-bottom: 0;
+    }
+    
+    .instrucciones {
+        margin-bottom: 30px;
+    }
+    
+    .instrucciones h3 {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+    
+    .pasos-lista {
+        list-style-type: none;
+        padding: 0;
+        counter-reset: paso;
+    }
+    
+    .pasos-lista li {
+        position: relative;
+        padding-left: 40px;
+        margin-bottom: 15px;
+        counter-increment: paso;
+    }
+    
+    .pasos-lista li::before {
+        content: counter(paso);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 28px;
+        height: 28px;
+        background-color: #3b5998;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus {
+        border-color: #3b5998;
+        outline: none;
+    }
+    
+    .info-adicional {
+        background-color: #e6f3ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        border-left: 4px solid #3b5998;
+    }
+    
+    .info-adicional h4 {
+        margin-top: 0;
+        color: #333;
+        font-size: 16px;
+    }
+    
+    .info-adicional p {
+        margin-bottom: 0;
+        color: #555;
+        font-size: 14px;
+    }
+    
+    .qr-code {
+        background-color: white;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    
+    .qr-code img {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 15px;
+        background-color: #f0f0f0;
+    }
+    
+    .qr-code-texto {
+        color: #666;
+        font-size: 14px;
+        text-align: center;
+    }
+    
+    .resumen-pago {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+    
+    .resumen-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .resumen-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    .resumen-label {
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .resumen-valor {
+        color: #555;
+    }
+    
+    .resumen-total {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #ddd;
+    }
+    
+    .acciones-pago {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+    
+    .btn-volver {
+        background-color: #f5f5f5;
+        color: #333;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-volver:hover {
+        background-color: #e5e5e5;
+    }
+    
+    .btn-confirmar {
+        background-color: #3b5998;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-confirmar:hover {
+        background-color: #324b81;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .mensaje-container {
+        margin-bottom: 20px;
+    }
+
+    .mensaje {
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .mensaje.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .mensaje.info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+    }
+
+    .mensaje.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section id="pago-movil" class="checkout-section">
+    <div class="container">
+        <h2>Pago Móvil</h2>
+        
+        {% if messages %}
+        <div class="mensaje-container">
+            {% for message in messages %}
+            <div class="mensaje {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="pago-movil-container">
+            <div class="metodo-info">
+                <div class="metodo-icon">📱</div>
+                <div class="metodo-nombre">Nequi</div>
+                <div class="metodo-descripcion">Pago rápido y seguro desde tu celular</div>
+            </div>
+            
+            <div class="resumen-pago">
+                <div class="resumen-item">
+                    <div class="resumen-label">Número de orden:</div>
+                    <div class="resumen-valor">#{{ pago.compra.id }}</div>
+                </div>
+                
+                <div class="resumen-item">
+                    <div class="resumen-label">Fecha:</div>
+                    <div class="resumen-valor">{{ pago.fecha_creacion|date:"d/m/Y H:i" }}</div>
+                </div>
+                
+                <div class="resumen-total">
+                    <div>Total a pagar:</div>
+                    <div>${{ pago.monto|floatformat:2 }}</div>
+                </div>
+            </div>
+            
+            <div class="instrucciones">
+                <h3>Instrucciones de pago</h3>
+                
+                <ol class="pasos-lista">
+                    <li>Abre tu aplicación de Nequi en tu celular.</li>
+                    <li>Selecciona la opción "Pagar" y luego "Usando código QR".</li>
+                    <li>Escanea el código QR que aparece a continuación.</li>
+                    <li>Verifica que el monto sea de ${{ pago.monto|floatformat:2 }} y confirma el pago.</li>
+                    <li>Una vez realizado el pago, ingresa el número de teléfono usado para Nequi a continuación.</li>
+                </ol>
+            </div>
+            
+            <div class="qr-code">
+                <div style="width: 180px; height: 180px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: 48px;">📱</span>
+                </div>
+                <div class="qr-code-texto">
+                    Escanea este código QR con tu app de Nequi para realizar el pago
+                </div>
+            </div>
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="numero_telefono">Número de teléfono usado para el pago</label>
+                    <input type="tel" id="numero_telefono" name="numero_telefono" placeholder="3XX XXX XXXX" required>
+                </div>
+                
+                <div class="info-adicional">
+                    <h4>Información importante</h4>
+                    <p>Una vez confirmado tu pago, recibirás un correo electrónico con los detalles de tu compra y la factura electrónica.</p>
+                </div>
+                
+                <div class="acciones-pago">
+                    <a href="{% url 'pagos:seleccionar_metodo_pago' pago.compra.id %}" class="btn-volver">Volver</a>
+                    <button type="submit" class="btn-confirmar">Confirmar Pago</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -47,7 +47,7 @@ def generar_pdf_factura(factura):
     elements.append(Spacer(1, 20))
 
     # Información de la empresa
-    elements.append(Paragraph("ROOT TECHNOLOGIES S.A.", style_heading))
+    elements.append(Paragraph("ROOTAPP S.A.", style_heading))
     elements.append(Paragraph("NIT: 900.123.456-7", style_normal))
     elements.append(Paragraph("Dirección: Calle Principal #123", style_normal))
     elements.append(Paragraph("Teléfono: +57 3105816209", style_normal))
