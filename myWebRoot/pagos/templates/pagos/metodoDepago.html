@@ -112,6 +112,34 @@
         border-top: 1px solid #ddd;
         padding-top: 10px;
     }
+
+    .mensaje-container {
+        margin-bottom: 20px;
+    }
+
+    .mensaje {
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .mensaje.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .mensaje.info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+    }
+
+    .mensaje.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
 </style>
 {% endblock %}
 
@@ -144,6 +172,16 @@
             </div>
         </div>
         
+        {% if messages %}
+        <div class="mensaje-container">
+            {% for message in messages %}
+            <div class="mensaje {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
         <form method="post" action="{% url 'pagos:procesar_pago' compra.id %}" id="formPago">
             {% csrf_token %}
             <h3>Elige un método de pago</h3>
@@ -151,33 +189,62 @@
             <input type="hidden" name="metodo_pago" id="metodo_pago_seleccionado" value="">
             
             <div class="metodos-pago-container">
-                <!-- Nequi -->
+            {% if metodos_pago %}
+                {% for metodo in metodos_pago %}
+                <div class="metodo-pago-card" data-id="{{ metodo.id }}">
+                    <div class="metodo-icono">
+                        {% if metodo.tipo == 'nequi' %}📱
+                        {% elif metodo.tipo == 'bancolombia' %}🏦
+                        {% elif metodo.tipo == 'pse' %}💻
+                        {% elif metodo.tipo == 'tarjeta' %}💳
+                        {% elif metodo.tipo == 'transferencia' %}🏦
+                        {% else %}💰
+                        {% endif %}
+                    </div>
+                    <div class="metodo-nombre">{{ metodo.nombre }}</div>
+                    <div class="metodo-descripcion">
+                        {% if metodo.configuracion.descripcion %}
+                            {{ metodo.configuracion.descripcion }}
+                        {% elif metodo.tipo == 'nequi' %}
+                            Pago móvil
+                        {% elif metodo.tipo == 'bancolombia' %}
+                            Transferencia bancaria
+                        {% elif metodo.tipo == 'pse' %}
+                            Pago seguro electrónico
+                        {% elif metodo.tipo == 'tarjeta' %}
+                            Visa, MasterCard, American Express
+                        {% else %}
+                            Método de pago
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Métodos de pago estáticos en caso de que no haya métodos en la BD -->
                 <div class="metodo-pago-card" data-id="1">
                     <div class="metodo-icono">📱</div>
                     <div class="metodo-nombre">Nequi</div>
                     <div class="metodo-descripcion">Pago móvil</div>
                 </div>
                 
-                <!-- Bancolombia -->
                 <div class="metodo-pago-card" data-id="2">
                     <div class="metodo-icono">🏦</div>
                     <div class="metodo-nombre">Bancolombia</div>
                     <div class="metodo-descripcion">Transferencia bancaria</div>
                 </div>
                 
-                <!-- PSE -->
                 <div class="metodo-pago-card" data-id="3">
                     <div class="metodo-icono">💻</div>
                     <div class="metodo-nombre">PSE</div>
                     <div class="metodo-descripcion">Pago seguro electrónico</div>
                 </div>
                 
-                <!-- Tarjeta de Crédito -->
                 <div class="metodo-pago-card" data-id="4">
                     <div class="metodo-icono">💳</div>
                     <div class="metodo-nombre">Tarjeta de Crédito</div>
                     <div class="metodo-descripcion">Visa, MasterCard, American Express</div>
                 </div>
+            {% endif %}
             </div>
 
             <div class="acciones-pago">
