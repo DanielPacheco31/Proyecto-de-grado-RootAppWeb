@@ -7657,3 +7657,10 @@ WARNING 2025-05-12 21:22:02,170 log 5944 5592 Not Found: /media/perfiles/default
 WARNING 2025-05-12 21:22:02,171 basehttp 5944 5592 "GET /media/perfiles/default.png HTTP/1.1" 404 4340
 INFO 2025-05-12 21:22:12,370 basehttp 5944 5592 "GET /scanner/ HTTP/1.1" 200 6268
 INFO 2025-05-12 21:22:32,786 basehttp 5944 5592 "POST /scanner/ HTTP/1.1" 200 6268
+INFO 2025-05-12 21:27:46,760 basehttp 5944 14892 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-12 21:27:46,781 basehttp 5944 14892 "GET /carrito/finalizar/ HTTP/1.1" 200 5337
+INFO 2025-05-12 21:27:48,504 basehttp 5944 14892 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-12 21:27:48,519 basehttp 5944 14892 "GET /pagos/16/metodo/ HTTP/1.1" 200 9110
+WARNING 2025-05-12 21:27:48,559 basehttp 5944 14892 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+INFO 2025-05-12 21:30:07,382 autoreload 5944 12668 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\views.py changed, reloading.
+INFO 2025-05-12 21:30:09,738 autoreload 17764 7616 Watching for file changes with StatReloader
