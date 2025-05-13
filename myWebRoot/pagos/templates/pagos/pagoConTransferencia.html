@@ -274,7 +274,7 @@
                 </div>
                 
                 <div class="acciones-pago">
-                    <a href="{% url 'seleccionar_metodo_pago' pago.compra.id %}" class="btn-volver">Volver</a>
+                    <a href="{% url 'pagos:seleccionar_metodo_pago' pago.compra.id %}" class="btn-volver">Volver</a>
                     <button type="submit" class="btn-confirmar">Confirmar Pago</button>
                 </div>
             </form>
