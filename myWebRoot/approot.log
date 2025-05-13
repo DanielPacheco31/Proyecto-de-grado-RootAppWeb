@@ -7513,3 +7513,54 @@ INFO 2025-05-07 20:38:36,049 basehttp 9164 8188 "GET /media/productos/nuthos.png
 INFO 2025-05-07 20:38:36,085 basehttp 9164 18072 "GET /static/js/scripts.js HTTP/1.1" 200 4588
 INFO 2025-05-07 20:39:12,959 basehttp 9164 18072 "POST /usuarios/perfil/actualizar/ HTTP/1.1" 302 0
 INFO 2025-05-07 20:39:13,009 basehttp 9164 18072 "GET /usuarios/perfil/ HTTP/1.1" 200 37572
+INFO 2025-05-12 21:00:16,586 autoreload 8644 9960 Watching for file changes with StatReloader
+INFO 2025-05-12 21:00:25,721 basehttp 8644 13808 "GET / HTTP/1.1" 200 4974
+INFO 2025-05-12 21:00:25,812 basehttp 8644 16364 "GET /static/core/img/icon-1.jpg HTTP/1.1" 304 0
+INFO 2025-05-12 21:00:25,813 basehttp 8644 13808 "GET /static/core/css/style.css HTTP/1.1" 304 0
+INFO 2025-05-12 21:00:25,813 basehttp 8644 13704 "GET /static/core/img/icon-2.jpg HTTP/1.1" 304 0
+INFO 2025-05-12 21:00:25,840 basehttp 8644 13704 "GET /static/core/img/icon-3.jpg HTTP/1.1" 304 0
+INFO 2025-05-12 21:00:25,841 basehttp 8644 16364 "GET /static/core/img/icon-5.jpg HTTP/1.1" 304 0
+INFO 2025-05-12 21:00:25,842 basehttp 8644 13808 "GET /static/core/img/icon-4.jpg HTTP/1.1" 304 0
+INFO 2025-05-12 21:00:25,856 basehttp 8644 16364 "GET /static/core/img/icon-6.jpg HTTP/1.1" 304 0
+INFO 2025-05-12 21:00:25,856 basehttp 8644 13808 "GET /static/core/js/main.js HTTP/1.1" 304 0
+INFO 2025-05-12 21:00:25,866 basehttp 8644 16364 "GET /static/core/img/icon-8.jpg HTTP/1.1" 304 0
+INFO 2025-05-12 21:00:25,866 basehttp 8644 13808 "GET /static/core/img/icon-7.jpg HTTP/1.1" 304 0
+WARNING 2025-05-12 21:00:26,518 log 8644 13808 Not Found: /http://127.0.0.1:8000/
+WARNING 2025-05-12 21:00:26,519 basehttp 8644 13808 "GET /http://127.0.0.1:8000/ HTTP/1.1" 404 4095
+WARNING 2025-05-12 21:00:26,710 log 8644 13808 Not Found: /favicon.ico
+WARNING 2025-05-12 21:00:26,712 basehttp 8644 13808 "GET /favicon.ico HTTP/1.1" 404 4062
+INFO 2025-05-12 21:00:31,635 basehttp 8644 13808 "GET / HTTP/1.1" 200 4974
+WARNING 2025-05-12 21:00:32,310 basehttp 8644 13808 "GET /static/core/img/favicon.ico HTTP/1.1" 404 1874
+INFO 2025-05-12 21:00:34,181 basehttp 8644 16364 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-12 21:00:34,210 basehttp 8644 16364 "GET /static/css/registro.css HTTP/1.1" 304 0
+INFO 2025-05-12 21:01:41,537 basehttp 8644 12168 "GET /usuarios/registro/ HTTP/1.1" 200 5801
+INFO 2025-05-12 21:07:07,926 basehttp 8644 7812 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-12 21:07:15,789 basehttp 8644 7812 "POST /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-12 21:07:15,827 basehttp 8644 7812 "GET /scanner/ HTTP/1.1" 200 6424
+INFO 2025-05-12 21:07:15,859 basehttp 8644 7812 "GET /static/css/scanner.css HTTP/1.1" 304 0
+INFO 2025-05-12 21:07:15,866 basehttp 8644 7812 "GET /static/js/scanner.js HTTP/1.1" 304 0
+INFO 2025-05-12 21:07:19,364 basehttp 8644 7812 "GET /usuarios/perfil/ HTTP/1.1" 200 37148
+INFO 2025-05-12 21:07:19,388 basehttp 8644 7812 "GET /static/css/perfil.css HTTP/1.1" 304 0
+INFO 2025-05-12 21:07:19,396 basehttp 8644 2548 "GET /media/productos/nuthos.png HTTP/1.1" 304 0
+INFO 2025-05-12 21:07:19,397 basehttp 8644 7812 "GET /media/perfiles/perfiles/user_1_20250403194238.jpg HTTP/1.1" 304 0
+INFO 2025-05-12 21:07:19,401 basehttp 8644 7276 "GET /static/js/scripts.js HTTP/1.1" 304 0
+INFO 2025-05-12 21:09:04,680 autoreload 8644 9960 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\usuarios\views.py changed, reloading.
+INFO 2025-05-12 21:09:06,509 autoreload 18756 9512 Watching for file changes with StatReloader
+INFO 2025-05-12 21:11:21,634 autoreload 18756 9512 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\usuarios\views.py changed, reloading.
+INFO 2025-05-12 21:11:23,083 autoreload 4660 4356 Watching for file changes with StatReloader
+INFO 2025-05-12 21:11:24,886 autoreload 4660 4356 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\usuarios\views.py changed, reloading.
+INFO 2025-05-12 21:11:26,210 autoreload 16884 2200 Watching for file changes with StatReloader
+INFO 2025-05-12 21:11:49,991 autoreload 16884 2200 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\usuarios\views.py changed, reloading.
+INFO 2025-05-12 21:11:51,283 autoreload 7108 14888 Watching for file changes with StatReloader
+INFO 2025-05-12 21:11:58,851 autoreload 7108 14888 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\usuarios\views.py changed, reloading.
+INFO 2025-05-12 21:12:00,497 autoreload 12824 8884 Watching for file changes with StatReloader
+INFO 2025-05-12 21:12:18,478 basehttp 12824 19356 "POST /carrito/eliminar/18/ HTTP/1.1" 302 0
+INFO 2025-05-12 21:12:18,565 basehttp 12824 19356 "GET /usuarios/perfil/ HTTP/1.1" 200 33036
+INFO 2025-05-12 21:12:25,543 basehttp 12824 19356 "GET /usuarios/perfil/ HTTP/1.1" 200 32616
+INFO 2025-05-12 21:12:34,431 basehttp 12824 19356 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-05-12 21:12:36,317 basehttp 12824 19356 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-12 21:12:39,612 basehttp 12824 19356 "GET /usuarios/registro/ HTTP/1.1" 200 5801
+INFO 2025-05-12 21:14:18,893 basehttp 12824 19356 "GET /usuarios/registro/ HTTP/1.1" 200 5815
+INFO 2025-05-12 21:14:19,630 basehttp 12824 19356 "GET /usuarios/registro/ HTTP/1.1" 200 5815
+INFO 2025-05-12 21:15:07,044 autoreload 12824 8884 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\usuarios\views.py changed, reloading.
+INFO 2025-05-12 21:15:08,631 autoreload 5944 12668 Watching for file changes with StatReloader

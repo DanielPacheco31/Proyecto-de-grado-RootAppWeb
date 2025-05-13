@@ -19,11 +19,18 @@ def registro_view(request):
         return redirect("core:home")
 
     if request.method == "POST":
-        # Cambiado para usar los nombres de campos correctos de tu HTML
-        username = request.POST.get("nombre-usuario")
-        email = request.POST.get("correo-electrónico")
+        # Obtener datos del formulario usando los nombres correctos de tu HTML
+        username = request.POST.get("nombre_usuario")
+        first_name = request.POST.get("nombre")
+        last_name = request.POST.get("apellido")
+        email = request.POST.get("correo_electronico")
+        id_documento = request.POST.get("cedula")
+        fecha_nacimiento = request.POST.get("fecha_nacimiento")
+        telefono = request.POST.get("telefono")
+        direccion = request.POST.get("direccion")
         password1 = request.POST.get("contraseña1")
         password2 = request.POST.get("contraseña2")
+
 
         # Validaciones básicas
         if not username or not email or not password1 or not password2:
@@ -43,11 +50,30 @@ def registro_view(request):
             return redirect("usuarios:registro")
 
         try:
-            # Crear el usuario
-            user = User.objects.create_user(username=username, email=email, password=password1)
-            user.save()
-
-            # El perfil se crea automáticamente por la señal post_save
+            # Crear el usuario con nombre y apellido
+            user = User.objects.create_user(
+                username=username, 
+                email=email, 
+                password=password1,
+                first_name=first_name,
+                last_name=last_name
+            )
+            
+            # Actualizar el perfil con los datos adicionales
+            perfil = user.perfil  # El perfil se crea automáticamente gracias a tus señales
+            perfil.id_documento = id_documento
+            perfil.telefono = telefono
+            perfil.direccion = direccion
+            
+            # Convertir y guardar la fecha de nacimiento
+            if fecha_nacimiento:
+                try:
+                    perfil.fecha_nacimiento = datetime.strptime(fecha_nacimiento, "%Y-%m-%d").date()
+                except ValueError:
+                    pass  # Si hay un error en el formato de fecha, simplemente no la guardamos
+                
+            # Guardar el perfil con los cambios
+            perfil.save()
 
             # Crear carrito para el usuario
             Carrito.objects.create(usuario=user)
