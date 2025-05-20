@@ -1,6 +1,9 @@
+"""Vistas para la aplicación de carrito de compras."""
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from pagos.models import Compra, DetalleCompra
 from productos.models import Producto
@@ -9,10 +12,26 @@ from .models import Carrito, CarritoItem
 
 
 @login_required
-def finalizar_compra(request):
+def finalizar_compra(request: HttpRequest) -> HttpResponse:
+    """Finaliza la compra de los productos en el carrito del usuario.
+
+    Transfiere los productos del carrito a una nueva compra y redirige al
+    proceso de pago.
+
+    Args:
+        request: La solicitud HTTP.
+
+    Returns:
+        HttpResponse: Redirección al perfil o proceso de pago.
+
+    """
     # Usar select_related para cargar usuario y perfil en una sola consulta
     try:
-        carrito = Carrito.objects.select_related("usuario__perfil").prefetch_related("items__producto").get(usuario=request.user)
+        carrito = Carrito.objects.select_related(
+            "usuario__perfil",
+        ).prefetch_related(
+            "items__producto",
+        ).get(usuario=request.user)
     except Carrito.DoesNotExist:
         messages.error(request, "No tienes un carrito activo")
         return redirect("usuarios:perfil")
@@ -26,11 +45,16 @@ def finalizar_compra(request):
 
         # Usar transaction.atomic para garantizar que toda la operación sea atómica
         with transaction.atomic():
+            # Obtener dirección de entrega del perfil si no se proporciona
+            usuario_direccion = ""
+            if hasattr(request.user, "perfil"):
+                usuario_direccion = request.user.perfil.direccion
+
             compra = Compra.objects.create(
                 usuario=request.user,
                 estado="pendiente",
                 total=carrito.total,
-                direccion_entrega=direccion_entrega or (request.user.perfil.direccion if hasattr(request.user, "perfil") else ""),
+                direccion_entrega=direccion_entrega or usuario_direccion,
             )
 
             # Crear todos los detalles de compra de una vez en lugar de uno por uno
@@ -65,8 +89,22 @@ def finalizar_compra(request):
 
     return render(request, "carrito/checkout.html", {"carrito": carrito})
 
+
 @login_required
-def actualizar_cantidad(request, item_id):
+def actualizar_cantidad(request: HttpRequest, item_id: int) -> HttpResponse:
+    """Actualiza la cantidad de un producto en el carrito.
+
+    Aumenta o disminuye la cantidad de un producto específico en el carrito
+    según la acción solicitada.
+
+    Args:
+        request: La solicitud HTTP.
+        item_id: ID del item del carrito a actualizar.
+
+    Returns:
+        HttpResponse: Redirección al perfil del usuario.
+
+    """
     item = get_object_or_404(CarritoItem, id=item_id, carrito__usuario=request.user)
 
     if request.method == "POST":
@@ -78,15 +116,29 @@ def actualizar_cantidad(request, item_id):
                 item.cantidad += 1
                 item.save()
             else:
-                messages.warning(request, f"No hay suficiente stock de {item.producto.nombre}")
+                messages.warning(
+                    request,
+                    f"No hay suficiente stock de {item.producto.nombre}",
+                )
         elif accion == "restar" and item.cantidad > 1:
             item.cantidad -= 1
             item.save()
 
     return redirect("usuarios:perfil")
 
+
 @login_required
-def eliminar_item(request, item_id):
+def eliminar_item(request: HttpRequest, item_id: int) -> HttpResponse:
+    """Elimina un producto del carrito.
+
+    Args:
+        request: La solicitud HTTP.
+        item_id: ID del item del carrito a eliminar.
+
+    Returns:
+        HttpResponse: Redirección al perfil del usuario.
+
+    """
     item = get_object_or_404(CarritoItem, id=item_id, carrito__usuario=request.user)
 
     if request.method == "POST":

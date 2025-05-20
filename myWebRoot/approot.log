@@ -8827,3 +8827,64 @@ INFO 2025-05-19 19:44:27,060 autoreload 10536 2524 C:\Users\ADMIN\OneDrive\Deskt
 INFO 2025-05-19 19:44:28,627 autoreload 13736 18216 Watching for file changes with StatReloader
 INFO 2025-05-19 19:44:41,379 autoreload 13736 18216 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
 INFO 2025-05-19 19:44:42,880 autoreload 13988 6720 Watching for file changes with StatReloader
+INFO 2025-05-20 15:10:27,292 autoreload 3372 14508 Watching for file changes with StatReloader
+INFO 2025-05-20 15:10:36,666 basehttp 3372 8856 "GET / HTTP/1.1" 200 4974
+WARNING 2025-05-20 15:10:36,960 basehttp 3372 8856 "GET /static/core/img/favicon.ico HTTP/1.1" 404 1874
+INFO 2025-05-20 15:10:39,181 basehttp 3372 4528 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-20 15:10:47,953 basehttp 3372 4528 "POST /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-20 15:10:47,990 basehttp 3372 4528 "GET /scanner/ HTTP/1.1" 200 6424
+INFO 2025-05-20 15:10:55,866 basehttp 3372 4528 "POST /scanner/ HTTP/1.1" 200 6268
+INFO 2025-05-20 15:11:01,316 basehttp 3372 4528 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-05-20 15:11:01,434 basehttp 3372 4528 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 3744
+WARNING 2025-05-20 15:11:01,583 log 3372 4528 Not Found: /favicon.ico
+WARNING 2025-05-20 15:11:01,584 basehttp 3372 4528 "GET /favicon.ico HTTP/1.1" 404 4062
+INFO 2025-05-20 15:11:04,438 basehttp 3372 4528 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 3945
+INFO 2025-05-20 15:11:14,360 basehttp 3372 4528 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 3945
+INFO 2025-05-20 15:11:25,657 basehttp 3372 4528 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-05-20 15:11:25,696 basehttp 3372 4528 "GET /admin/ HTTP/1.1" 200 12176
+INFO 2025-05-20 15:11:34,116 basehttp 3372 4528 "GET /admin/productos/producto/ HTTP/1.1" 200 14927
+INFO 2025-05-20 15:11:34,181 basehttp 3372 4528 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+WARNING 2025-05-20 15:11:45,118 log 3372 4528 Forbidden (CSRF token from POST incorrect.): /scanner/
+WARNING 2025-05-20 15:11:45,120 basehttp 3372 4528 "POST /scanner/ HTTP/1.1" 403 2514
+INFO 2025-05-20 15:11:55,901 basehttp 3372 4528 "GET /scanner/ HTTP/1.1" 200 6268
+INFO 2025-05-20 15:11:59,006 basehttp 3372 4528 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-20 15:11:59,094 basehttp 3372 4528 "GET /usuarios/perfil/ HTTP/1.1" 200 34703
+WARNING 2025-05-20 15:11:59,131 log 3372 4528 Not Found: /media/perfiles/default.png
+WARNING 2025-05-20 15:11:59,132 basehttp 3372 4528 "GET /media/perfiles/default.png HTTP/1.1" 404 4340
+INFO 2025-05-20 15:12:05,208 basehttp 3372 4528 "GET /carrito/finalizar/ HTTP/1.1" 200 5147
+INFO 2025-05-20 15:12:07,711 basehttp 3372 4528 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-20 15:12:07,764 basehttp 3372 4528 "GET /pagos/28/metodo/ HTTP/1.1" 200 11443
+WARNING 2025-05-20 15:12:07,802 basehttp 3372 4528 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+INFO 2025-05-20 15:12:13,902 basehttp 3372 5776 "POST /pagos/28/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-20 15:12:13,929 basehttp 3372 5776 "GET /pagos/movil/14/ HTTP/1.1" 200 11396
+WARNING 2025-05-20 15:12:13,957 basehttp 3372 5776 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+INFO 2025-05-20 15:12:24,474 basehttp 3372 13160 "POST /pagos/movil/14/ HTTP/1.1" 302 0
+INFO 2025-05-20 15:12:24,492 basehttp 3372 13160 "GET /pagos/confirmar/14/ HTTP/1.1" 200 8953
+WARNING 2025-05-20 15:12:24,519 basehttp 3372 13160 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+INFO 2025-05-20 15:12:30,362 basehttp 3372 9388 "GET /facturas/28/ HTTP/1.1" 200 8255
+INFO 2025-05-20 15:12:37,269 basehttp 3372 9388 "GET /usuarios/perfil/ HTTP/1.1" 200 31122
+WARNING 2025-05-20 15:12:37,308 log 3372 9388 Not Found: /media/perfiles/default.png
+WARNING 2025-05-20 15:12:37,309 basehttp 3372 9388 "GET /media/perfiles/default.png HTTP/1.1" 404 4340
+INFO 2025-05-20 15:12:38,178 basehttp 3372 9388 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-05-20 15:12:38,183 basehttp 3372 9388 "GET / HTTP/1.1" 200 4974
+INFO 2025-05-20 15:12:39,861 basehttp 3372 9388 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-20 15:12:40,603 basehttp 3372 9388 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-20 15:12:41,337 basehttp 3372 9388 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-20 15:17:06,774 autoreload 3372 14508 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\carrito\migrations\__init__.py changed, reloading.
+INFO 2025-05-20 15:17:08,508 autoreload 6652 11772 Watching for file changes with StatReloader
+INFO 2025-05-20 15:17:17,986 autoreload 6652 11772 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\carrito\__init__.py changed, reloading.
+INFO 2025-05-20 15:17:19,648 autoreload 13296 16012 Watching for file changes with StatReloader
+INFO 2025-05-20 15:18:37,367 autoreload 13296 16012 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\carrito\admin.py changed, reloading.
+INFO 2025-05-20 15:18:39,395 autoreload 17892 5252 Watching for file changes with StatReloader
+INFO 2025-05-20 15:18:50,126 autoreload 17892 5252 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\carrito\apps.py changed, reloading.
+INFO 2025-05-20 15:18:51,774 autoreload 15456 10612 Watching for file changes with StatReloader
+INFO 2025-05-20 15:19:10,053 autoreload 15456 10612 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\carrito\models.py changed, reloading.
+INFO 2025-05-20 15:19:11,963 autoreload 12408 13396 Watching for file changes with StatReloader
+INFO 2025-05-20 15:19:44,635 autoreload 12408 13396 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\carrito\urls.py changed, reloading.
+INFO 2025-05-20 15:19:46,413 autoreload 15356 15788 Watching for file changes with StatReloader
+INFO 2025-05-20 15:20:03,723 autoreload 15356 15788 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\carrito\views.py changed, reloading.
+INFO 2025-05-20 15:20:05,623 autoreload 11696 8596 Watching for file changes with StatReloader
+INFO 2025-05-20 15:20:29,183 autoreload 11696 8596 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\carrito\__init__.py changed, reloading.
+INFO 2025-05-20 15:20:30,564 autoreload 9840 11392 Watching for file changes with StatReloader
+INFO 2025-05-20 15:20:45,188 autoreload 9840 11392 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\carrito\views.py changed, reloading.
+INFO 2025-05-20 15:20:46,542 autoreload 12816 10048 Watching for file changes with StatReloader
