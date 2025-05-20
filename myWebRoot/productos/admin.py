@@ -5,14 +5,14 @@ from .models import Categoria, Producto
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
-    """Configuración del admin para Categorías"""
+    """Configuración del admin para Categorías."""
 
     list_display = ("nombre", "descripcion")
     search_fields = ("nombre", "descripcion")
 
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
-    """Configuración del admin para Productos"""
+    """Configuración del admin para Productos."""
 
     list_display = ("nombre", "codigo", "precio", "stock", "categoria", "texto_estado_stock")
     list_filter = ("categoria", "fecha_creacion", "stock")  # Cambiamos estado_stock por stock
@@ -34,7 +34,7 @@ class ProductoAdmin(admin.ModelAdmin):
     )
 
     # Generación automática de código si no se proporciona
-    def save_model(self, request, obj, form, change):
+    def save_model(self, request, obj, form, change) -> None:
         if not obj.codigo:
             # Generar un código único basado en la primera letra del nombre y un número
             from django.utils.crypto import get_random_string

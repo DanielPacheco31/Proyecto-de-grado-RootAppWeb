@@ -8,14 +8,13 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 
 
 def generar_factura(compra):
-    """Genera una factura para una compra realizada"""
+    """Genera una factura para una compra realizada."""
     # Importar aquí para evitar importaciones circulares
     from .models import Factura
 
     # Verificar si ya existe
     try:
-        factura = compra.factura
-        return factura
+        return compra.factura
     except Factura.DoesNotExist:
         # Crear la factura
         factura = Factura.objects.create(compra=compra)
@@ -25,8 +24,8 @@ def generar_factura(compra):
 
         return factura
 
-def generar_pdf_factura(factura):
-    """Genera el archivo PDF para una factura"""
+def generar_pdf_factura(factura) -> None:
+    """Genera el archivo PDF para una factura."""
     compra = factura.compra
 
     # Crear un buffer para el PDF

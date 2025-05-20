@@ -10,10 +10,10 @@ def vision_mision(request):
 
 def contacto(request):
     if request.method == "POST":
-        nombre = request.POST.get("nombre")
-        email = request.POST.get("email")
-        empresa = request.POST.get("empresa", "")
-        mensaje = request.POST.get("mensaje")
+        request.POST.get("nombre")
+        request.POST.get("email")
+        request.POST.get("empresa", "")
+        request.POST.get("mensaje")
 
         # Aqui puedes procesar el formulario de contacto
         # Por ejemplo, enviar un correo electronico o guardar en la base de datos

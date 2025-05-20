@@ -13,17 +13,17 @@ class Perfil(models.Model):
     id_documento = models.CharField(max_length=20, blank=True, null=True, verbose_name="Documento de identidad")
     preferencias_notificacion = models.BooleanField(default=True, verbose_name="Recibir notificaciones")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Perfil de {self.usuario.username}"
 
 # Crear automáticamente un perfil cuando se crea un usuario
 @receiver(post_save, sender=User)
-def crear_perfil_usuario(sender, instance, created, **kwargs):
+def crear_perfil_usuario(sender, instance, created, **kwargs) -> None:
     if created:
         Perfil.objects.create(usuario=instance)
 
 @receiver(post_save, sender=User)
-def guardar_perfil_usuario(sender, instance, **kwargs):
+def guardar_perfil_usuario(sender, instance, **kwargs) -> None:
     # Verificar si el perfil existe antes de intentar guardarlo
     try:
         instance.perfil.save()

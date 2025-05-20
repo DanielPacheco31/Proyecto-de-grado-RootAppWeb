@@ -1,13 +1,16 @@
+"""Vistas para la aplicación de productos."""
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .models import Categoria, Producto
 
 
 @login_required
-def lista_productos(request):
-    """Lista de todos los productos"""
+def lista_productos(request: HttpRequest) -> HttpResponse:
+    """Lista de todos los productos."""
     productos = Producto.objects.all().order_by("-id")
 
     # Filtrar por nombre si se proporciona en la búsqueda
@@ -29,18 +32,20 @@ def lista_productos(request):
         "categoria_seleccionada": categoria_id,
     })
 
+
 @login_required
-def detalle_producto(request, producto_id):
-    """Detalle de un producto específico"""
+def detalle_producto(request: HttpRequest, producto_id: int) -> HttpResponse:
+    """Detalle de un producto específico."""
     producto = get_object_or_404(Producto, id=producto_id)
 
     return render(request, "productos/detalle_producto.html", {
         "producto": producto,
     })
 
+
 @login_required
-def crear_producto(request):
-    """Crear un nuevo producto"""
+def crear_producto(request: HttpRequest) -> HttpResponse:
+    """Crear un nuevo producto."""
     if request.method == "POST":
         # Obtener datos del formulario
         nombre = request.POST.get("nombre")
@@ -53,12 +58,18 @@ def crear_producto(request):
 
         # Validar datos
         if not nombre or not codigo or not precio or not stock:
-            messages.error(request, "Por favor, complete todos los campos obligatorios.")
+            messages.error(
+                request,
+                "Por favor, complete todos los campos obligatorios.",
+            )
             return redirect("productos:crear")
 
         # Verificar que el código sea único
         if Producto.objects.filter(codigo=codigo).exists():
-            messages.error(request, "El código ya existe. Por favor, use un código único.")
+            messages.error(
+                request,
+                "El código ya existe. Por favor, use un código único.",
+            )
             return redirect("productos:crear")
 
         try:
@@ -84,11 +95,17 @@ def crear_producto(request):
                     pass
 
             producto.save()
-            messages.success(request, f"El producto {nombre} ha sido creado exitosamente.")
+            messages.success(
+                request,
+                f"El producto {nombre} ha sido creado exitosamente.",
+            )
             return redirect("productos:detalle", producto_id=producto.id)
 
         except (ValueError, TypeError):
-            messages.error(request, "Por favor, ingrese valores válidos para precio y stock.")
+            messages.error(
+                request,
+                "Por favor, ingrese valores válidos para precio y stock.",
+            )
             return redirect("productos:crear")
 
     # Si es GET, mostrar el formulario
@@ -97,9 +114,10 @@ def crear_producto(request):
         "categorias": categorias,
     })
 
+
 @login_required
-def editar_producto(request, producto_id):
-    """Editar un producto existente"""
+def editar_producto(request: HttpRequest, producto_id: int) -> HttpResponse:
+    """Editar un producto existente."""
     producto = get_object_or_404(Producto, id=producto_id)
 
     if request.method == "POST":
@@ -114,12 +132,18 @@ def editar_producto(request, producto_id):
 
         # Validar datos
         if not nombre or not codigo or not precio or not stock:
-            messages.error(request, "Por favor, complete todos los campos obligatorios.")
+            messages.error(
+                request,
+                "Por favor, complete todos los campos obligatorios.",
+            )
             return redirect("productos:editar", producto_id=producto.id)
 
         # Verificar que el código sea único (excepto para este producto)
         if Producto.objects.filter(codigo=codigo).exclude(id=producto_id).exists():
-            messages.error(request, "El código ya existe en otro producto. Por favor, use un código único.")
+            messages.error(
+                request,
+                "El código ya existe en otro producto. Por favor, use un código único.",
+            )
             return redirect("productos:editar", producto_id=producto.id)
 
         try:
@@ -148,11 +172,17 @@ def editar_producto(request, producto_id):
                 producto.categoria = None
 
             producto.save()
-            messages.success(request, f"El producto {nombre} ha sido actualizado exitosamente.")
+            messages.success(
+                request,
+                f"El producto {nombre} ha sido actualizado exitosamente.",
+            )
             return redirect("productos:detalle", producto_id=producto.id)
 
         except (ValueError, TypeError):
-            messages.error(request, "Por favor, ingrese valores válidos para precio y stock.")
+            messages.error(
+                request,
+                "Por favor, ingrese valores válidos para precio y stock.",
+            )
             return redirect("productos:editar", producto_id=producto.id)
 
     # Si es GET, mostrar el formulario con los datos del producto
@@ -162,15 +192,19 @@ def editar_producto(request, producto_id):
         "categorias": categorias,
     })
 
+
 @login_required
-def eliminar_producto(request, producto_id):
-    """Eliminar un producto existente"""
+def eliminar_producto(request: HttpRequest, producto_id: int) -> HttpResponse:
+    """Eliminar un producto existente."""
     producto = get_object_or_404(Producto, id=producto_id)
 
     if request.method == "POST":
         nombre = producto.nombre
         producto.delete()
-        messages.success(request, f"El producto {nombre} ha sido eliminado exitosamente.")
+        messages.success(
+            request,
+            f"El producto {nombre} ha sido eliminado exitosamente.",
+        )
         return redirect("productos:lista")
 
     return render(request, "productos/eliminar_producto.html", {

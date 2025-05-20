@@ -1,3 +1,4 @@
+import contextlib
 import os
 from datetime import datetime
 
@@ -52,26 +53,26 @@ def registro_view(request):
         try:
             # Crear el usuario con nombre y apellido
             user = User.objects.create_user(
-                username=username, 
-                email=email, 
+                username=username,
+                email=email,
                 password=password1,
                 first_name=first_name,
-                last_name=last_name
+                last_name=last_name,
             )
-            
+
             # Actualizar el perfil con los datos adicionales
             perfil = user.perfil  # El perfil se crea automáticamente gracias a tus señales
             perfil.id_documento = id_documento
             perfil.telefono = telefono
             perfil.direccion = direccion
-            
+
             # Convertir y guardar la fecha de nacimiento
             if fecha_nacimiento:
                 try:
                     perfil.fecha_nacimiento = datetime.strptime(fecha_nacimiento, "%Y-%m-%d").date()
                 except ValueError:
                     pass  # Si hay un error en el formato de fecha, simplemente no la guardamos
-                
+
             # Guardar el perfil con los cambios
             perfil.save()
 
@@ -166,10 +167,8 @@ def actualizar_perfil(request):
 
         fecha_str = request.POST.get("fecha_nacimiento", "")
         if fecha_str:
-            try:
+            with contextlib.suppress(ValueError):
                 perfil.fecha_nacimiento = datetime.strptime(fecha_str, "%Y-%m-%d").date()
-            except ValueError:
-                pass
 
         perfil.save()
 

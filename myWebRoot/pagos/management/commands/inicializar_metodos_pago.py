@@ -1,47 +1,29 @@
+"""Comando para inicializar los métodos de pago predeterminados."""
+
 from django.core.management.base import BaseCommand
-from pagos.models import MetodoPago
+
+from pagos.views import inicializar_metodos_pago
+
 
 class Command(BaseCommand):
-    help = 'Inicializa los métodos de pago predeterminados'
+    """Comando para inicializar los métodos de pago predeterminados en el sistema."""
 
-    def handle(self, *args, **options):
-        metodos_pago = [
-            {
-                'tipo': 'nequi',
-                'nombre': 'Nequi',
-                'activo': True,
-                'configuracion': {'descripcion': 'Pago móvil rápido y seguro'}
-            },
-            {
-                'tipo': 'bancolombia',
-                'nombre': 'Bancolombia',
-                'activo': True,
-                'configuracion': {'descripcion': 'Transferencia bancaria'}
-            },
-            {
-                'tipo': 'pse',
-                'nombre': 'PSE',
-                'activo': True,
-                'configuracion': {'descripcion': 'Pago seguro electrónico'}
-            },
-            {
-                'tipo': 'tarjeta',
-                'nombre': 'Tarjeta de Crédito',
-                'activo': True,
-                'configuracion': {'descripcion': 'Visa, MasterCard, American Express'}
-            }
-        ]
-        
-        for metodo in metodos_pago:
-            MetodoPago.objects.get_or_create(
-                tipo=metodo['tipo'],
-                defaults={
-                    'nombre': metodo['nombre'],
-                    'activo': metodo['activo'],
-                    'configuracion': metodo['configuracion']
-                }
-            )
-            
+    help = "Inicializa los métodos de pago predeterminados"
+
+    def handle(self, *_: list, **__: dict) -> None:
+        """Ejecuta el comando para inicializar los métodos de pago.
+
+        Args:
+            *_: Argumentos posicionales (no utilizados).
+            **__: Opciones del comando (no utilizadas).
+
+        Returns:
+            None
+
+        """
+        metodos_pago = inicializar_metodos_pago()
         self.stdout.write(
-            self.style.SUCCESS(f'Se han inicializado {len(metodos_pago)} métodos de pago correctamente')
+            self.style.SUCCESS(
+                f"Se han inicializado {metodos_pago} métodos de pago correctamente",
+            ),
         )

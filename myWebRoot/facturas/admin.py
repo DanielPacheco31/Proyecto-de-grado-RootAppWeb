@@ -9,6 +9,6 @@ class FacturaAdmin(admin.ModelAdmin):
     search_fields = ("numero", "compra__id", "compra__usuario__username")
     readonly_fields = ("fecha_emision",)
 
-    def has_add_permission(self, request):
+    def has_add_permission(self, request) -> bool:
         # Las facturas se crean automáticamente, no manualmente
         return False

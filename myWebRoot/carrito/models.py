@@ -7,7 +7,7 @@ class Carrito(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name="carrito")
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Carrito de {self.usuario.username}"
 
     @property
@@ -27,7 +27,7 @@ class CarritoItem(models.Model):
     class Meta:
         unique_together = ("carrito", "producto")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.cantidad} x {self.producto.nombre}"
 
     @property

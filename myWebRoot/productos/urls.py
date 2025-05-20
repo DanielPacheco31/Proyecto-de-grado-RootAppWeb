@@ -1,3 +1,5 @@
+"""URLs para la aplicación de productos."""
+
 from django.urls import path
 
 from . import views

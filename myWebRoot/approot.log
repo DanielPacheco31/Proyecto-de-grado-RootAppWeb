@@ -8693,3 +8693,137 @@ INFO 2025-05-15 20:37:15,204 basehttp 3820 4532 "GET /static/core/img/icon-6.jpg
 INFO 2025-05-15 20:37:15,215 basehttp 3820 10540 "GET /static/core/img/icon-7.jpg HTTP/1.1" 200 25358
 INFO 2025-05-15 20:37:15,224 basehttp 3820 4532 "GET /static/core/img/icon-8.jpg HTTP/1.1" 200 18876
 WARNING 2025-05-15 20:37:15,591 basehttp 3820 4532 "GET /static/core/img/favicon.ico HTTP/1.1" 404 1874
+INFO 2025-05-19 19:09:22,244 autoreload 10784 13188 Watching for file changes with StatReloader
+INFO 2025-05-19 19:09:39,315 basehttp 10784 14300 "GET / HTTP/1.1" 200 4974
+INFO 2025-05-19 19:09:39,596 basehttp 10784 15484 "GET /static/core/img/icon-3.jpg HTTP/1.1" 200 20577
+INFO 2025-05-19 19:09:39,599 basehttp 10784 14300 "GET /static/core/css/style.css HTTP/1.1" 200 15752
+INFO 2025-05-19 19:09:39,615 basehttp 10784 14648 "GET /static/core/img/icon-2.jpg HTTP/1.1" 200 32800
+INFO 2025-05-19 19:09:39,624 basehttp 10784 5216 "GET /static/core/img/icon-1.jpg HTTP/1.1" 200 35675
+INFO 2025-05-19 19:09:39,627 basehttp 10784 15484 "GET /static/core/js/main.js HTTP/1.1" 200 0
+INFO 2025-05-19 19:09:39,653 basehttp 10784 14300 "GET /static/core/img/icon-6.jpg HTTP/1.1" 200 74363
+INFO 2025-05-19 19:09:39,657 basehttp 10784 7788 "GET /static/core/img/icon-5.jpg HTTP/1.1" 200 65157
+INFO 2025-05-19 19:09:39,661 basehttp 10784 14648 "GET /static/core/img/icon-7.jpg HTTP/1.1" 200 25358
+INFO 2025-05-19 19:09:39,662 basehttp 10784 6204 "GET /static/core/img/icon-4.jpg HTTP/1.1" 200 53334
+INFO 2025-05-19 19:09:39,681 basehttp 10784 5216 "GET /static/core/img/icon-8.jpg HTTP/1.1" 200 18876
+WARNING 2025-05-19 19:09:39,774 basehttp 10784 5216 "GET /static/core/img/favicon.ico HTTP/1.1" 404 1874
+INFO 2025-05-19 19:09:41,495 basehttp 10784 14648 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-19 19:09:41,533 basehttp 10784 14648 "GET /static/css/registro.css HTTP/1.1" 200 5977
+INFO 2025-05-19 19:09:44,573 basehttp 10784 14648 "POST /usuarios/login/ HTTP/1.1" 200 4392
+INFO 2025-05-19 19:09:54,180 basehttp 10784 14648 "POST /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:09:54,210 basehttp 10784 14648 "GET /scanner/ HTTP/1.1" 200 6424
+INFO 2025-05-19 19:09:54,240 basehttp 10784 14648 "GET /static/css/scanner.css HTTP/1.1" 200 10062
+INFO 2025-05-19 19:09:54,261 basehttp 10784 6204 "GET /static/js/scanner.js HTTP/1.1" 200 9538
+INFO 2025-05-19 19:10:21,170 basehttp 10784 6204 "GET /admin HTTP/1.1" 301 0
+INFO 2025-05-19 19:10:21,201 basehttp 10784 14648 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:10:21,482 basehttp 10784 14648 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 3744
+INFO 2025-05-19 19:10:21,546 basehttp 10784 14648 "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+INFO 2025-05-19 19:10:21,552 basehttp 10784 7788 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+INFO 2025-05-19 19:10:21,556 basehttp 10784 15484 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-05-19 19:10:21,566 basehttp 10784 11520 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-05-19 19:10:21,574 basehttp 10784 14300 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2025-05-19 19:10:21,579 basehttp 10784 3324 "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+INFO 2025-05-19 19:10:21,615 basehttp 10784 3324 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+WARNING 2025-05-19 19:10:21,666 log 10784 3324 Not Found: /favicon.ico
+WARNING 2025-05-19 19:10:21,671 basehttp 10784 3324 "GET /favicon.ico HTTP/1.1" 404 4062
+INFO 2025-05-19 19:10:24,081 basehttp 10784 3324 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 3945
+INFO 2025-05-19 19:10:31,929 basehttp 10784 3324 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 3945
+INFO 2025-05-19 19:10:45,213 basehttp 10784 3324 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:10:45,282 basehttp 10784 3324 "GET /admin/ HTTP/1.1" 200 9518
+INFO 2025-05-19 19:10:45,309 basehttp 10784 3324 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-05-19 19:10:45,331 basehttp 10784 14300 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-05-19 19:10:45,331 basehttp 10784 3324 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-05-19 19:10:47,349 basehttp 10784 3324 "GET /admin/productos/producto/ HTTP/1.1" 200 12975
+INFO 2025-05-19 19:10:47,389 basehttp 10784 3324 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-05-19 19:10:47,415 basehttp 10784 11520 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-05-19 19:10:47,441 basehttp 10784 15484 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-05-19 19:10:47,452 basehttp 10784 14300 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-05-19 19:10:47,452 basehttp 10784 7788 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9097
+INFO 2025-05-19 19:10:47,489 basehttp 10784 3324 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-05-19 19:10:47,518 basehttp 10784 15484 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-05-19 19:10:47,519 basehttp 10784 11520 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-05-19 19:10:47,542 basehttp 10784 14300 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-05-19 19:10:47,547 basehttp 10784 14648 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-05-19 19:10:47,585 basehttp 10784 14648 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-05-19 19:10:47,666 basehttp 10784 7788 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-05-19 19:10:47,708 basehttp 10784 7788 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-05-19 19:10:47,714 basehttp 10784 14648 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+WARNING 2025-05-19 19:10:56,216 log 10784 14648 Forbidden (CSRF token from POST incorrect.): /scanner/
+WARNING 2025-05-19 19:10:56,217 basehttp 10784 14648 "POST /scanner/ HTTP/1.1" 403 2514
+INFO 2025-05-19 19:11:00,959 basehttp 10784 14648 "GET /scanner/ HTTP/1.1" 200 6268
+INFO 2025-05-19 19:11:02,282 basehttp 10784 14648 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:11:02,332 basehttp 10784 14648 "GET /carrito/finalizar/ HTTP/1.1" 200 5337
+INFO 2025-05-19 19:11:10,410 basehttp 10784 14648 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:11:10,471 basehttp 10784 14648 "GET /pagos/27/metodo/ HTTP/1.1" 200 11442
+WARNING 2025-05-19 19:11:10,502 basehttp 10784 14648 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+INFO 2025-05-19 19:11:17,099 basehttp 10784 7788 "POST /pagos/27/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:11:17,133 basehttp 10784 7788 "GET /pagos/movil/13/ HTTP/1.1" 200 11394
+WARNING 2025-05-19 19:11:17,165 basehttp 10784 7788 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+INFO 2025-05-19 19:11:28,963 basehttp 10784 14300 "POST /pagos/movil/13/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:11:28,990 basehttp 10784 14300 "GET /pagos/confirmar/13/ HTTP/1.1" 200 8952
+WARNING 2025-05-19 19:11:29,024 basehttp 10784 14300 "GET /static/css/checkout.css HTTP/1.1" 404 1862
+INFO 2025-05-19 19:11:34,693 basehttp 10784 11520 "GET /facturas/27/descargar/ HTTP/1.1" 200 2518
+INFO 2025-05-19 19:12:00,497 basehttp 10784 11520 "GET / HTTP/1.1" 200 4974
+INFO 2025-05-19 19:12:02,354 basehttp 10784 11520 "GET /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:12:02,369 basehttp 10784 11520 "GET /scanner/ HTTP/1.1" 200 6268
+INFO 2025-05-19 19:12:04,745 basehttp 10784 11520 "GET /usuarios/perfil/ HTTP/1.1" 200 29723
+WARNING 2025-05-19 19:12:04,791 log 10784 15484 Not Found: /media/perfiles/default.png
+WARNING 2025-05-19 19:12:04,792 basehttp 10784 15484 "GET /media/perfiles/default.png HTTP/1.1" 404 4340
+INFO 2025-05-19 19:12:04,793 basehttp 10784 11520 "GET /static/css/perfil.css HTTP/1.1" 200 12104
+INFO 2025-05-19 19:12:04,831 basehttp 10784 3324 "GET /static/js/scripts.js HTTP/1.1" 200 4588
+INFO 2025-05-19 19:12:08,484 basehttp 10784 3324 "GET /facturas/27/ HTTP/1.1" 200 8252
+INFO 2025-05-19 19:12:08,526 basehttp 10784 3324 "GET /static/css/detalle_compra.css HTTP/1.1" 200 10160
+INFO 2025-05-19 19:12:08,536 basehttp 10784 11520 "GET /media/productos/nuthos.png HTTP/1.1" 200 257372
+INFO 2025-05-19 19:12:08,539 basehttp 10784 6300 "GET /static/css/factura-print.css HTTP/1.1" 200 3936
+INFO 2025-05-19 19:12:08,558 basehttp 10784 15484 "GET /static/js/facturas.js HTTP/1.1" 200 8689
+INFO 2025-05-19 19:12:25,940 basehttp 10784 15484 "GET /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:12:25,955 basehttp 10784 15484 "GET /scanner/ HTTP/1.1" 200 6268
+INFO 2025-05-19 19:12:39,082 basehttp 10784 15484 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:12:39,101 basehttp 10784 15484 "GET /carrito/finalizar/ HTTP/1.1" 200 5337
+INFO 2025-05-19 19:14:21,771 basehttp 10784 15484 "GET /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:14:21,781 basehttp 10784 15484 "GET /scanner/ HTTP/1.1" 200 6268
+INFO 2025-05-19 19:14:54,011 basehttp 10784 15484 "GET /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:14:54,026 basehttp 10784 15484 "GET /scanner/ HTTP/1.1" 200 6268
+INFO 2025-05-19 19:14:55,106 basehttp 10784 15484 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-05-19 19:14:57,456 basehttp 10784 15484 "GET /usuarios/login/ HTTP/1.1" 200 4046
+INFO 2025-05-19 19:28:53,112 autoreload 10784 13188 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:28:54,547 autoreload 5484 9972 Watching for file changes with StatReloader
+INFO 2025-05-19 19:33:01,525 autoreload 5484 9972 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:33:03,908 autoreload 9988 15016 Watching for file changes with StatReloader
+INFO 2025-05-19 19:33:25,388 autoreload 9988 15016 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:33:26,775 autoreload 3948 6988 Watching for file changes with StatReloader
+INFO 2025-05-19 19:33:28,654 autoreload 3948 6988 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:33:29,799 autoreload 12020 11412 Watching for file changes with StatReloader
+INFO 2025-05-19 19:33:31,261 autoreload 12020 11412 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:33:32,585 autoreload 15732 8316 Watching for file changes with StatReloader
+INFO 2025-05-19 19:33:44,804 autoreload 15732 8316 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:33:46,021 autoreload 9632 5556 Watching for file changes with StatReloader
+INFO 2025-05-19 19:33:51,682 autoreload 9632 5556 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:33:53,151 autoreload 17820 9128 Watching for file changes with StatReloader
+INFO 2025-05-19 19:34:23,251 autoreload 17820 9128 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:34:24,787 autoreload 3948 3756 Watching for file changes with StatReloader
+INFO 2025-05-19 19:36:10,028 autoreload 3948 3756 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:36:11,410 autoreload 10464 8460 Watching for file changes with StatReloader
+INFO 2025-05-19 19:36:35,383 autoreload 10464 8460 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:36:36,921 autoreload 11984 8856 Watching for file changes with StatReloader
+INFO 2025-05-19 19:36:38,923 autoreload 11984 8856 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:36:40,245 autoreload 8548 17880 Watching for file changes with StatReloader
+INFO 2025-05-19 19:36:56,367 autoreload 8548 17880 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:36:57,740 autoreload 6820 7044 Watching for file changes with StatReloader
+INFO 2025-05-19 19:37:20,176 autoreload 6820 7044 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:37:21,775 autoreload 2792 8860 Watching for file changes with StatReloader
+INFO 2025-05-19 19:38:11,624 autoreload 2792 8860 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:38:12,980 autoreload 7376 13036 Watching for file changes with StatReloader
+INFO 2025-05-19 19:38:18,592 autoreload 7376 13036 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:38:19,805 autoreload 17840 5776 Watching for file changes with StatReloader
+INFO 2025-05-19 19:38:21,648 autoreload 17840 5776 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:38:23,030 autoreload 10308 9220 Watching for file changes with StatReloader
+INFO 2025-05-19 19:43:06,206 autoreload 10308 9220 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:43:07,665 autoreload 9444 8552 Watching for file changes with StatReloader
+INFO 2025-05-19 19:43:09,551 autoreload 9444 8552 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:43:10,821 autoreload 13520 8592 Watching for file changes with StatReloader
+INFO 2025-05-19 19:43:12,724 autoreload 13520 8592 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:43:13,976 autoreload 10536 2524 Watching for file changes with StatReloader
+INFO 2025-05-19 19:44:27,060 autoreload 10536 2524 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:44:28,627 autoreload 13736 18216 Watching for file changes with StatReloader
+INFO 2025-05-19 19:44:41,379 autoreload 13736 18216 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\productos\models.py changed, reloading.
+INFO 2025-05-19 19:44:42,880 autoreload 13988 6720 Watching for file changes with StatReloader

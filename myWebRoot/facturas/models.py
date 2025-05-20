@@ -11,10 +11,10 @@ class Factura(models.Model):
     fecha_emision = models.DateTimeField(auto_now_add=True)
     pdf = models.FileField(upload_to="facturas/", blank=True, null=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Factura {self.numero}"
 
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs) -> None:
         # Generar número de factura único si es nuevo
         if not self.numero:
             año = timezone.now().year
