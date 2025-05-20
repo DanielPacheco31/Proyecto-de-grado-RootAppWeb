@@ -1,14 +1,30 @@
+"""Utilidades para la generación de facturas y archivos PDF."""
+
 from io import BytesIO
+from typing import TYPE_CHECKING
 
 from django.core.files.base import ContentFile
+from pagos.models import Compra
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
+# Solución para importación cíclica
+if TYPE_CHECKING:
+    from .models import Factura
 
-def generar_factura(compra):
-    """Genera una factura para una compra realizada."""
+
+def generar_factura(compra: Compra) -> "Factura":
+    """Genera una factura para una compra realizada.
+
+    Args:
+        compra: La compra para la que se generará la factura.
+
+    Returns:
+        Factura: La factura generada o existente para la compra.
+
+    """
     # Importar aquí para evitar importaciones circulares
     from .models import Factura
 
@@ -24,8 +40,17 @@ def generar_factura(compra):
 
         return factura
 
-def generar_pdf_factura(factura) -> None:
-    """Genera el archivo PDF para una factura."""
+
+def generar_pdf_factura(factura: "Factura") -> None:
+    """Genera el archivo PDF para una factura.
+
+    Args:
+        factura: La factura para la que se generará el PDF.
+
+    Returns:
+        None
+
+    """
     compra = factura.compra
 
     # Crear un buffer para el PDF
@@ -55,29 +80,52 @@ def generar_pdf_factura(factura) -> None:
 
     # Información del cliente
     elements.append(Paragraph("DATOS DEL CLIENTE", style_heading))
-    elements.append(Paragraph(f"Nombre: {compra.usuario.get_full_name() or compra.usuario.username}", style_normal))
-    elements.append(Paragraph(f"Documento: {compra.usuario.perfil.id_documento or 'No registrado'}", style_normal))
-    elements.append(Paragraph(f"Dirección: {compra.direccion_entrega or 'No especificada'}", style_normal))
+    elements.append(
+        Paragraph(
+            f"Nombre: {compra.usuario.get_full_name() or compra.usuario.username}",
+            style_normal,
+        ),
+    )
+    elements.append(
+        Paragraph(
+            f"Documento: {compra.usuario.perfil.id_documento or 'No registrado'}",
+            style_normal,
+        ),
+    )
+    elements.append(
+        Paragraph(
+            f"Dirección: {compra.direccion_entrega or 'No especificada'}",
+            style_normal,
+        ),
+    )
     elements.append(Paragraph(f"Email: {compra.usuario.email}", style_normal))
     elements.append(Spacer(1, 20))
 
     # Información de la compra
     elements.append(Paragraph("DETALLES DE LA COMPRA", style_heading))
     elements.append(Paragraph(f"Compra #: {compra.id}", style_normal))
-    elements.append(Paragraph(f"Fecha: {compra.fecha_compra.strftime('%d/%m/%Y %H:%M')}", style_normal))
+    elements.append(
+        Paragraph(
+            f"Fecha: {compra.fecha_compra.strftime('%d/%m/%Y %H:%M')}",
+            style_normal,
+        ),
+    )
     elements.append(Spacer(1, 10))
 
     # Tabla de productos
     data = [["Producto", "Código", "Cantidad", "Precio Unitario", "Subtotal"]]
 
-    for detalle in compra.detalles.all():
-        data.append([
+    # Usar list comprehension para optimizar el bucle
+    data.extend([
+        [
             detalle.producto.nombre,
             detalle.producto.codigo,
             str(detalle.cantidad),
             f"${detalle.precio_unitario:.2f}",
             f"${detalle.subtotal:.2f}",
-        ])
+        ]
+        for detalle in compra.detalles.all()
+    ])
 
     # Agregar el total
     data.append(["", "", "", "TOTAL", f"${compra.total:.2f}"])
@@ -102,7 +150,12 @@ def generar_pdf_factura(factura) -> None:
 
     # Comentarios finales
     elements.append(Paragraph("Gracias por tu compra.", style_normal))
-    elements.append(Paragraph("Esta factura es válida como comprobante de pago.", style_normal))
+    elements.append(
+        Paragraph(
+            "Esta factura es válida como comprobante de pago.",
+            style_normal,
+        ),
+    )
 
     # Generar el PDF
     doc.build(elements)

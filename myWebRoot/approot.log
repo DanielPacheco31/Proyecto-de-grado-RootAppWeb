@@ -8922,3 +8922,61 @@ INFO 2025-05-20 15:27:34,703 autoreload 14196 10180 C:\Users\ADMIN\OneDrive\Desk
 INFO 2025-05-20 15:27:36,071 autoreload 11080 7776 Watching for file changes with StatReloader
 INFO 2025-05-20 15:27:45,684 autoreload 11080 7776 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\apps.py changed, reloading.
 INFO 2025-05-20 15:27:47,059 autoreload 17596 6824 Watching for file changes with StatReloader
+INFO 2025-05-20 15:30:58,978 autoreload 17596 6824 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\__init__.py changed, reloading.
+INFO 2025-05-20 15:31:00,680 autoreload 17032 17608 Watching for file changes with StatReloader
+INFO 2025-05-20 15:31:05,899 autoreload 17032 17608 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\migrations\__init__.py changed, reloading.
+INFO 2025-05-20 15:31:07,342 autoreload 11036 9352 Watching for file changes with StatReloader
+INFO 2025-05-20 15:31:18,106 autoreload 11036 9352 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\admin.py changed, reloading.
+INFO 2025-05-20 15:31:19,846 autoreload 14996 1172 Watching for file changes with StatReloader
+INFO 2025-05-20 15:32:14,914 autoreload 14996 1172 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\admin.py changed, reloading.
+INFO 2025-05-20 15:32:17,203 autoreload 11520 5784 Watching for file changes with StatReloader
+INFO 2025-05-20 15:33:08,235 autoreload 11520 5784 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\admin.py changed, reloading.
+INFO 2025-05-20 15:33:09,926 autoreload 13920 13668 Watching for file changes with StatReloader
+INFO 2025-05-20 15:33:23,833 autoreload 13920 13668 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\apps.py changed, reloading.
+INFO 2025-05-20 15:33:25,589 autoreload 10640 18140 Watching for file changes with StatReloader
+INFO 2025-05-20 15:33:39,264 autoreload 10640 18140 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\models.py changed, reloading.
+INFO 2025-05-20 15:33:41,212 autoreload 15380 18184 Watching for file changes with StatReloader
+INFO 2025-05-20 15:33:43,265 autoreload 15380 18184 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\models.py changed, reloading.
+INFO 2025-05-20 15:33:44,939 autoreload 12784 15508 Watching for file changes with StatReloader
+INFO 2025-05-20 15:34:06,853 autoreload 12784 15508 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\urls.py changed, reloading.
+INFO 2025-05-20 15:34:08,467 autoreload 12632 1852 Watching for file changes with StatReloader
+INFO 2025-05-20 15:34:24,637 autoreload 12632 1852 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:34:27,116 autoreload 8208 14016 Watching for file changes with StatReloader
+INFO 2025-05-20 15:34:46,699 autoreload 8208 14016 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-20 15:34:48,959 autoreload 8432 15180 Watching for file changes with StatReloader
+INFO 2025-05-20 15:34:51,027 autoreload 8432 15180 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-20 15:34:52,380 autoreload 13852 10992 Watching for file changes with StatReloader
+INFO 2025-05-20 15:35:14,918 autoreload 13852 10992 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\apps.py changed, reloading.
+INFO 2025-05-20 15:35:16,337 autoreload 17024 4036 Watching for file changes with StatReloader
+INFO 2025-05-20 15:35:28,220 autoreload 17024 4036 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\models.py changed, reloading.
+INFO 2025-05-20 15:35:29,981 autoreload 7052 5760 Watching for file changes with StatReloader
+INFO 2025-05-20 15:36:47,031 autoreload 7052 5760 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\models.py changed, reloading.
+INFO 2025-05-20 15:36:48,802 autoreload 16292 11420 Watching for file changes with StatReloader
+INFO 2025-05-20 15:37:04,764 autoreload 16292 11420 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:37:06,023 autoreload 2040 9940 Watching for file changes with StatReloader
+INFO 2025-05-20 15:37:10,048 autoreload 2040 9940 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:37:11,535 autoreload 1744 8236 Watching for file changes with StatReloader
+INFO 2025-05-20 15:38:03,996 autoreload 1744 8236 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:38:06,099 autoreload 6332 6992 Watching for file changes with StatReloader
+INFO 2025-05-20 15:38:50,776 autoreload 6332 6992 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\models.py changed, reloading.
+INFO 2025-05-20 15:38:52,370 autoreload 15464 15324 Watching for file changes with StatReloader
+INFO 2025-05-20 15:39:08,236 autoreload 15464 15324 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\models.py changed, reloading.
+INFO 2025-05-20 15:39:09,510 autoreload 9200 12176 Watching for file changes with StatReloader
+INFO 2025-05-20 15:39:12,468 autoreload 9200 12176 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:39:13,699 autoreload 16252 7592 Watching for file changes with StatReloader
+INFO 2025-05-20 15:40:14,278 autoreload 16252 7592 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:40:15,685 autoreload 15492 12996 Watching for file changes with StatReloader
+INFO 2025-05-20 15:40:28,536 autoreload 15492 12996 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:40:29,937 autoreload 7968 14924 Watching for file changes with StatReloader
+INFO 2025-05-20 15:40:31,971 autoreload 7968 14924 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:40:33,556 autoreload 10428 11544 Watching for file changes with StatReloader
+INFO 2025-05-20 15:43:08,811 autoreload 10428 11544 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:43:10,827 autoreload 17212 15448 Watching for file changes with StatReloader
+INFO 2025-05-20 15:43:40,028 autoreload 17212 15448 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:43:41,608 autoreload 12396 6212 Watching for file changes with StatReloader
+INFO 2025-05-20 15:43:46,285 autoreload 12396 6212 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:43:47,698 autoreload 12832 13588 Watching for file changes with StatReloader
+INFO 2025-05-20 15:43:57,298 autoreload 12832 13588 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:43:58,618 autoreload 5048 7100 Watching for file changes with StatReloader
+INFO 2025-05-20 15:44:09,246 autoreload 5048 7100 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-20 15:44:10,524 autoreload 8716 10024 Watching for file changes with StatReloader

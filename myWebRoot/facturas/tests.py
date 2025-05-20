@@ -1,3 +1,4 @@
+"""Pruebas para la aplicación de facturas."""
 
 # test_reportlab.py
 from reportlab.pdfgen import canvas
