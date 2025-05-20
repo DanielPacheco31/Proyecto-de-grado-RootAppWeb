@@ -8888,3 +8888,37 @@ INFO 2025-05-20 15:20:29,183 autoreload 11696 8596 C:\Users\ADMIN\OneDrive\Deskt
 INFO 2025-05-20 15:20:30,564 autoreload 9840 11392 Watching for file changes with StatReloader
 INFO 2025-05-20 15:20:45,188 autoreload 9840 11392 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\carrito\views.py changed, reloading.
 INFO 2025-05-20 15:20:46,542 autoreload 12816 10048 Watching for file changes with StatReloader
+INFO 2025-05-20 15:22:22,909 autoreload 12816 10048 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\__init__.py changed, reloading.
+INFO 2025-05-20 15:22:24,261 autoreload 10840 14568 Watching for file changes with StatReloader
+INFO 2025-05-20 15:22:33,711 autoreload 10840 14568 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\__init__.py changed, reloading.
+INFO 2025-05-20 15:22:35,147 autoreload 2524 16416 Watching for file changes with StatReloader
+INFO 2025-05-20 15:22:43,667 autoreload 2524 16416 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\migrations\__init__.py changed, reloading.
+INFO 2025-05-20 15:22:44,936 autoreload 16596 10284 Watching for file changes with StatReloader
+INFO 2025-05-20 15:22:54,577 autoreload 16596 10284 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\migrations\__init__.py changed, reloading.
+INFO 2025-05-20 15:22:56,015 autoreload 4144 16244 Watching for file changes with StatReloader
+INFO 2025-05-20 15:23:24,198 autoreload 4144 16244 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\__init__.py changed, reloading.
+INFO 2025-05-20 15:23:25,477 autoreload 15116 12720 Watching for file changes with StatReloader
+INFO 2025-05-20 15:23:40,585 autoreload 15116 12720 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\__init__.py changed, reloading.
+INFO 2025-05-20 15:23:41,845 autoreload 14392 8668 Watching for file changes with StatReloader
+INFO 2025-05-20 15:25:24,269 autoreload 14392 8668 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\__init__.py changed, reloading.
+INFO 2025-05-20 15:25:25,783 autoreload 1908 14992 Watching for file changes with StatReloader
+INFO 2025-05-20 15:25:35,680 autoreload 1908 14992 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\admin.py changed, reloading.
+INFO 2025-05-20 15:25:37,050 autoreload 15776 16256 Watching for file changes with StatReloader
+INFO 2025-05-20 15:25:42,308 autoreload 15776 16256 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\admin.py changed, reloading.
+INFO 2025-05-20 15:25:43,605 autoreload 13976 3476 Watching for file changes with StatReloader
+INFO 2025-05-20 15:25:57,967 autoreload 13976 3476 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\apps.py changed, reloading.
+INFO 2025-05-20 15:25:59,499 autoreload 4764 10456 Watching for file changes with StatReloader
+INFO 2025-05-20 15:26:07,938 autoreload 4764 10456 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\models.py changed, reloading.
+INFO 2025-05-20 15:26:09,163 autoreload 8064 14504 Watching for file changes with StatReloader
+INFO 2025-05-20 15:26:12,208 autoreload 8064 14504 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\models.py changed, reloading.
+INFO 2025-05-20 15:26:14,303 autoreload 15456 17444 Watching for file changes with StatReloader
+INFO 2025-05-20 15:26:46,029 autoreload 15456 17444 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\urls.py changed, reloading.
+INFO 2025-05-20 15:26:47,242 autoreload 9376 796 Watching for file changes with StatReloader
+INFO 2025-05-20 15:27:12,015 autoreload 9376 796 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\views.py changed, reloading.
+INFO 2025-05-20 15:27:14,285 autoreload 11444 16332 Watching for file changes with StatReloader
+INFO 2025-05-20 15:27:16,404 autoreload 11444 16332 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\views.py changed, reloading.
+INFO 2025-05-20 15:27:17,669 autoreload 14196 10180 Watching for file changes with StatReloader
+INFO 2025-05-20 15:27:34,703 autoreload 14196 10180 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\admin.py changed, reloading.
+INFO 2025-05-20 15:27:36,071 autoreload 11080 7776 Watching for file changes with StatReloader
+INFO 2025-05-20 15:27:45,684 autoreload 11080 7776 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\core\apps.py changed, reloading.
+INFO 2025-05-20 15:27:47,059 autoreload 17596 6824 Watching for file changes with StatReloader
