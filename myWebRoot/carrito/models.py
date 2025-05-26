@@ -23,27 +23,6 @@ class Carrito(models.Model):
         """Representación de cadena del carrito."""
         return f"Carrito de {self.usuario.username}"
 
-    @property
-    def total(self) -> float:
-        """Calcula el valor total de todos los items en el carrito.
-
-        Returns:
-            float: Suma de los subtotales de todos los items.
-
-        """
-        return sum(item.subtotal for item in self.items.all())
-
-    @property
-    def cantidad_items(self) -> int:
-        """Cuenta el número total de items en el carrito.
-
-        Returns:
-            int: Número de items en el carrito.
-
-        """
-        return self.items.count()
-
-
 class CarritoItem(models.Model):
     """Modelo para almacenar cada producto añadido al carrito.
 
@@ -64,13 +43,3 @@ class CarritoItem(models.Model):
     def __str__(self) -> str:
         """Representación de cadena del item en el carrito."""
         return f"{self.cantidad} x {self.producto.nombre}"
-
-    @property
-    def subtotal(self) -> float:
-        """Calcula el valor total de este item (cantidad * precio unitario).
-
-        Returns:
-            float: Subtotal del item.
-
-        """
-        return self.cantidad * self.producto.precio

@@ -1,9 +1,6 @@
 """Modelos para la aplicación de facturas."""
 
-import uuid
-
 from django.db import models
-from django.utils import timezone
 
 
 class Factura(models.Model):
@@ -28,21 +25,4 @@ class Factura(models.Model):
         """Representación de cadena de la factura."""
         return f"Factura {self.numero}"
 
-    def save(self, *args: list | tuple, **kwargs: dict) -> None:
-        """Guarda la factura y genera un número único si es necesario.
 
-        Args:
-            *args: Argumentos posicionales para el método save.
-            **kwargs: Argumentos de palabra clave para el método save.
-
-        Returns:
-            None
-
-        """
-        # Generar número de factura único si es nuevo
-        if not self.numero:
-            anio = timezone.now().year
-            mes = timezone.now().month
-            uuid_corto = str(uuid.uuid4())[:8]
-            self.numero = f"F-{anio}-{mes:02d}-{uuid_corto}"
-        super().save(*args, **kwargs)

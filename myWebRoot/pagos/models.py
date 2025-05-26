@@ -50,18 +50,6 @@ class DetalleCompra(models.Model):
         """Representación de cadena del objeto DetalleCompra."""
         return f"{self.cantidad} x {self.producto.nombre}"
 
-    @property
-    def subtotal(self) -> models.DecimalField:
-        """Calcula el subtotal del detalle de compra.
-
-        Returns:
-            models.DecimalField: El resultado de multiplicar cantidad por precio
-            unitario.
-
-        """
-        return self.cantidad * self.precio_unitario
-
-
 class MetodoPago(models.Model):
     """Modelo para definir los métodos de pago disponibles."""
 

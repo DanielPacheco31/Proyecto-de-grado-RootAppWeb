@@ -198,9 +198,8 @@ def actualizar_foto(request):
         perfil = request.user.perfil
 
         # Eliminar foto anterior si no es la predeterminada
-        if perfil.foto and "default.png" not in perfil.foto.name:
-            if default_storage.exists(perfil.foto.name):
-                default_storage.delete(perfil.foto.name)
+        if perfil.foto and "default.png" not in perfil.foto.name and default_storage.exists(perfil.foto.name):
+            default_storage.delete(perfil.foto.name)
 
         # Generar nombre único para la foto
         filename = f"perfiles/user_{request.user.id}_{timezone.now().strftime('%Y%m%d%H%M%S')}{ext}"
@@ -223,6 +222,7 @@ def actualizar_preferencias(request):
 
 @login_required
 def cambiar_password(request):
+    """Esta funcion fue creada para que por seguridad el usuario cambie su contraseña."""
     if request.method == "POST":
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():

@@ -1,3 +1,4 @@
+"""Configuracion de admin para la app productos."""
 from django.contrib import admin
 
 from .models import Categoria, Producto
@@ -32,11 +33,3 @@ class ProductoAdmin(admin.ModelAdmin):
             "classes": ("collapse",),
         }),
     )
-
-    # Generación automática de código si no se proporciona
-    def save_model(self, request, obj, form, change) -> None:
-        if not obj.codigo:
-            # Generar un código único basado en la primera letra del nombre y un número
-            from django.utils.crypto import get_random_string
-            obj.codigo = f"{obj.nombre[0].upper()}-{get_random_string(length=5).upper()}"
-        super().save_model(request, obj, form, change)

@@ -31,10 +31,7 @@ def detalle_compra(request: HttpRequest, compra_id: int) -> HttpResponse:
     except Factura.DoesNotExist:
         factura = None
 
-    return render(request, "facturas/detalle_compra.html", {
-        "compra": compra,
-        "factura": factura,
-    })
+    return render(request, "facturas/detalle_compra.html", {"compra": compra,"factura": factura})
 
 
 @login_required
