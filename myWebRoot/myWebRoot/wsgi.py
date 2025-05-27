@@ -1,4 +1,5 @@
-"""WSGI config for myWebRoot project.
+"""
+WSGI config for myWebRoot project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

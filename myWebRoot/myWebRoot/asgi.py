@@ -1,4 +1,5 @@
-"""ASGI config for myWebRoot project.
+"""
+ASGI config for myWebRoot project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

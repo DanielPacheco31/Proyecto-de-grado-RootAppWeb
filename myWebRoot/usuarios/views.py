@@ -10,13 +10,14 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.utils import timezone
 
 
-def registro_view(request):
-    # Si el usuario ya está autenticado, redirigir al home
-    if request.user.is_authenticated:
+def registro_view(request: HttpRequest) -> HttpResponse:
+    """Vista para el registro de usuarios."""
+    if request.user.is_authenticated:  # Si el usuario ya está autenticado, redirigir al home
         return redirect("core:home")
 
     if request.method == "POST":
@@ -31,7 +32,6 @@ def registro_view(request):
         direccion = request.POST.get("direccion")
         password1 = request.POST.get("contraseña1")
         password2 = request.POST.get("contraseña2")
-
 
         # Validaciones básicas
         if not username or not email or not password1 or not password2:
@@ -71,7 +71,7 @@ def registro_view(request):
                 try:
                     perfil.fecha_nacimiento = datetime.strptime(fecha_nacimiento, "%Y-%m-%d").date()
                 except ValueError:
-                    pass  # Si hay un error en el formato de fecha, simplemente no la guardamos
+                    messages.warning(request, "Formato de fecha de nacimiento inválido. Se omitió este campo.")
 
             # Guardar el perfil con los cambios
             perfil.save()
@@ -94,8 +94,8 @@ def registro_view(request):
 
     return render(request, "usuarios/registro.html")
 
-def login_view(request):
-    # Si el usuario ya está autenticado, redirigir al scanner
+def login_view(request: HttpRequest) -> HttpResponse:
+    """Una vez el usuario este autenticado lo redirije al scanner."""
     if request.user.is_authenticated:
         return redirect("scanner:scanner")
 
@@ -126,12 +126,14 @@ def login_view(request):
     return render(request, "usuarios/login.html")
 
 
-def logout_view(request):
-    logout(request)  # Cierra la sesión completamente
-    return redirect("core:home")  # Redirige a la página de inicio
+def logout_view(request: HttpRequest) -> HttpResponse:
+    """Cierre de sesion completo."""
+    logout(request)
+    return redirect("core:home")
 
 @login_required
-def perfil_view(request):
+def perfil_view(request: HttpRequest) -> HttpResponse:
+    """Funcion para la vista del perfil."""
     # Usar select_related para reducir consultas a la base de datos
     carrito = Carrito.objects.select_related("usuario").prefetch_related(
         "items__producto",
@@ -150,7 +152,8 @@ def perfil_view(request):
     return render(request, "usuarios/perfil.html", context)
 
 @login_required
-def actualizar_perfil(request):
+def actualizar_perfil(request: HttpRequest) -> HttpResponse:
+    """Actualizaciones de datos del perfil."""
     if request.method == "POST":
         # Actualizar datos del usuario
         user = request.user
@@ -177,7 +180,8 @@ def actualizar_perfil(request):
     return redirect("usuarios:perfil")
 
 @login_required
-def actualizar_foto(request):
+def actualizar_foto(request: HttpRequest) -> HttpResponse:
+    """Actulizacion de foto de perfil."""
     if request.method == "POST" and request.FILES.get("foto"):
         foto = request.FILES["foto"]
 
@@ -210,7 +214,8 @@ def actualizar_foto(request):
     return redirect("usuarios:perfil")
 
 @login_required
-def actualizar_preferencias(request):
+def actualizar_preferencias(request: HttpRequest) -> HttpResponse:
+    """Acualizaciones de seguridad."""
     if request.method == "POST":
         perfil = request.user.perfil
         perfil.preferencias_notificacion = "preferencias_notificacion" in request.POST
@@ -221,7 +226,7 @@ def actualizar_preferencias(request):
     return redirect("usuarios:perfil")
 
 @login_required
-def cambiar_password(request):
+def cambiar_password(request: HttpRequest) -> HttpResponse:
     """Esta funcion fue creada para que por seguridad el usuario cambie su contraseña."""
     if request.method == "POST":
         form = PasswordChangeForm(request.user, request.POST)

@@ -1,6 +1,7 @@
+"""Modelos de la app usuarios."""
 from django.contrib.auth.models import User
 from django.db import models
-
+    """Modelos de la app usuarios."""
 
 class Perfil(models.Model):
     """Clase para traer los datos de los usuarios que se registren."""

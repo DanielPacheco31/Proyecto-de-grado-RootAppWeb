@@ -27,11 +27,12 @@ exclude = [
    "site-packages",
    "virtual",
    "migrations",
-   ".gitignore"
+   ".gitignore",
+   "myWebRoot/manage.py",
 ]
 
 # Same as Black.
-line-length = 150
+line-length = 250
 indent-width = 4
 
 target-version = "py313"
@@ -41,7 +42,7 @@ target-version = "py313"
 # Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
 # McCabe complexity (`C901`) by default.
 select = ["ALL"]
-ignore = []
+ignore = ["D203", "D212","N999"]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]

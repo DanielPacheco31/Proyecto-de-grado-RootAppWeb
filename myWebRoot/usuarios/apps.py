@@ -1,5 +1,6 @@
+"""Configuración de la aplicación usuarios."""
 from django.apps import AppConfig
-
+    """Configuración de la app usuarios."""
 
 class UsuariosConfig(AppConfig):
     """Configuracion de la app usuarios."""
