@@ -11,7 +11,8 @@ class Command(BaseCommand):
     help = "Inicializa los métodos de pago predeterminados"
 
     def handle(self, *_: list, **__: dict) -> None:
-        """Ejecuta el comando para inicializar los métodos de pago.
+        """
+        Ejecuta el comando para inicializar los métodos de pago.
 
         Args:
             *_: Argumentos posicionales (no utilizados).

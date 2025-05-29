@@ -6,7 +6,8 @@ from django.shortcuts import redirect, render
 
 
 def home_view(request: HttpRequest) -> HttpResponse:
-    """Renderiza la página de inicio.
+    """
+    Renderiza la página de inicio.
 
     Args:
         request: La solicitud HTTP.
@@ -19,7 +20,8 @@ def home_view(request: HttpRequest) -> HttpResponse:
 
 
 def vision_mision(request: HttpRequest) -> HttpResponse:
-    """Renderiza la página de visión y misión de la empresa.
+    """
+    Renderiza la página de visión y misión de la empresa.
 
     Args:
         request: La solicitud HTTP.
@@ -32,7 +34,8 @@ def vision_mision(request: HttpRequest) -> HttpResponse:
 
 
 def contacto(request: HttpRequest) -> HttpResponse:
-    """Maneja el formulario de contacto y renderiza la página de contacto.
+    """
+    Maneja el formulario de contacto y renderiza la página de contacto.
 
     Procesa los datos del formulario cuando se envía por POST y muestra un mensaje
     de confirmación. En las solicitudes GET, simplemente muestra el formulario.

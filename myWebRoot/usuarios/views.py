@@ -1,3 +1,4 @@
+"""Vistas actualizadas para usar el modelo Usuario personalizado."""
 import contextlib
 import os
 from datetime import datetime
@@ -7,21 +8,22 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.utils import timezone
 
+from .models import Usuario  # Cambio importante: usar tu modelo personalizado
+
 
 def registro_view(request: HttpRequest) -> HttpResponse:
     """Vista para el registro de usuarios."""
-    if request.user.is_authenticated:  # Si el usuario ya está autenticado, redirigir al home
+    if request.user.is_authenticated:
         return redirect("core:home")
 
     if request.method == "POST":
-        # Obtener datos del formulario usando los nombres correctos de tu HTML
+        # Obtener datos del formulario
         username = request.POST.get("nombre_usuario")
         first_name = request.POST.get("nombre")
         last_name = request.POST.get("apellido")
@@ -42,39 +44,34 @@ def registro_view(request: HttpRequest) -> HttpResponse:
             messages.error(request, "Las contraseñas no coinciden")
             return redirect("usuarios:registro")
 
-        if User.objects.filter(username=username).exists():
+        if Usuario.objects.filter(username=username).exists():
             messages.error(request, "El nombre de usuario ya está en uso")
             return redirect("usuarios:registro")
 
-        if User.objects.filter(email=email).exists():
+        if Usuario.objects.filter(email=email).exists():
             messages.error(request, "El correo electrónico ya está registrado")
             return redirect("usuarios:registro")
 
         try:
-            # Crear el usuario con nombre y apellido
-            user = User.objects.create_user(
+            # Crear el usuario directamente con todos los campos
+            user = Usuario.objects.create_user(
                 username=username,
                 email=email,
                 password=password1,
                 first_name=first_name,
                 last_name=last_name,
+                telefono=telefono,
+                direccion=direccion,
+                id_documento=id_documento,
             )
-
-            # Actualizar el perfil con los datos adicionales
-            perfil = user.perfil  # El perfil se crea automáticamente gracias a tus señales
-            perfil.id_documento = id_documento
-            perfil.telefono = telefono
-            perfil.direccion = direccion
 
             # Convertir y guardar la fecha de nacimiento
             if fecha_nacimiento:
                 try:
-                    perfil.fecha_nacimiento = datetime.strptime(fecha_nacimiento, "%Y-%m-%d").date()
+                    user.fecha_nacimiento = datetime.strptime(fecha_nacimiento, "%Y-%m-%d").date()
+                    user.save()
                 except ValueError:
                     messages.warning(request, "Formato de fecha de nacimiento inválido. Se omitió este campo.")
-
-            # Guardar el perfil con los cambios
-            perfil.save()
 
             # Crear carrito para el usuario
             Carrito.objects.create(usuario=user)
@@ -94,8 +91,9 @@ def registro_view(request: HttpRequest) -> HttpResponse:
 
     return render(request, "usuarios/registro.html")
 
+
 def login_view(request: HttpRequest) -> HttpResponse:
-    """Una vez el usuario este autenticado lo redirije al scanner."""
+    """Una vez el usuario esté autenticado lo redirige al scanner."""
     if request.user.is_authenticated:
         return redirect("scanner:scanner")
 
@@ -120,20 +118,21 @@ def login_view(request: HttpRequest) -> HttpResponse:
             if next_url:
                 return redirect(next_url)
 
-            return redirect("scanner:scanner")  # Redirigir al scanner después del login
+            return redirect("scanner:scanner")
         messages.error(request, "Nombre de usuario o contraseña incorrectos")
 
     return render(request, "usuarios/login.html")
 
 
 def logout_view(request: HttpRequest) -> HttpResponse:
-    """Cierre de sesion completo."""
+    """Cierre de sesión completo."""
     logout(request)
     return redirect("core:home")
 
+
 @login_required
 def perfil_view(request: HttpRequest) -> HttpResponse:
-    """Funcion para la vista del perfil."""
+    """Función para la vista del perfil."""
     # Usar select_related para reducir consultas a la base de datos
     carrito = Carrito.objects.select_related("usuario").prefetch_related(
         "items__producto",
@@ -151,37 +150,35 @@ def perfil_view(request: HttpRequest) -> HttpResponse:
 
     return render(request, "usuarios/perfil.html", context)
 
+
 @login_required
 def actualizar_perfil(request: HttpRequest) -> HttpResponse:
     """Actualizaciones de datos del perfil."""
     if request.method == "POST":
-        # Actualizar datos del usuario
+        # Actualizar datos del usuario directamente (sin perfil separado)
         user = request.user
         user.first_name = request.POST.get("first_name", "")
         user.last_name = request.POST.get("last_name", "")
         user.email = request.POST.get("email", "")
-        user.save()
-
-        # Actualizar datos del perfil
-        perfil = user.perfil
-        perfil.telefono = request.POST.get("telefono", "")
-        perfil.direccion = request.POST.get("direccion", "")
-        perfil.id_documento = request.POST.get("id_documento", "")
+        user.telefono = request.POST.get("telefono", "")
+        user.direccion = request.POST.get("direccion", "")
+        user.id_documento = request.POST.get("id_documento", "")
 
         fecha_str = request.POST.get("fecha_nacimiento", "")
         if fecha_str:
             with contextlib.suppress(ValueError):
-                perfil.fecha_nacimiento = datetime.strptime(fecha_str, "%Y-%m-%d").date()
+                user.fecha_nacimiento = datetime.strptime(fecha_str, "%Y-%m-%d").date()
 
-        perfil.save()
+        user.save()
 
         messages.success(request, "Perfil actualizado correctamente")
 
     return redirect("usuarios:perfil")
 
+
 @login_required
 def actualizar_foto(request: HttpRequest) -> HttpResponse:
-    """Actulizacion de foto de perfil."""
+    """Actualización de foto de perfil."""
     if request.method == "POST" and request.FILES.get("foto"):
         foto = request.FILES["foto"]
 
@@ -198,36 +195,38 @@ def actualizar_foto(request: HttpRequest) -> HttpResponse:
             messages.error(request, "La imagen no debe superar los 5MB")
             return redirect("usuarios:perfil")
 
-        # Guardar la imagen
-        perfil = request.user.perfil
+        # Guardar la imagen directamente en el usuario
+        user = request.user
 
         # Eliminar foto anterior si no es la predeterminada
-        if perfil.foto and "default.png" not in perfil.foto.name and default_storage.exists(perfil.foto.name):
-            default_storage.delete(perfil.foto.name)
+        if user.foto and "default.png" not in user.foto.name and default_storage.exists(user.foto.name):
+            default_storage.delete(user.foto.name)
 
         # Generar nombre único para la foto
-        filename = f"perfiles/user_{request.user.id}_{timezone.now().strftime('%Y%m%d%H%M%S')}{ext}"
-        perfil.foto.save(filename, ContentFile(foto.read()))
+        filename = f"perfiles/user_{user.id}_{timezone.now().strftime('%Y%m%d%H%M%S')}{ext}"
+        user.foto.save(filename, ContentFile(foto.read()))
 
         messages.success(request, "Foto de perfil actualizada correctamente")
 
     return redirect("usuarios:perfil")
 
+
 @login_required
 def actualizar_preferencias(request: HttpRequest) -> HttpResponse:
-    """Acualizaciones de seguridad."""
+    """Actualizaciones de preferencias."""
     if request.method == "POST":
-        perfil = request.user.perfil
-        perfil.preferencias_notificacion = "preferencias_notificacion" in request.POST
-        perfil.save()
+        user = request.user
+        user.preferencias_notificacion = "preferencias_notificacion" in request.POST
+        user.save()
 
         messages.success(request, "Preferencias actualizadas correctamente")
 
     return redirect("usuarios:perfil")
 
+
 @login_required
 def cambiar_password(request: HttpRequest) -> HttpResponse:
-    """Esta funcion fue creada para que por seguridad el usuario cambie su contraseña."""
+    """Esta función fue creada para que por seguridad el usuario cambie su contraseña."""
     if request.method == "POST":
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -240,3 +239,4 @@ def cambiar_password(request: HttpRequest) -> HttpResponse:
                 messages.error(request, error)
 
     return redirect("usuarios:perfil")
+    

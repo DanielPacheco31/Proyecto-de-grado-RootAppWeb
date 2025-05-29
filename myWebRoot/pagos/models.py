@@ -1,6 +1,6 @@
 """Modelos para la aplicación de pagos."""
 
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.db import models
 from productos.models import Producto
 
@@ -16,7 +16,11 @@ class Compra(models.Model):
         ("cancelado", "Cancelado"),
     )
 
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="compras")
+    usuario = models.ForeignKey(
+        settings.AUTH_USER_MODEL,  # Cambio principal aquí
+        on_delete=models.CASCADE, 
+        related_name="compras"
+    )
     fecha_compra = models.DateTimeField(auto_now_add=True)
     estado = models.CharField(
         max_length=20,
@@ -49,6 +53,12 @@ class DetalleCompra(models.Model):
     def __str__(self) -> str:
         """Representación de cadena del objeto DetalleCompra."""
         return f"{self.cantidad} x {self.producto.nombre}"
+
+    @property
+    def subtotal(self):
+        """Calcula el subtotal del detalle de compra."""
+        return self.cantidad * self.precio_unitario
+
 
 class MetodoPago(models.Model):
     """Modelo para definir los métodos de pago disponibles."""
@@ -106,3 +116,4 @@ class Pago(models.Model):
     def __str__(self) -> str:
         """Representación de cadena del objeto Pago."""
         return f"Pago {self.id} - {self.compra.id}"
+        

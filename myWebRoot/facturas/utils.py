@@ -16,7 +16,8 @@ if TYPE_CHECKING:
 
 
 def generar_factura(compra: Compra) -> "Factura":
-    """Genera una factura para una compra realizada.
+    """
+    Genera una factura para una compra realizada.
 
     Args:
         compra: La compra para la que se generará la factura.
@@ -42,7 +43,8 @@ def generar_factura(compra: Compra) -> "Factura":
 
 
 def generar_pdf_factura(factura: "Factura") -> None:
-    """Genera el archivo PDF para una factura.
+    """
+    Genera el archivo PDF para una factura.
 
     Args:
         factura: La factura para la que se generará el PDF.
@@ -88,7 +90,7 @@ def generar_pdf_factura(factura: "Factura") -> None:
     )
     elements.append(
         Paragraph(
-            f"Documento: {compra.usuario.perfil.id_documento or 'No registrado'}",
+            f"Documento: {compra.usuario.id_documento or 'No registrado'}",
             style_normal,
         ),
     )

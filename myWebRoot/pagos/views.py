@@ -12,7 +12,8 @@ from .tasks import enviar_correo_confirmacion
 
 
 def inicializar_metodos_pago() -> int:
-    """Función auxiliar para inicializar los métodos de pago predeterminados.
+    """
+    Función auxiliar para inicializar los métodos de pago predeterminados.
 
     Puedes llamar a esta función manualmente o desde una vista.
 
@@ -64,7 +65,8 @@ def inicializar_metodos_pago() -> int:
 def _verificar_pago_existente(
     request: HttpRequest, compra: Compra,
 ) -> HttpResponse | None:
-    """Verifica si ya existe un pago para la compra y redirige según corresponda.
+    """
+    Verifica si ya existe un pago para la compra y redirige según corresponda.
 
     Args:
         request: La solicitud HTTP.
@@ -91,7 +93,8 @@ def _verificar_pago_existente(
 
 
 def _obtener_metodo_pago(metodo_pago_id: str) -> MetodoPago | None:
-    """Obtiene el método de pago basado en el ID proporcionado.
+    """
+    Obtiene el método de pago basado en el ID proporcionado.
 
     Args:
         metodo_pago_id: ID del método de pago desde el formulario.
@@ -116,7 +119,8 @@ def _obtener_metodo_pago(metodo_pago_id: str) -> MetodoPago | None:
 
 
 def _crear_pago(compra: Compra, metodo_pago: MetodoPago) -> tuple[Pago | None, str]:
-    """Crea un registro de pago para la compra.
+    """
+    Crea un registro de pago para la compra.
 
     Args:
         compra: Objeto Compra a pagar.
@@ -144,7 +148,8 @@ def _crear_pago(compra: Compra, metodo_pago: MetodoPago) -> tuple[Pago | None, s
 def _redirigir_segun_metodo_pago(
     request: HttpRequest, metodo_pago: MetodoPago, pago: Pago, compra_id: int,
 ) -> HttpResponse:
-    """Redirige según el método de pago seleccionado.
+    """
+    Redirige según el método de pago seleccionado.
 
     Args:
         request: La solicitud HTTP.
@@ -170,7 +175,8 @@ def _redirigir_segun_metodo_pago(
 
 @login_required
 def seleccionar_metodo_pago(request: HttpRequest, compra_id: int) -> HttpResponse:
-    """Permite al usuario seleccionar un método de pago para su compra.
+    """
+    Permite al usuario seleccionar un método de pago para su compra.
 
     Args:
         request: La solicitud HTTP.
@@ -202,7 +208,8 @@ def seleccionar_metodo_pago(request: HttpRequest, compra_id: int) -> HttpRespons
 
 @login_required
 def procesar_pago(request: HttpRequest, compra_id: int) -> HttpResponse:
-    """Procesa el pago de una compra según el método seleccionado.
+    """
+    Procesa el pago de una compra según el método seleccionado.
 
     Args:
         request: La solicitud HTTP.
@@ -250,7 +257,8 @@ def procesar_pago(request: HttpRequest, compra_id: int) -> HttpResponse:
 
 
 def _get_tipo_metodo_por_id_frontend(id_frontend: str) -> str:
-    """Mapea los IDs del frontend a tipos de método de pago.
+    """
+    Mapea los IDs del frontend a tipos de método de pago.
 
     Args:
         id_frontend: ID del método de pago en el frontend.
@@ -269,7 +277,8 @@ def _get_tipo_metodo_por_id_frontend(id_frontend: str) -> str:
 
 
 def _obtener_o_crear_metodo_pago(tipo_metodo: str) -> MetodoPago:
-    """Obtiene o crea un método de pago por tipo.
+    """
+    Obtiene o crea un método de pago por tipo.
 
     Args:
         tipo_metodo: Tipo de método de pago.
@@ -297,7 +306,8 @@ def _obtener_o_crear_metodo_pago(tipo_metodo: str) -> MetodoPago:
 
 @login_required
 def pago_transferencia(request: HttpRequest, pago_id: int) -> HttpResponse:
-    """Gestiona el proceso de pago mediante transferencia bancaria.
+    """
+    Gestiona el proceso de pago mediante transferencia bancaria.
 
     Args:
         request: La solicitud HTTP.
@@ -354,7 +364,8 @@ def pago_transferencia(request: HttpRequest, pago_id: int) -> HttpResponse:
 
 @login_required
 def pago_movil(request: HttpRequest, pago_id: int) -> HttpResponse:
-    """Gestiona el proceso de pago mediante aplicación móvil (Nequi).
+    """
+    Gestiona el proceso de pago mediante aplicación móvil (Nequi).
 
     Args:
         request: La solicitud HTTP.
@@ -398,7 +409,8 @@ def pago_movil(request: HttpRequest, pago_id: int) -> HttpResponse:
 
 @login_required
 def confirmar_pago(request: HttpRequest, pago_id: int) -> HttpResponse:
-    """Muestra la confirmación del pago realizado.
+    """
+    Muestra la confirmación del pago realizado.
 
     Args:
         request: La solicitud HTTP.

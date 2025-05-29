@@ -4,7 +4,8 @@ from django.db import models
 
 
 class Factura(models.Model):
-    """Modelo para las facturas de las compras.
+    """
+    Modelo para las facturas de las compras.
 
     Una factura se genera automáticamente cuando se realiza una compra
     y contiene información detallada sobre los productos adquiridos,

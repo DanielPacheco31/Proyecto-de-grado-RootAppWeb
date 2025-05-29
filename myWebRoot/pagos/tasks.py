@@ -7,7 +7,8 @@ from django.core.mail import send_mail
 
 @shared_task
 def enviar_correo_confirmacion(compra_id: int) -> bool | None:
-    """Envía un correo de confirmación de compra.
+    """
+    Envía un correo de confirmación de compra.
 
     Args:
         compra_id: ID de la compra para la que se enviará la confirmación.

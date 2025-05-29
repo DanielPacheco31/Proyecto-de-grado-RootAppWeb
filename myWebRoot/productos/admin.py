@@ -15,15 +15,14 @@ class CategoriaAdmin(admin.ModelAdmin):
 class ProductoAdmin(admin.ModelAdmin):
     """Configuración del admin para Productos."""
 
-    list_display = ("nombre", "codigo", "precio", "stock", "categoria", "texto_estado_stock")
-    list_filter = ("categoria", "fecha_creacion", "stock")  # Cambiamos estado_stock por stock
+    list_display = ("nombre", "codigo", "precio", "stock", "categoria")  # Eliminé "texto_estado_stock"
+    list_filter = ("categoria", "fecha_creacion", "stock")
     search_fields = ("nombre", "codigo", "descripcion")
     readonly_fields = ("fecha_creacion", "fecha_actualizacion")
 
     # Campos que se mostrarán al crear/editar un producto
-    fieldsets = (
-        ("Información Básica", {
-            "fields": ("nombre", "codigo", "descripcion", "categoria"),
+    fieldsets = (("Información Básica", {
+"fields": ("nombre", "codigo", "descripcion", "categoria"),
         }),
         ("Detalles de Precio y Stock", {
             "fields": ("precio", "stock", "imagen"),
@@ -33,3 +32,7 @@ class ProductoAdmin(admin.ModelAdmin):
             "classes": ("collapse",),
         }),
     )
+
+    def get_queryset(self, request):
+        """Optimizar consultas incluyendo categoria."""
+        return super().get_queryset(request).select_related('categoria')

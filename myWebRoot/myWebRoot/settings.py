@@ -44,6 +44,8 @@ DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
+# Configuración del modelo de usuario personalizado
+AUTH_USER_MODEL = 'usuarios.Usuario'
 
 # Application definition
 
@@ -124,9 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = env("LANGUAGE_CODE", default="en-us")
+LANGUAGE_CODE = env("LANGUAGE_CODE", default="es-co")  # Cambiado a español Colombia
 
-TIME_ZONE = env("TIME_ZONE", default="UTC")
+TIME_ZONE = env("TIME_ZONE", default="America/Bogota")  # Cambiado a zona horaria de Colombia
 
 USE_I18N = True
 
@@ -136,13 +138,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = env("STATIC_URL", default="static/")
+STATIC_URL = env("STATIC_URL", default="/static/")
 
 # Asegúrate de crear esta carpeta si no existe
 STATIC_ROOT = Path(BASE_DIR, "staticfiles")
 
+# Corregida la ruta de STATICFILES_DIRS
 STATICFILES_DIRS = [
-    Path(BASE_DIR) / "mywWebRoot/static",
+    Path(BASE_DIR, "static"),  # Cambié mywWebRoot por static
 ]
 
 # Default primary key field type
@@ -151,9 +154,9 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # URLs de redirección para login
-LOGIN_URL = env("LOGIN_URL", default="usuarios:login")  # Actualizado para usar el namespace
-LOGIN_REDIRECT_URL = env("LOGIN_REDIRECT_URL", default="core:home")  # Actualizado para usar el namespace
-LOGOUT_REDIRECT_URL = env("LOGOUT_REDIRECT_URL", default="core:home")  # Actualizado para usar el namespace
+LOGIN_URL = env("LOGIN_URL", default="/usuarios/login/")
+LOGIN_REDIRECT_URL = env("LOGIN_REDIRECT_URL", default="/scanner/scanner/")
+LOGOUT_REDIRECT_URL = env("LOGOUT_REDIRECT_URL", default="/")
 
 # Configuración para archivos de medios
 MEDIA_URL = env("MEDIA_URL", default="/media/")
@@ -167,17 +170,8 @@ CACHES = {
     },
 }
 
-# Eliminada la referencia a aplicacionMyAppRoot
-CELERY_BEAT_SCHEDULE = {
-    # Actualiza esta tarea para usar una app existente o comenta si no la necesitas
-    # 'actualizar-stock-diario': {
-    #     'task': 'productos.tasks.actualizar_stock_productos'
-    #     'schedule': 60 * 60 * 24  # Una vez al día
-    # },
-}
-
 # Configuración de Email
-EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
+EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_PORT = env("EMAIL_PORT")
 EMAIL_USE_TLS = env("EMAIL_USE_TLS")
@@ -187,6 +181,11 @@ DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 
 # Configuración básica de Celery
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+
+# Configuración de sesión
+SESSION_COOKIE_AGE = 3600  # 1 hora por defecto
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Si no marcan "recordarme"
+SESSION_SAVE_EVERY_REQUEST = True
 
 #Monitoreo del Login
 LOGGING = {

@@ -13,7 +13,8 @@ from .models import Carrito, CarritoItem
 
 @login_required
 def finalizar_compra(request: HttpRequest) -> HttpResponse:
-    """Finaliza la compra de los productos en el carrito del usuario.
+    """
+    Finaliza la compra de los productos en el carrito del usuario.
 
     Transfiere los productos del carrito a una nueva compra y redirige al
     proceso de pago.
@@ -25,10 +26,10 @@ def finalizar_compra(request: HttpRequest) -> HttpResponse:
         HttpResponse: Redirección al perfil o proceso de pago.
 
     """
-    # Usar select_related para cargar usuario y perfil en una sola consulta
+    # Usar select_related para cargar usuario en una sola consulta
     try:
         carrito = Carrito.objects.select_related(
-            "usuario__perfil",
+            "usuario",
         ).prefetch_related(
             "items__producto",
         ).get(usuario=request.user)
@@ -45,10 +46,8 @@ def finalizar_compra(request: HttpRequest) -> HttpResponse:
 
         # Usar transaction.atomic para garantizar que toda la operación sea atómica
         with transaction.atomic():
-            # Obtener dirección de entrega del perfil si no se proporciona
-            usuario_direccion = ""
-            if hasattr(request.user, "perfil"):
-                usuario_direccion = request.user.perfil.direccion
+            # Obtener dirección de entrega del usuario si no se proporciona
+            usuario_direccion = request.user.direccion or ""
 
             compra = Compra.objects.create(
                 usuario=request.user,
@@ -92,7 +91,8 @@ def finalizar_compra(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def actualizar_cantidad(request: HttpRequest, item_id: int) -> HttpResponse:
-    """Actualiza la cantidad de un producto en el carrito.
+    """
+    Actualiza la cantidad de un producto en el carrito.
 
     Aumenta o disminuye la cantidad de un producto específico en el carrito
     según la acción solicitada.
@@ -129,7 +129,8 @@ def actualizar_cantidad(request: HttpRequest, item_id: int) -> HttpResponse:
 
 @login_required
 def eliminar_item(request: HttpRequest, item_id: int) -> HttpResponse:
-    """Elimina un producto del carrito.
+    """
+    Elimina un producto del carrito.
 
     Args:
         request: La solicitud HTTP.

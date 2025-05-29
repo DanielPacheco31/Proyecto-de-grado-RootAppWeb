@@ -1,3 +1,5 @@
+"""Vista de la app scanner."""
+
 import logging
 
 from carrito.models import Carrito, CarritoItem
@@ -11,6 +13,7 @@ logger = logging.getLogger("scanner")
 
 @login_required
 def scanner(request):
+    """Creación de función de scanner."""
     if request.method == "POST":
         scanned_code = request.POST.get("scannedCode", "")
         logger.info(f"Código escaneado: {scanned_code} por usuario: {request.user.username}")

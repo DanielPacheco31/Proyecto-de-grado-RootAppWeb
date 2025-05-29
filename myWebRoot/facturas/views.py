@@ -13,7 +13,8 @@ from .utils import generar_factura, generar_pdf_factura
 
 @login_required
 def detalle_compra(request: HttpRequest, compra_id: int) -> HttpResponse:
-    """Muestra el detalle de una compra con su factura asociada.
+    """
+    Muestra el detalle de una compra con su factura asociada.
 
     Args:
         request: La solicitud HTTP.
@@ -36,7 +37,8 @@ def detalle_compra(request: HttpRequest, compra_id: int) -> HttpResponse:
 
 @login_required
 def descargar_factura(request: HttpRequest, compra_id: int) -> HttpResponse:
-    """Permite descargar la factura de una compra en formato PDF.
+    """
+    Permite descargar la factura de una compra en formato PDF.
 
     Args:
         request: La solicitud HTTP.
