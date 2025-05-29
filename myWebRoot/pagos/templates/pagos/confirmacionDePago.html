@@ -1,153 +1,10 @@
 {% extends "core/base.html" %}
 {% load static %}
 
-{% block title %}
-    Pago Confirmado - ROOT
-{% endblock %}
+{% block title %}Pago Confirmado - ROOT{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
-<style>
-    .confirmacion-container {
-        background-color: white;
-        border-radius: 10px;
-        padding: 40px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        margin: 0 auto;
-        text-align: center;
-    }
-    
-    .icono-confirmacion {
-        width: 80px;
-        height: 80px;
-        background-color: #d4edda;
-        color: #155724;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 30px;
-        font-size: 40px;
-    }
-    
-    .titulo-confirmacion {
-        color: #155724;
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-    
-    .mensaje-confirmacion {
-        color: #555;
-        margin-bottom: 30px;
-    }
-    
-    .detalles-pago {
-        background-color: #f8f9fa;
-        padding: 20px;
-        border-radius: 8px;
-        margin-bottom: 30px;
-        text-align: left;
-    }
-    
-    .detalle-item {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #eee;
-    }
-    
-    .detalle-item:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
-    }
-    
-    .detalle-label {
-        font-weight: 600;
-        color: #333;
-    }
-    
-    .detalle-valor {
-        color: #555;
-    }
-    
-    .factura-container {
-        margin-bottom: 30px;
-        background-color: #e6f7ff;
-        padding: 20px;
-        border-radius: 8px;
-        border-left: 4px solid #3b5998;
-    }
-    
-    .factura-container h3 {
-        color: #333;
-        margin-top: 0;
-        margin-bottom: 15px;
-        font-size: 18px;
-    }
-    
-    .btn-descargar-factura {
-        background-color: #3b5998;
-        color: white;
-        text-decoration: none;
-        padding: 12px 24px;
-        border-radius: 6px;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-    
-    .btn-descargar-factura:hover {
-        background-color: #324b81;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .icon-download::before {
-        content: '📥';
-    }
-    
-    .acciones-confirmacion {
-        margin-top: 30px;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .btn-ver-pedido {
-        background-color: #3b5998;
-        color: white;
-        text-decoration: none;
-        padding: 12px 24px;
-        border-radius: 6px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-    
-    .btn-ver-pedido:hover {
-        background-color: #324b81;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .btn-seguir-comprando {
-        color: #3b5998;
-        text-decoration: none;
-        margin-top: 10px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-    
-    .btn-seguir-comprando:hover {
-        color: #324b81;
-        text-decoration: underline;
-    }
-</style>
+<link rel="stylesheet" href="{% static 'css/pagos.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -196,21 +53,21 @@
                 <h3>Factura Electrónica</h3>
                 <p>Muestre esta factura al momento de retirar su producto en tienda.</p>
                 <a href="{% url 'facturas:descargar_factura' compra.id %}" class="btn-descargar-factura">
-                <span class="icon-download"></span> Descargar Factura
+                    <span class="icon-download"></span> Descargar Factura
                 </a>
             </div>
             {% endif %}
 
             <div class="instrucciones-retiro">
                 <h3>Instrucciones para retirar su producto</h3>
-                <p>Con su factura, acérquese a la puerta de salida y muestrela a la persona encargada de validar su compra</p>
-                <p>Horario de atención: Lunes a Viernes de 9:00 AM a 10:00 PM, Sábados de 10:00 AM a 10:00 PM.</p>
-                <p>Presente factura (digital) al personal de la tienda.</p>
+                <p>Con su factura, acérquese a la puerta de salida y muéstrela a la persona encargada de validar su compra.</p>
+                <p><strong>Horario de atención:</strong> Lunes a Viernes de 9:00 AM a 10:00 PM, Sábados de 10:00 AM a 10:00 PM.</p>
+                <p><strong>Importante:</strong> Presente factura (digital) al personal de la tienda.</p>
             </div>
             
             <div class="acciones-confirmacion">
-                <a href="{% url 'facturas:detalle_compra' compra.id %}" class="btn-ver-pedido">Ver Detalles del Pedido</a>
-                <a href="{% url 'core:home' %}" class="btn-seguir-comprando">Volver a la Tienda</a>
+                <a href="{% url 'facturas:detalle_compra' compra.id %}" class="btn-ver-pedido">📋 Ver Detalles del Pedido</a>
+                <a href="{% url 'core:home' %}" class="btn-seguir-comprando">🛍️ Volver a la Tienda</a>
             </div>
         </div>
     </div>

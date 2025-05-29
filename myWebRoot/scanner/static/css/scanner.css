@@ -1,111 +1,256 @@
-/* Estilos principales del contenedor de escáner */
-.scanner-section {
-    padding: 30px 20px;
-    background: linear-gradient(135deg, #e4f0ff 0%, #6ba7fb 100%);
-    min-height: 80vh;
+/* =====================================================
+   CSS OPTIMIZADO - APP SCANNER
+   Azul más notable, espaciados compactos, diseño simétrico
+   ===================================================== */
+
+/* Variables optimizadas con azul más notable */
+:root {
+    --primary-color: #0066FF; /* Azul más brillante y notable */
+    --primary-light: #4D94FF; /* Azul claro más vibrante */
+    --primary-lighter: #CCE5FF; /* Azul casi blanco más notable */
+    --primary-dark: #0052CC; /* Azul oscuro más intenso */
+    --primary-darker: #003D99; /* Azul muy oscuro más profundo */
+    
+    --accent-gold: #FFD700;
+    --accent-green: #10b981; /* Verde para pagar ahora */
+    --accent-green-dark: #059669;
+    --error-color: #ef4444;
+    --success-color: #10b981;
+    
+    --text-dark: #1a1a2e;
+    --text-medium: #333b4f;
+    --text-light: #666;
+    --text-white: #fff;
+    
+    --bg-light: #f5f9ff;
+    --bg-white: #ffffff;
+    --bg-gray: #f8fafc;
+    --border-color: #e1e8f0;
+    
+    --shadow-sm: 0 2px 4px rgba(0, 102, 255, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 102, 255, 0.15);
+    --shadow-lg: 0 8px 25px rgba(0, 102, 255, 0.2);
+    
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-full: 50px;
+    
+    --transition: all 0.3s ease;
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
 }
 
+/* =====================================================
+   SECCIÓN PRINCIPAL DEL SCANNER
+   ===================================================== */
+
+.scanner-section {
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    min-height: 85vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.scanner-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* =====================================================
+   CONTENEDOR PRINCIPAL DEL SCANNER
+   ===================================================== */
+
 .scanner-container {
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0 12px 30px rgba(24, 119, 242, 0.12);
+    max-width: 480px;
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-xl);
+    background: var(--bg-white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
     text-align: center;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    position: relative;
+    z-index: 1;
+    border: 2px solid rgba(0, 102, 255, 0.1);
+}
+
+.scanner-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light), var(--accent-gold));
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
 .scanner-container:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(24, 119, 242, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 102, 255, 0.25);
 }
 
 .scanner-container h2 {
-    color: #0a5dc7;
-    font-size: 28px;
-    margin-bottom: 15px;
-    text-align: center;
-    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0, 102, 255, 0.1);
 }
 
 .scanner-container h3 {
-    color: #0a5dc7;
-    font-size: 20px;
-    margin: 25px 0 15px;
-    text-align: center;
-    font-weight: 600;
+    color: var(--primary-dark);
+    font-size: 1.4rem;
+    margin: var(--spacing-lg) 0 var(--spacing-md);
+    font-weight: 700;
 }
 
 .scanner-container p {
-    color: #4a5568;
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 16px;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
-/* Estado de la cámara */
+/* =====================================================
+   ESTADO DE LA CÁMARA
+   ===================================================== */
+
 .camera-status {
-    background-color: #f8f9fa;
-    padding: 8px 15px;
-    border-radius: 30px;
+    background: linear-gradient(135deg, var(--bg-light), var(--primary-lighter));
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-full);
     display: inline-block;
-    margin-bottom: 15px;
-    font-size: 14px;
-    color: #4a5568;
+    margin-bottom: var(--spacing-md);
+    font-size: 0.85rem;
+    color: var(--text-medium);
+    border: 1px solid rgba(0, 102, 255, 0.2);
 }
 
 .camera-status span {
-    font-weight: 600;
-    color: #0a5dc7;
+    font-weight: 700;
+    color: var(--primary-color);
 }
 
-/* Contenedor del video y elementos de escaneo */
+/* =====================================================
+   SELECTOR DE TIPO DE SCANNER
+   ===================================================== */
+
+.scanner-type-selector {
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    z-index: 1;
+}
+
+.type-selector-container {
+    display: flex;
+    background: var(--bg-light);
+    border-radius: var(--radius-full);
+    padding: 4px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 102, 255, 0.1);
+}
+
+.selector-option {
+    flex: 1;
+    text-align: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: var(--transition);
+    font-weight: 600;
+    color: var(--text-medium);
+    font-size: 0.9rem;
+    border-radius: var(--radius-full);
+}
+
+.selector-option.active {
+    color: var(--text-white);
+}
+
+.selector-pill {
+    position: absolute;
+    height: calc(100% - 8px);
+    width: calc(50% - 4px);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    border-radius: var(--radius-full);
+    top: 4px;
+    left: 4px;
+    transition: transform 0.3s ease;
+    z-index: 1;
+    box-shadow: var(--shadow-sm);
+}
+
+/* =====================================================
+   CONTENEDOR DEL VIDEO Y SCANNER
+   ===================================================== */
+
 #scannerContainer {
     position: relative;
     width: 100%;
-    max-width: 400px;
-    margin: 0 auto 30px;
+    max-width: 360px;
+    margin: 0 auto var(--spacing-lg);
     overflow: hidden;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 3px solid var(--primary-color);
 }
 
 #video {
     width: 100%;
-    max-width: 400px;
+    max-width: 360px;
     height: auto;
-    border: 3px solid #1877F2;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    border-radius: var(--radius-sm);
     display: block;
-    transform: scale(1.01); /* Para evitar bordes blancos */
+    transform: scale(1.01); /* Evita bordes blancos */
 }
 
 #canvas {
     display: none;
 }
 
-/* Overlay y elementos del escáner */
+/* =====================================================
+   OVERLAY Y ELEMENTOS DEL SCANNER
+   ===================================================== */
+
 .scanner-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
 }
 
 .scanner-marker {
     position: absolute;
-    border: 3px solid #1877F2;
+    border: 3px solid var(--accent-gold);
     width: 70%;
     height: 70%;
     top: 15%;
     left: 15%;
-    border-radius: 10px;
-    box-shadow: 0 0 0 4000px rgba(24, 119, 242, 0.3);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 0 4000px rgba(0, 102, 255, 0.4);
     animation: pulse 1.5s infinite ease-in-out;
 }
 
@@ -113,7 +258,7 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    border-color: #1877F2;
+    border-color: var(--accent-gold);
     border-style: solid;
     border-width: 0;
 }
@@ -121,298 +266,287 @@
 .top-left {
     top: -3px;
     left: -3px;
-    border-top-width: 3px;
-    border-left-width: 3px;
-    border-top-left-radius: 8px;
+    border-top-width: 4px;
+    border-left-width: 4px;
+    border-top-left-radius: var(--radius-sm);
 }
 
 .top-right {
     top: -3px;
     right: -3px;
-    border-top-width: 3px;
-    border-right-width: 3px;
-    border-top-right-radius: 8px;
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-top-right-radius: var(--radius-sm);
 }
 
 .bottom-left {
     bottom: -3px;
     left: -3px;
-    border-bottom-width: 3px;
-    border-left-width: 3px;
-    border-bottom-left-radius: 8px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-bottom-left-radius: var(--radius-sm);
 }
 
 .bottom-right {
     bottom: -3px;
     right: -3px;
-    border-bottom-width: 3px;
-    border-right-width: 3px;
-    border-bottom-right-radius: 8px;
+    border-bottom-width: 4px;
+    border-right-width: 4px;
+    border-bottom-right-radius: var(--radius-sm);
 }
 
 .scan-line {
     position: absolute;
     width: 100%;
-    height: 2px;
-    background: rgba(24, 119, 242, 0.8);
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
     top: 50%;
     left: 0;
     animation: scan 2s linear infinite;
+    box-shadow: 0 0 10px var(--accent-gold);
 }
 
-/* Selector de tipo de escáner */
-.scanner-type-selector {
-    margin-bottom: 25px;
-    position: relative;
-    z-index: 1;
-}
+/* =====================================================
+   RESULTADO Y BOTONES PRINCIPALES
+   ===================================================== */
 
-.type-selector-container {
-    display: flex;
-    background-color: #f1f5f9;
-    border-radius: 50px;
-    padding: 5px;
-    width: 100%;
-    max-width: 350px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(24, 119, 242, 0.08);
-}
-
-.selector-option {
-    flex: 1;
-    text-align: center;
-    padding: 12px 20px;
-    cursor: pointer;
-    position: relative;
-    z-index: 2;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    color: #4a5568;
-    font-size: 15px;
-    border-radius: 50px;
-}
-
-.selector-option.active {
-    color: white;
-}
-
-.selector-pill {
-    position: absolute;
-    height: calc(100% - 10px);
-    width: calc(50% - 5px);
-    background-color: #1877F2;
-    border-radius: 50px;
-    top: 5px;
-    left: 5px;
-    transition: transform 0.3s ease;
-    z-index: 1;
-}
-
-/* Estilos para el resultado y botones */
 #result {
-    background-color: #f8fafc;
-    padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 25px;
+    background: var(--bg-gray);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
     text-align: center;
-    font-weight: 500;
-    color: #334155;
-    box-shadow: inset 0 2px 4px rgba(24, 119, 242, 0.05);
-    transition: all 0.3s ease;
+    font-weight: 600;
+    color: var(--text-medium);
+    box-shadow: inset 0 2px 4px rgba(0, 102, 255, 0.05);
+    transition: var(--transition);
     min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid var(--border-color);
 }
 
 #result.success {
-    background-color: #e4f0ff;
-    color: #0a5dc7;
+    background: rgba(0, 102, 255, 0.1);
+    color: var(--primary-dark);
+    border-color: var(--primary-color);
 }
 
 #result.error {
-    background-color: #fee2e2;
-    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+    border-color: var(--error-color);
 }
 
 #startButton {
-    background-color: #1877F2;
-    color: white;
-    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: var(--text-white);
+    padding: var(--spacing-md) var(--spacing-xl);
     border: none;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 16px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     width: 100%;
-    max-width: 250px;
+    max-width: 240px;
     margin: 0 auto;
     display: block;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+    box-shadow: var(--shadow-md);
+    text-transform: uppercase;
 }
 
 #startButton:hover {
-    background-color: #0a5dc7;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(24, 119, 242, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-lg);
 }
 
 #startButton:disabled {
-    background-color: #a5b4fc;
+    background: linear-gradient(135deg, #a5b4fc, #c7d2fe);
     cursor: not-allowed;
     transform: none;
-    box-shadow: none;
+    box-shadow: var(--shadow-sm);
+    opacity: 0.7;
 }
 
-/* Formularios y acciones de escaneo */
+/* =====================================================
+   FORMULARIOS Y ACCIONES DE ESCANEO
+   ===================================================== */
+
 #scanForm {
     text-align: center;
-    margin-top: 25px;
+    margin-top: var(--spacing-lg);
 }
 
 .scan-actions {
     display: flex;
-    gap: 15px;
+    gap: var(--spacing-md);
     justify-content: center;
-    margin-top: 20px;
+    margin-top: var(--spacing-md);
 }
 
-.btn-add-to-cart {
-    background-color: #1877F2;
-    color: white;
+.btn-add-to-cart,
+.btn-pay-now {
     border: none;
-    padding: 12px 15px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 15px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     flex: 1;
-    max-width: 180px;
+    max-width: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+    gap: var(--spacing-xs);
+    box-shadow: var(--shadow-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-add-to-cart {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: var(--text-white);
 }
 
 .btn-add-to-cart:hover {
-    background-color: #0a5dc7;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(24, 119, 242, 0.4);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-add-to-cart::before {
     content: '🛒';
-    margin-right: 8px;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .btn-pay-now {
-    background-color: #10b981;
-    color: white;
-    border: none;
-    padding: 12px 15px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-    max-width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    background: linear-gradient(135deg, var(--accent-green), #34d399);
+    color: var(--text-white);
 }
 
 .btn-pay-now:hover {
-    background-color: #059669;
+    background: linear-gradient(135deg, var(--accent-green-dark), var(--accent-green));
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
 }
 
 .btn-pay-now::before {
     content: '💳';
-    margin-right: 8px;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
-/* Entrada manual */
+/* =====================================================
+   ENTRADA MANUAL
+   ===================================================== */
+
 .manual-input-container {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px dashed #ddd;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 2px dashed rgba(0, 102, 255, 0.2);
 }
 
 .manual-input-form input {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+    transition: var(--transition);
+    background: var(--bg-light);
+    box-sizing: border-box;
 }
 
 .manual-input-form input:focus {
-    border-color: #1877F2;
+    border-color: var(--primary-color);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.2);
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+    background: var(--bg-white);
 }
 
-/* Estilos para sección de acceso restringido */
+.manual-input-form input::placeholder {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* =====================================================
+   SECCIÓN DE ACCESO RESTRINGIDO
+   ===================================================== */
+
 .auth-required {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
-    padding: 20px;
+    min-height: 75vh;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
 }
 
 .message-container {
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 40px;
+    background: var(--bg-white);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
     text-align: center;
-    max-width: 500px;
-    box-shadow: 0 12px 30px rgba(24, 119, 242, 0.12);
+    max-width: 460px;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid rgba(0, 102, 255, 0.1);
+    position: relative;
+}
+
+.message-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--error-color), #ff6b7a);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
 .message-container h2 {
-    color: #ef4444;
-    margin-bottom: 20px;
-    font-size: 28px;
+    color: var(--error-color);
+    margin-bottom: var(--spacing-md);
+    font-size: 2rem;
+    font-weight: 800;
 }
 
 .message-container p {
-    color: #4a5568;
-    margin-bottom: 30px;
-    font-size: 16px;
+    color: var(--text-medium);
+    margin-bottom: var(--spacing-xl);
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .message-container .btn {
-    background-color: #1877F2;
-    color: white;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: var(--text-white);
     text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 50px;
-    font-weight: 600;
+    padding: var(--spacing-sm) var(--spacing-xl);
+    border-radius: var(--radius-full);
+    font-weight: 700;
     display: inline-block;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .message-container .btn:hover {
-    background-color: #0a5dc7;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(24, 119, 242, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
 }
 
-/* Animación de escaneo activo */
+/* =====================================================
+   ANIMACIONES
+   ===================================================== */
+
 .scanning {
     position: relative;
 }
@@ -426,12 +560,11 @@
     bottom: 0;
     background: linear-gradient(to bottom, 
         rgba(255,255,255,0) 0%,
-        rgba(24, 119, 242, 0.2) 50%,
+        rgba(0, 102, 255, 0.2) 50%,
         rgba(255,255,255,0) 100%);
     animation: scanEffect 2s infinite;
 }
 
-/* Animaciones */
 @keyframes scan {
     0% { top: 15%; }
     50% { top: 85%; }
@@ -439,15 +572,15 @@
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 4000px rgba(24, 119, 242, 0.2); }
-    50% { box-shadow: 0 0 0 4000px rgba(24, 119, 242, 0.4); }
-    100% { box-shadow: 0 0 0 4000px rgba(24, 119, 242, 0.2); }
+    0% { box-shadow: 0 0 0 4000px rgba(0, 102, 255, 0.3); }
+    50% { box-shadow: 0 0 0 4000px rgba(0, 102, 255, 0.5); }
+    100% { box-shadow: 0 0 0 4000px rgba(0, 102, 255, 0.3); }
 }
 
 @keyframes scanner-pulse {
-    0% { opacity: 1; border-color: #1877F2; }
-    50% { opacity: 0.8; border-color: #6ba7fb; }
-    100% { opacity: 1; border-color: #1877F2; }
+    0% { opacity: 1; border-color: var(--primary-color); }
+    50% { opacity: 0.8; border-color: var(--primary-light); }
+    100% { opacity: 1; border-color: var(--primary-color); }
 }
 
 @keyframes scanEffect {
@@ -455,28 +588,92 @@
     100% { transform: translateY(100%); }
 }
 
-/* Ajuste para móviles */
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
 @media (max-width: 768px) {
+    :root {
+        --spacing-xs: 6px;
+        --spacing-sm: 10px;
+        --spacing-md: 14px;
+        --spacing-lg: 20px;
+        --spacing-xl: 28px;
+    }
+
+    .scanner-section {
+        padding: var(--spacing-md);
+        min-height: 90vh;
+    }
+
     .scanner-container {
-        margin: 20px 10px;
-        padding: 20px;
+        margin: var(--spacing-md) 0;
+        padding: var(--spacing-lg);
+        max-width: 100%;
     }
     
     .scanner-container h2 {
-        font-size: 24px;
+        font-size: 1.6rem;
+    }
+
+    .scanner-container h3 {
+        font-size: 1.2rem;
     }
     
     #startButton {
-        padding: 12px 20px;
-        font-size: 15px;
+        padding: var(--spacing-sm) var(--spacing-lg);
+        font-size: 0.9rem;
+        max-width: 200px;
     }
     
     .scan-actions {
         flex-direction: column;
+        gap: var(--spacing-sm);
     }
     
     .btn-add-to-cart,
     .btn-pay-now {
         max-width: 100%;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    #scannerContainer {
+        max-width: 300px;
+    }
+
+    .type-selector-container {
+        max-width: 280px;
+    }
+
+    .message-container {
+        padding: var(--spacing-lg);
+        margin: var(--spacing-sm);
+    }
+
+    .message-container h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .scanner-container h2 {
+        font-size: 1.4rem;
+    }
+
+    .scanner-container h3 {
+        font-size: 1.1rem;
+    }
+
+    #scannerContainer {
+        max-width: 280px;
+    }
+
+    .scan-actions {
+        gap: var(--spacing-xs);
+    }
+
+    .btn-add-to-cart::before,
+    .btn-pay-now::before {
+        display: none; /* Ocultar emojis en pantallas muy pequeñas */
     }
 }

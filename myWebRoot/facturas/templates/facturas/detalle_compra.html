@@ -8,36 +8,7 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/detalle_compra.css' %}">
 <link rel="stylesheet" href="{% static 'css/factura-print.css' %}" media="print">
-<style>
-    .btn-descargar-factura {
-        background-color: #3b5998;
-        color: white;
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        display: inline-flex;
-        align-items: center;
-        margin-right: 10px;
-        gap: 8px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-    
-    .btn-descargar-factura:hover {
-        background-color: #324b81;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .factura-container {
-        margin-top: 20px;
-        margin-bottom: 30px;
-        background-color: #e6f7ff;
-        padding: 20px;
-        border-radius: 8px;
-        border-left: 4px solid #3b5998;
-    }
-</style>
+
 {% endblock %}
 
 {% block content %}

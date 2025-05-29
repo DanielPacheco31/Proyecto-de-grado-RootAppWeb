@@ -1,53 +1,45 @@
 {% extends "core/base.html" %}
 {% load static %}
 
-{% block title %}
-    ROOT
-{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'core/css/style.css' %}">
-{% endblock %}
+{% block title %}ROOT - Inicio{% endblock %}
 
 {% block content %}
-
 <section id="Producto">
     <h2 class="texto">Bienvenidos a</h2>
     <p>Un producto innovador para grandes, medianas y pequeñas empresas que les permitirá agilizar el proceso de ventas, ya que las personas no tendrán que utilizar su tiempo en hacer largas colas para pagar. Descubre cómo podemos ayudarte a maximizar tus objetivos en cuanto a tus ventas se trata.</p>
     <a href="{% url 'core:contacto' %}" class="boton">Contáctanos</a>
-    
-    <div class="flotante">
-        <div class="cajas-flotantes">
-            <img src="{% static 'core/img/icon-1.jpg' %}" alt="Icono 1">
-            <h3>Aplicación Web</h3>
-            <p>ROOT es una Aplicación Web que puede ser utilizada de forma sencilla desde cualquier navegador web.</p>
-        </div>
-        <div class="cajas-flotantes">
-            <img src="{% static 'core/img/icon-2.jpg' %}" alt="Icono 2">
-            <h3>Agiliza las ventas</h3>
-            <p>ROOT es un producto que te permite realizar una o varias compras sin necesidad de acudir a una caja registradora.</p>
-        </div>
-        <div class="cajas-flotantes">
-            <img src="{% static 'core/img/icon-3.jpg' %}" alt="Icono 3">
-            <h3>Atención personalizada</h3>
-            <p>ROOT le brinda al usuario una atención única y personalizada ya que no dependerá de un tercero para realizar su compra.</p>
-        </div>
-        <div class="cajas-flotantes">
-            <img src="{% static 'core/img/icon-4.jpg' %}" alt="Icono 4">
-            <h3>Optimización de tiempo</h3>
-            <p>ROOT le permitirá al usuario optimizar su tiempo, ya que puede entrar y salir con su compra en menos de 10 minutos.</p>
-        </div>
-        <div class="cajas-flotantes">
-            <img src="{% static 'core/img/icon-5.jpg' %}" alt="Icono 5">
-            <h3>Motivación Constante</h3>
-            <p>ROOT es una motivación constante para el usuario, ya que le permitirá tener el control de sus gustos y decisiones.</p>
-        </div>
-        <div class="cajas-flotantes">
-            <img src="{% static 'core/img/icon-6.jpg' %}" alt="Icono 6">
-            <h3>Soporte técnico</h3>
-            <p>Contamos con un equipo de soporte técnico disponible 24/7 para resolver cualquier inconveniente que puedas tener.</p>
-        </div>
-    </div>
 </section>
 
+<div class="flotante">
+    <div class="cajas-flotantes">
+        <img src="{% static 'core/img/icon-1.jpg' %}" alt="Icono 1">
+        <h3>Aplicación Web</h3>
+        <p>ROOT es una Aplicación Web que puede ser utilizada de forma sencilla desde cualquier navegador web.</p>
+    </div>
+    <div class="cajas-flotantes">
+        <img src="{% static 'core/img/icon-2.jpg' %}" alt="Icono 2">
+        <h3>Agiliza las ventas</h3>
+        <p>ROOT es un producto que te permite realizar una o varias compras sin necesidad de acudir a una caja registradora.</p>
+    </div>
+    <div class="cajas-flotantes">
+        <img src="{% static 'core/img/icon-3.jpg' %}" alt="Icono 3">
+        <h3>Atención personalizada</h3>
+        <p>ROOT le brinda al usuario una atención única y personalizada ya que no dependerá de un tercero para realizar su compra.</p>
+    </div>
+    <div class="cajas-flotantes">
+        <img src="{% static 'core/img/icon-4.jpg' %}" alt="Icono 4">
+        <h3>Optimización de tiempo</h3>
+        <p>ROOT le permitirá al usuario optimizar su tiempo, ya que puede entrar y salir con su compra en menos de 10 minutos.</p>
+    </div>
+    <div class="cajas-flotantes">
+        <img src="{% static 'core/img/icon-5.jpg' %}" alt="Icono 5">
+        <h3>Motivación Constante</h3>
+        <p>ROOT es una motivación constante para el usuario, ya que le permitirá tener el control de sus gustos y decisiones.</p>
+    </div>
+    <div class="cajas-flotantes">
+        <img src="{% static 'core/img/icon-6.jpg' %}" alt="Icono 6">
+        <h3>Soporte técnico</h3>
+        <p>Contamos con un equipo de soporte técnico disponible 24/7 para resolver cualquier inconveniente que puedas tener.</p>
+    </div>
+</div>
 {% endblock %}

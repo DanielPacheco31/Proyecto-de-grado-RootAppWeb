@@ -1,12 +1,10 @@
 {% extends "core/base.html" %}
 {% load static %}
 
-{% block title %}
-    Iniciar Sesión - ROOT
-{% endblock %}
+{% block title %}Iniciar Sesión - ROOT{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/registro.css' %}">
+<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -15,41 +13,32 @@
         <h2>Iniciar Sesión</h2>
         <p class="descripción-autenticación">Ingresa a tu cuenta para empezar a usar ROOT</p>
         
-        {% if messages %}
-    <div class="mensajes">
-        {% for message in messages %}
-        <div class="mensaje {% if message.tags %}{{ message.tags }}{% endif %}">
-            {{ message }}
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-    
-    <form method="post" action="{% url 'usuarios:login' %}">
-        {% csrf_token %}
-        
-        <div class="grupo-formulario">
-            <label for="username">Nombre de usuario</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        
-        <div class="grupo-formulario">
-            <label for="password">Contraseña</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        
-        <div class="opciones-formulario">
-            <div class="recordar-usuario">
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember">Recordarme</label>
+        <form method="post" action="{% url 'usuarios:login' %}">
+            {% csrf_token %}
+            
+            <div class="grupo-formulario">
+                <label for="username">Nombre de usuario</label>
+                <input type="text" id="username" name="username" required>
             </div>
-        </div>
+            
+            <div class="grupo-formulario">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="opciones-formulario">
+                <div class="recordar-usuario">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Recordarme</label>
+                </div>
+            </div>
+            
+            <button type="submit" class="boton-principal">Iniciar Sesión</button>
+        </form>
         
-        <button type="submit" class="boton-principal">Iniciar Sesión</button>
-    </form>
-    
-    <div class="pie-autenticación">
-        <p>¿No tienes una cuenta? <a href="{% url 'usuarios:registro' %}">Regístrate aquí</a></p>
+        <div class="pie-autenticación">
+            <p>¿No tienes una cuenta? <a href="{% url 'usuarios:registro' %}">Regístrate aquí</a></p>
+        </div>
     </div>
 </div>
 {% endblock %}

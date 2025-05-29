@@ -1,0 +1,53 @@
+.container-checkout {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.carrito-detalles table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.carrito-detalles th, 
+.carrito-detalles td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.formulario-pago .form-group {
+    margin-bottom: 15px;
+}
+
+.formulario-pago label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.formulario-pago input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn-pagar, 
+.btn-continuar-compra {
+    display: inline-block;
+    background-color: #1877F2;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pagar:hover, 
+.btn-continuar-compra:hover {
+    background-color: #0a5dc7;
+}

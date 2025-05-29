@@ -1,172 +1,10 @@
 {% extends "core/base.html" %}
 {% load static %}
 
-{% block title %}
-    Crear Producto - ROOT
-{% endblock %}
+{% block title %}Crear Producto - ROOT{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/productos.css' %}">
-<style>
-    .formulario-producto {
-        max-width: 800px;
-        margin: 40px auto;
-        background-color: white;
-        border-radius: 10px;
-        padding: 30px;
-        box-shadow: 0 5px 15px rgba(24, 119, 242, 0.1);
-    }
-
-    .formulario-producto h2 {
-        color: #1877F2;
-        margin-bottom: 25px;
-        text-align: center;
-    }
-
-    .formulario-grupo {
-        margin-bottom: 20px;
-    }
-
-    .formulario-grupo label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-        color: #333;
-    }
-
-    .formulario-grupo input,
-    .formulario-grupo textarea,
-    .formulario-grupo select {
-        width: 100%;
-        padding: 12px 15px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        font-size: 16px;
-        transition: all 0.3s ease;
-    }
-
-    .formulario-grupo input:focus,
-    .formulario-grupo textarea:focus,
-    .formulario-grupo select:focus {
-        border-color: #1877F2;
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.2);
-    }
-
-    .formulario-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-    }
-
-    .campo-completo {
-        grid-column: 1 / -1;
-    }
-
-    .formulario-acciones {
-        margin-top: 30px;
-        display: flex;
-        justify-content: flex-end;
-        gap: 15px;
-    }
-
-    .btn-cancelar {
-        background-color: #f5f5f5;
-        color: #333;
-        padding: 12px 25px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-    }
-
-    .btn-cancelar:hover {
-        background-color: #e0e0e0;
-    }
-
-    .btn-guardar {
-        background-color: #1877F2;
-        color: white;
-        padding: 12px 25px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-    }
-
-    .btn-guardar:hover {
-        background-color: #0a5dc7;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(24, 119, 242, 0.3);
-    }
-
-    .formulario-nota {
-        margin-top: 20px;
-        padding: 15px;
-        background-color: #e4f0ff;
-        border-radius: 8px;
-        color: #333;
-        font-size: 14px;
-        line-height: 1.5;
-    }
-
-    .formulario-nota strong {
-        color: #1877F2;
-    }
-
-    /* Campo para el código */
-    .campo-codigo {
-        position: relative;
-    }
-
-    .campo-codigo input {
-        padding-right: 110px;
-    }
-
-    .btn-generar-codigo {
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: #e4f0ff;
-        color: #1877F2;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: all 0.2s ease;
-    }
-
-    .btn-generar-codigo:hover {
-        background-color: #1877F2;
-        color: white;
-    }
-
-    @media (max-width: 768px) {
-        .formulario-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .formulario-acciones {
-            flex-direction: column;
-        }
-        
-        .btn-cancelar, .btn-guardar {
-            width: 100%;
-            justify-content: center;
-        }
-    }
-</style>
 {% endblock %}
 
 {% block content %}
@@ -179,28 +17,28 @@
             <div class="formulario-grid">
                 <div class="formulario-grupo">
                     <label for="nombre">Nombre del Producto*</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Ingresa el nombre del producto">
                 </div>
                 
                 <div class="formulario-grupo campo-codigo">
                     <label for="codigo">Código*</label>
-                    <input type="text" id="codigo" name="codigo" required>
-                    <button type="button" id="btnGenerarCodigo" class="btn-generar-codigo">Generar código</button>
+                    <input type="text" id="codigo" name="codigo" required placeholder="Código único del producto">
+                    <button type="button" id="btnGenerarCodigo" class="btn-generar-codigo">Generar</button>
                 </div>
                 
                 <div class="formulario-grupo">
                     <label for="precio">Precio*</label>
-                    <input type="number" id="precio" name="precio" step="0.01" min="0" required>
+                    <input type="number" id="precio" name="precio" step="0.01" min="0" required placeholder="0.00">
                 </div>
                 
                 <div class="formulario-grupo">
                     <label for="stock">Stock*</label>
-                    <input type="number" id="stock" name="stock" min="0" required>
+                    <input type="number" id="stock" name="stock" min="0" required placeholder="Cantidad disponible">
                 </div>
                 
                 <div class="formulario-grupo campo-completo">
                     <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+                    <textarea id="descripcion" name="descripcion" rows="4" placeholder="Describe las características del producto..."></textarea>
                 </div>
                 
                 <div class="formulario-grupo">
@@ -224,7 +62,7 @@
             </div>
             
             <div class="formulario-acciones">
-                <a href="{% url 'productos:crear_producto' %}" class="btn-cancelar">Cancelar</a>
+                <a href="{% url 'productos:lista' %}" class="btn-cancelar">Cancelar</a>
                 <button type="submit" class="btn-guardar">Guardar Producto</button>
             </div>
         </form>
@@ -257,6 +95,40 @@
             codigo += checkDigit;
             
             inputCodigo.value = codigo;
+            
+            // Efecto visual al generar
+            btnGenerarCodigo.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btnGenerarCodigo.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // Validación en tiempo real
+        const nombreInput = document.getElementById('nombre');
+        const precioInput = document.getElementById('precio');
+        const stockInput = document.getElementById('stock');
+
+        // Validar que el nombre no esté vacío
+        nombreInput.addEventListener('blur', function() {
+            if (this.value.trim() === '') {
+                this.style.borderColor = '#ef4444';
+            } else {
+                this.style.borderColor = '#0066FF';
+            }
+        });
+
+        // Validar precio
+        precioInput.addEventListener('input', function() {
+            if (this.value < 0) {
+                this.value = 0;
+            }
+        });
+
+        // Validar stock
+        stockInput.addEventListener('input', function() {
+            if (this.value < 0) {
+                this.value = 0;
+            }
         });
     });
 </script>

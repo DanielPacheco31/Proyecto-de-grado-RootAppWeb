@@ -1,18 +1,16 @@
+<!-- perfil.html (versión corregida y limpia) -->
 {% extends "core/base.html" %}
 {% load static %}
 
-{% block title %}
-    Mi Perfil - ROOT
-{% endblock %}
+{% block title %}Mi Perfil - ROOT{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
 {% endblock %}
 
 {% block extra_js %}
 <script src="{% static 'js/scripts.js' %}"></script>
 {% endblock %}
-
 
 {% block content %}
 <section id="perfil" class="perfil-section">
@@ -23,7 +21,7 @@
             <!-- Panel de navegación lateral -->
             <div class="perfil-nav">
                 <div class="perfil-foto-container">
-                    <img src="{{ user.perfil.foto.url }}" alt="Foto de perfil" class="perfil-foto">
+                    <img src="{{ user.foto.url }}" alt="Foto de perfil" class="perfil-foto">
                     <div class="perfil-foto-overlay">
                         <form method="post" action="{% url 'usuarios:actualizar_foto' %}" enctype="multipart/form-data" id="formFoto">
                             {% csrf_token %}
@@ -37,22 +35,22 @@
                 <div class="perfil-nombre">{{ user.get_full_name|default:user.username }}</div>
                 <nav class="perfil-menu">
                     <a href="#info-personal" class="perfil-menu-item activo" data-target="info-personal">
-                        <i data-lucide="user" class="icono-usuario"></i> Información Personal
+                        <i data-lucide="user"></i> Información Personal
                     </a>
                     <a href="#historial-compras" class="perfil-menu-item" data-target="historial-compras">
-                        <i data-lucide="shopping-bag" class="icono-compras"></i> Historial de Compras
+                        <i data-lucide="shopping-bag"></i> Historial de Compras
                     </a>
                     <a href="#carrito-actual" class="perfil-menu-item" data-target="carrito-actual">
-                        <i data-lucide="shopping-cart" class="icono-carrito"></i> Carrito Actual
-                        {% if user.carrito.cantidad_items > 0 %}
-                            <span class="badge">{{ user.carrito.cantidad_items }}</span>
+                        <i data-lucide="shopping-cart"></i> Carrito Actual
+                        {% if carrito.items.count > 0 %}
+                            <span class="badge">{{ carrito.items.count }}</span>
                         {% endif %}
                     </a>
                     <a href="#preferencias" class="perfil-menu-item" data-target="preferencias">
-                        <i data-lucide="settings" class="icono-config"></i> Preferencias
+                        <i data-lucide="settings"></i> Preferencias
                     </a>
                     <a href="#seguridad" class="perfil-menu-item" data-target="seguridad">
-                        <i data-lucide="shield" class="icono-seguridad"></i> Seguridad
+                        <i data-lucide="shield"></i> Seguridad
                     </a>
                 </nav>
             </div>
@@ -92,37 +90,38 @@
                             
                             <div class="form-group">
                                 <label for="telefono">Teléfono</label>
-                                <input type="tel" id="telefono" name="telefono" value="{{ user.perfil.telefono|default:'' }}">
+                                <input type="tel" id="telefono" name="telefono" value="{{ user.telefono|default:'' }}">
                             </div>
                             
                             <div class="form-group">
                                 <label for="id_documento">Documento de Identidad</label>
-                                <input type="text" id="id_documento" name="id_documento" value="{{ user.perfil.id_documento|default:'' }}">
+                                <input type="text" id="id_documento" name="id_documento" value="{{ user.id_documento|default:'' }}">
                             </div>
                             
                             <div class="form-group">
                                 <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-                                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ user.perfil.fecha_nacimiento|date:'Y-m-d'|default:'' }}">
+                                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ user.fecha_nacimiento|date:'Y-m-d'|default:'' }}">
                             </div>
                         </div>
                         
                         <div class="form-group full-width">
                             <label for="direccion">Dirección</label>
-                            <textarea id="direccion" name="direccion" rows="3">{{ user.perfil.direccion|default:'' }}</textarea>
+                            <textarea id="direccion" name="direccion" rows="3">{{ user.direccion|default:'' }}</textarea>
                         </div>
                         
                         <div class="form-actions">
-                            <button type="submit" class="btn-guardar">Guardar Cambios</button>
+                            <button type="submit" class="btn-guardar">
+                                <i data-lucide="save"></i> Guardar Cambios
+                            </button>
                         </div>
                     </form>
                 </div>
                 
-                <!-- Resto de paneles sin cambios -->
                 <!-- Historial de Compras -->
                 <div id="historial-compras" class="perfil-panel">
                     <h3>Historial de Compras</h3>
                     
-                    {% if user.compras.all %}
+                    {% if compras %}
                         <div class="tabla-contenedor">
                             <table class="tabla-compras">
                                 <thead>
@@ -136,7 +135,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for compra in user.compras.all|dictsortreversed:"fecha_compra" %}
+                                    {% for compra in compras %}
                                     <tr>
                                         <td>#{{ compra.id }}</td>
                                         <td>{{ compra.fecha_compra|date:"d/m/Y H:i" }}</td>
@@ -180,7 +179,7 @@
                 <div id="carrito-actual" class="perfil-panel">
                     <h3>Carrito Actual</h3>
                     
-                    {% if user.carrito.items.all %}
+                    {% if carrito.items.all %}
                         <div class="tabla-contenedor">
                             <table class="tabla-carrito">
                                 <thead>
@@ -193,7 +192,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for item in user.carrito.items.all %}
+                                    {% for item in carrito.items.all %}
                                     <tr>
                                         <td>
                                             <div class="carrito-producto">
@@ -212,16 +211,16 @@
                                                 <form method="post" action="{% url 'carrito:actualizar_cantidad' item.id %}">
                                                     {% csrf_token %}
                                                     <input type="hidden" name="accion" value="restar">
-                                                    <button type="submit" class="btn-cantidad btn-restar" {% if item.cantidad <= 1 %}disabled{% endif %}>
-                                                        <i data-lucide="minus"></i>
+                                                    <button type="submit" class="btn-cantidad" {% if item.cantidad <= 1 %}disabled{% endif %}>
+                                                        <i data-lucide="minus" width="14" height="14"></i>
                                                     </button>
                                                 </form>
                                                 <span class="cantidad">{{ item.cantidad }}</span>
                                                 <form method="post" action="{% url 'carrito:actualizar_cantidad' item.id %}">
                                                     {% csrf_token %}
                                                     <input type="hidden" name="accion" value="sumar">
-                                                    <button type="submit" class="btn-cantidad btn-sumar">
-                                                        <i data-lucide="plus"></i>
+                                                    <button type="submit" class="btn-cantidad">
+                                                        <i data-lucide="plus" width="14" height="14"></i>
                                                     </button>
                                                 </form>
                                             </div>
@@ -231,7 +230,7 @@
                                             <form method="post" action="{% url 'carrito:eliminar_item' item.id %}">
                                                 {% csrf_token %}
                                                 <button type="submit" class="btn-eliminar">
-                                                    <i data-lucide="trash-2"></i> Eliminar
+                                                    <i data-lucide="trash-2" width="14" height="14"></i>
                                                 </button>
                                             </form>
                                         </td>
@@ -241,7 +240,7 @@
                                 <tfoot>
                                     <tr>
                                         <th colspan="3" class="texto-derecha">Total del Carrito:</th>
-                                        <th>${{ user.carrito.total|floatformat:2 }}</th>
+                                        <th>${{ carrito.total|floatformat:2 }}</th>
                                         <th></th>
                                     </tr>
                                 </tfoot>
@@ -275,7 +274,7 @@
                             <div class="switch-container">
                                 <label for="notificaciones">Recibir notificaciones por correo</label>
                                 <label class="switch">
-                                    <input type="checkbox" id="notificaciones" name="preferencias_notificacion" {% if user.perfil.preferencias_notificacion %}checked{% endif %}>
+                                    <input type="checkbox" id="notificaciones" name="preferencias_notificacion" {% if user.preferencias_notificacion %}checked{% endif %}>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -295,8 +294,8 @@
                     <form method="post" action="{% url 'usuarios:cambiar_password' %}">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="current_password">Contraseña actual</label>
-                            <input type="password" id="current_password" name="current_password" required>
+                            <label for="old_password">Contraseña actual</label>
+                            <input type="password" id="old_password" name="old_password" required>
                         </div>
                         
                         <div class="form-group">

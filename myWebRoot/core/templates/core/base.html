@@ -7,41 +7,18 @@
     <meta name="keywords" content="promoción, producto, grandes empresas, visión, misión, quiénes somos">
     <meta name="author" content="Tu Empresa">
     <title>
-        {% block title %}
-            ROOT
-        {% endblock %}
+        {% block title %}ROOT{% endblock %}
     </title>
     {% load static %}
     
-    <!-- Favicon -->
-    <link rel="icon" href="{% static 'core/img/favicon.ico' %}" type="image/x-icon">
+    <!-- Favicon 
+    <link rel="icon" href="{% static 'core/img/favicon.ico' %}" type="image/x-icon">-->
     
-    <!-- Estilos principales -->
+    <!-- Estilos principales (ahora incluidos automáticamente) -->
     <link href="{% static 'core/css/style.css' %}" rel="stylesheet">
     
     <!-- Estilos adicionales -->
     {% block extra_css %}{% endblock %}
-    
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .contenido-principal {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        footer {
-            width: 100%;
-            flex-shrink: 0;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -80,15 +57,6 @@
     </div>
     
     <footer>
-        <p>Redes sociales.</p>
-        <div class="social">
-            <a href="#" target="_blank">
-                <img src="{% static 'core/img/icon-7.jpg' %}" alt="Instagram">
-            </a>
-            <a href="#" target="_blank">
-                <img src="{% static 'core/img/icon-8.jpg' %}" alt="LinkedIn">
-            </a>
-        </div>
         <p>&copy; 2025 ROOT. Todos los derechos reservados.</p>
     </footer>
     

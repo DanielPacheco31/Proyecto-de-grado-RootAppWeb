@@ -130,20 +130,19 @@ def actualizar_cantidad(request: HttpRequest, item_id: int) -> HttpResponse:
 @login_required
 def eliminar_item(request: HttpRequest, item_id: int) -> HttpResponse:
     """
-    Elimina un producto del carrito.
-
-    Args:
-        request: La solicitud HTTP.
-        item_id: ID del item del carrito a eliminar.
-
-    Returns:
-        HttpResponse: Redirección al perfil del usuario.
-
+    Elimina un producto del carrito de forma segura.
     """
-    item = get_object_or_404(CarritoItem, id=item_id, carrito__usuario=request.user)
-
     if request.method == "POST":
-        item.delete()
-        messages.success(request, "Producto eliminado del carrito")
-
+        try:
+            item = CarritoItem.objects.select_related('producto').get(id=item_id, carrito__usuario=request.user)
+            producto_nombre = item.producto.nombre
+            item.delete()
+            messages.success(request, f"'{producto_nombre}' eliminado del carrito")
+            
+        except CarritoItem.DoesNotExist:
+            messages.info(request, "El producto ya no está disponible en tu carrito")
+            
+        except Exception as e:
+            messages.error(request, "Ocurrió un error al eliminar el producto")
+    
     return redirect("usuarios:perfil")

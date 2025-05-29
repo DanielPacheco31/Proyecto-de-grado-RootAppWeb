@@ -1,9 +1,7 @@
 {% extends "core/base.html" %}
 {% load static %}
 
-{% block title %}
-    ROOT - Escáner
-{% endblock %}
+{% block title %}ROOT - Escáner{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/scanner.css' %}">
@@ -47,7 +45,6 @@
         <button id="startButton">Iniciar escáner</button>
         
         <!-- Formulario para enviar el resultado al backend -->
-         
         <form method="post" id="scanForm" style="display: none;">
             {% csrf_token %}
             <input type="hidden" id="scannedCode" name="scannedCode">
@@ -62,7 +59,7 @@
             <h3>O ingresa el código manualmente</h3>
             <form method="post" class="manual-input-form">
                 {% csrf_token %}
-                <input type="text" name="scannedCode" placeholder="Ingresa código del producto">
+                <input type="text" name="scannedCode" placeholder="Ingresa código del producto" autocomplete="off">
                 <div class="scan-actions">
                     <button type="submit" class="btn-add-to-cart" name="action" value="add">Agregar al carrito</button>
                     <button type="submit" class="btn-pay-now" name="action" value="pay">Pagar ahora</button>
@@ -75,7 +72,7 @@
 <section class="auth-required">
     <div class="message-container">
         <h2>Acceso Restringido</h2>
-        <p>Debes iniciar sesión para acceder al escáner.</p>
+        <p>Debes iniciar sesión para acceder al escáner de productos ROOT.</p>
         <a href="{% url 'usuarios:login' %}" class="btn">Iniciar Sesión</a>
     </div>
 </section>
