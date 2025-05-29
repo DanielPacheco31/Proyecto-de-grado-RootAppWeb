@@ -10112,3 +10112,11 @@ INFO 2025-05-28 18:19:04,496 autoreload 4076 5288 C:\Users\ADMIN\OneDrive\Deskto
 INFO 2025-05-28 18:19:05,992 autoreload 2444 18176 Watching for file changes with StatReloader
 INFO 2025-05-28 18:19:08,075 autoreload 2444 18176 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
 INFO 2025-05-28 18:19:09,763 autoreload 16920 5584 Watching for file changes with StatReloader
+INFO 2025-05-28 18:19:10,581 basehttp 16920 6984 "GET /facturas/1/descargar/ HTTP/1.1" 200 2489
+INFO 2025-05-28 18:19:15,071 basehttp 16920 6984 "GET /facturas/1/descargar/ HTTP/1.1" 200 2489
+INFO 2025-05-28 18:19:27,553 basehttp 16920 6984 "GET /usuarios/perfil/ HTTP/1.1" 200 14257
+INFO 2025-05-28 18:19:31,417 basehttp 16920 6984 "GET /facturas/1/ HTTP/1.1" 200 8272
+INFO 2025-05-28 18:19:31,453 basehttp 16920 6984 "GET /media/productos/camisetaNegra.jpg HTTP/1.1" 304 0
+INFO 2025-05-28 18:19:33,509 basehttp 16920 6984 "GET /facturas/1/descargar/ HTTP/1.1" 200 2489
+INFO 2025-05-28 18:19:44,356 basehttp 16920 6984 "GET /usuarios/perfil/ HTTP/1.1" 200 14257
+INFO 2025-05-28 18:19:53,058 basehttp 16920 6984 "GET /usuarios/logout/ HTTP/1.1" 302 0
