@@ -11086,3 +11086,33 @@ INFO 2025-05-29 12:43:15,514 basehttp 16896 17204 "GET /usuarios/perfil/ HTTP/1.
 INFO 2025-05-29 12:43:47,182 basehttp 16896 17204 "GET /usuarios/logout/ HTTP/1.1" 302 0
 INFO 2025-05-29 12:43:47,187 basehttp 16896 17204 "GET / HTTP/1.1" 200 4046
 INFO 2025-05-29 12:44:36,905 autoreload 11028 11132 Watching for file changes with StatReloader
+INFO 2025-05-29 12:44:52,322 basehttp 11028 12512 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:45:14,485 basehttp 11028 16728 "GET / HTTP/1.1" 200 4046
+INFO 2025-05-29 12:45:14,658 basehttp 11028 16728 "GET /static/core/css/style.css HTTP/1.1" 200 15177
+INFO 2025-05-29 12:45:14,666 basehttp 11028 9660 "GET /static/core/js/main.js HTTP/1.1" 200 0
+INFO 2025-05-29 12:45:14,691 basehttp 11028 16728 "GET /static/core/img/icon-5.jpg HTTP/1.1" 200 65157
+INFO 2025-05-29 12:45:14,693 basehttp 11028 2228 "GET /static/core/img/icon-2.jpg HTTP/1.1" 200 32800
+INFO 2025-05-29 12:45:14,701 basehttp 11028 11976 "GET /static/core/img/icon-1.jpg HTTP/1.1" 200 35675
+INFO 2025-05-29 12:45:14,703 basehttp 11028 9660 "GET /static/core/img/icon-6.jpg HTTP/1.1" 200 74363
+INFO 2025-05-29 12:45:14,710 basehttp 11028 12968 "GET /static/core/img/icon-4.jpg HTTP/1.1" 200 53334
+INFO 2025-05-29 12:45:14,720 basehttp 11028 5960 "GET /static/core/img/icon-3.jpg HTTP/1.1" 200 20577
+WARNING 2025-05-29 12:45:14,857 log 11028 9660 Not Found: /favicon.ico
+WARNING 2025-05-29 12:45:14,857 basehttp 11028 9660 "GET /favicon.ico HTTP/1.1" 404 4062
+INFO 2025-05-29 12:45:20,768 basehttp 11028 9660 "GET /usuarios/login/ HTTP/1.1" 200 3403
+INFO 2025-05-29 12:45:20,827 basehttp 11028 9660 "GET /static/css/usuarios.css HTTP/1.1" 200 21034
+INFO 2025-05-29 12:45:31,483 basehttp 11028 9660 "POST /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:45:31,503 basehttp 11028 9660 "GET /scanner/ HTTP/1.1" 200 6508
+INFO 2025-05-29 12:45:31,544 basehttp 11028 9660 "GET /static/css/scanner.css HTTP/1.1" 200 17270
+INFO 2025-05-29 12:45:31,585 basehttp 11028 9660 "GET /static/js/scanner.js HTTP/1.1" 200 14299
+INFO 2025-05-29 12:45:33,923 basehttp 11028 9660 "GET /usuarios/perfil/ HTTP/1.1" 200 20644
+INFO 2025-05-29 12:45:34,010 basehttp 11028 9660 "GET /media/perfiles/perfiles/user_3_20250529035650.png HTTP/1.1" 200 1952610
+INFO 2025-05-29 12:45:34,017 basehttp 11028 12968 "GET /static/js/scripts.js HTTP/1.1" 200 4588
+INFO 2025-05-29 12:45:37,723 basehttp 11028 9660 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 12:45:41,926 basehttp 11028 9660 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:45:41,969 basehttp 11028 9660 "GET /usuarios/perfil/ HTTP/1.1" 200 25699
+INFO 2025-05-29 12:45:42,030 basehttp 11028 9660 "GET /media/productos/camisetaNegra.jpg HTTP/1.1" 200 4307
+INFO 2025-05-29 12:45:59,452 basehttp 11028 9660 "GET /facturas/8/ HTTP/1.1" 200 6958
+INFO 2025-05-29 12:45:59,503 basehttp 11028 9660 "GET /static/css/facturas.css HTTP/1.1" 200 17209
+INFO 2025-05-29 12:45:59,510 basehttp 11028 9660 "GET /static/js/facturas.js HTTP/1.1" 200 8689
+INFO 2025-05-29 12:46:11,305 basehttp 11028 9660 "POST /facturas/8/ HTTP/1.1" 200 6958
+INFO 2025-05-29 12:46:15,190 basehttp 11028 9660 "POST /facturas/8/ HTTP/1.1" 200 6958
