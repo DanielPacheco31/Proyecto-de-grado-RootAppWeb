@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="{% static 'css/pagos.css' %}">
 {% endblock %}
 
+{% block extra_js %}
+<script src="{% static 'js/pagos.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <section id="metodo-pago" class="checkout-section">
     <div class="container">
@@ -55,7 +59,7 @@
             <div class="metodos-pago-container">
             {% if metodos_pago %}
                 {% for metodo in metodos_pago %}
-                <div class="metodo-pago-card" data-id="{{ metodo.id }}">
+                <div class="metodo-pago-card animate-on-scroll" data-id="{{ metodo.id }}">
                     <div class="metodo-icono">
                         {% if metodo.tipo == 'nequi' %}📱
                         {% elif metodo.tipo == 'bancolombia' %}🏦
@@ -85,25 +89,25 @@
                 {% endfor %}
             {% else %}
                 <!-- Métodos de pago estáticos en caso de que no haya métodos en la BD -->
-                <div class="metodo-pago-card" data-id="1">
+                <div class="metodo-pago-card animate-on-scroll" data-id="1">
                     <div class="metodo-icono">📱</div>
                     <div class="metodo-nombre">Nequi</div>
                     <div class="metodo-descripcion">Pago móvil rápido y seguro</div>
                 </div>
                 
-                <div class="metodo-pago-card" data-id="2">
+                <div class="metodo-pago-card animate-on-scroll" data-id="2">
                     <div class="metodo-icono">🏦</div>
                     <div class="metodo-nombre">Bancolombia</div>
                     <div class="metodo-descripcion">Transferencia bancaria confiable</div>
                 </div>
                 
-                <div class="metodo-pago-card" data-id="3">
+                <div class="metodo-pago-card animate-on-scroll" data-id="3">
                     <div class="metodo-icono">💻</div>
                     <div class="metodo-nombre">PSE</div>
-                    <div class="metodo-descripcion">Pago seguro electrónico</div>
+                    <div class="metodo-descripción">Pago seguro electrónico</div>
                 </div>
                 
-                <div class="metodo-pago-card" data-id="4">
+                <div class="metodo-pago-card animate-on-scroll" data-id="4">
                     <div class="metodo-icono">💳</div>
                     <div class="metodo-nombre">Tarjeta de Crédito</div>
                     <div class="metodo-descripcion">Visa, MasterCard, American Express</div>
@@ -118,28 +122,4 @@
         </form>
     </div>
 </section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const metodoCards = document.querySelectorAll('.metodo-pago-card');
-    const inputMetodoPago = document.getElementById('metodo_pago_seleccionado');
-    const btnContinuar = document.querySelector('.btn-continuar');
-    
-    metodoCards.forEach(card => {
-        card.addEventListener('click', function() {
-            // Quitar selección anterior
-            metodoCards.forEach(c => c.classList.remove('seleccionado'));
-            
-            // Seleccionar este método
-            this.classList.add('seleccionado');
-            
-            // Actualizar input hidden
-            inputMetodoPago.value = this.dataset.id;
-            
-            // Habilitar botón continuar
-            btnContinuar.disabled = false;
-        });
-    });
-});
-</script>
 {% endblock %}

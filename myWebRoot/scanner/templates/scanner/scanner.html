@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="{% static 'css/scanner.css' %}">
 {% endblock %}
 
+{% block extra_js %}
+<script src="{% static 'js/scanner.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 {% if user.is_authenticated %}
 <section id="scanner" class="scanner-section">
@@ -19,6 +23,7 @@
             Estado de la cámara: <span>No inicializada</span>
         </div>
         
+        <!-- Selector de tipo de scanner -->
         <div class="scanner-type-selector">
             <div class="type-selector-container">
                 <div id="selectorPill" class="selector-pill"></div>
@@ -27,8 +32,9 @@
             </div>
         </div>
         
+        <!-- Contenedor del scanner -->
         <div id="scannerContainer">
-            <video id="video" autoplay playsinline></video>
+            <video id="video" autoplay playsinline muted></video>
             <canvas id="canvas"></canvas>
             <div id="scannerOverlay" class="scanner-overlay" style="display: none;">
                 <div class="scanner-marker">
@@ -41,16 +47,23 @@
             </div>
         </div>
         
+        <!-- Resultado del scanner -->
         <div id="result">Esperando iniciar escáner...</div>
-        <button id="startButton">Iniciar escáner</button>
+        
+        <!-- Botón de inicio -->
+        <button id="startButton" type="button">Iniciar escáner</button>
         
         <!-- Formulario para enviar el resultado al backend -->
         <form method="post" id="scanForm" style="display: none;">
             {% csrf_token %}
             <input type="hidden" id="scannedCode" name="scannedCode">
             <div class="scan-actions">
-                <button type="submit" class="btn-add-to-cart" name="action" value="add">Agregar al carrito</button>
-                <button type="submit" class="btn-pay-now" name="action" value="pay">Pagar ahora</button>
+                <button type="submit" class="btn-add-to-cart" name="action" value="add">
+                    Agregar al carrito
+                </button>
+                <button type="submit" class="btn-pay-now" name="action" value="pay">
+                    Pagar ahora
+                </button>
             </div>
         </form>
         
@@ -59,12 +72,28 @@
             <h3>O ingresa el código manualmente</h3>
             <form method="post" class="manual-input-form">
                 {% csrf_token %}
-                <input type="text" name="scannedCode" placeholder="Ingresa código del producto" autocomplete="off">
+                <input type="text" name="scannedCode" placeholder="Ingresa código del producto" autocomplete="off" maxlength="50">
                 <div class="scan-actions">
-                    <button type="submit" class="btn-add-to-cart" name="action" value="add">Agregar al carrito</button>
-                    <button type="submit" class="btn-pay-now" name="action" value="pay">Pagar ahora</button>
+                    <button type="submit" class="btn-add-to-cart" name="action" value="add">
+                        Agregar al carrito
+                    </button>
+                    <button type="submit" class="btn-pay-now" name="action" value="pay">
+                        Pagar ahora
+                    </button>
                 </div>
             </form>
+        </div>
+        
+        <!-- Información adicional -->
+        <div class="scanner-info">
+            <h4>📱 ¿Cómo usar el scanner?</h4>
+            <ul>
+                <li>Selecciona el tipo de código (Barras o QR)</li>
+                <li>Presiona "Iniciar escáner" y permite el acceso a la cámara</li>
+                <li>Apunta la cámara al código del producto</li>
+                <li>El código se detectará automáticamente</li>
+                <li>Elige si agregar al carrito o pagar directamente</li>
+            </ul>
         </div>
     </div>
 </section>
@@ -80,10 +109,7 @@
 {% endblock %}
 
 {% block scripts %}
-<!-- Usar la CDN más reciente y confiable para QuaggaJS -->
+<!-- Librerías externas para el scanner -->
 <script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2@1.8.2/dist/quagga.min.js"></script>
-<!-- Añadir jsQR para códigos QR -->
 <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-<!-- Script principal de la aplicación -->
-<script src="{% static 'js/scanner.js' %}"></script>
 {% endblock %}

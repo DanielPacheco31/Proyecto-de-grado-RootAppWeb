@@ -10586,3 +10586,503 @@ INFO 2025-05-28 23:15:00,624 autoreload 1792 16224 C:\Users\ADMIN\OneDrive\Deskt
 INFO 2025-05-28 23:15:02,293 autoreload 13884 2876 Watching for file changes with StatReloader
 INFO 2025-05-28 23:15:05,418 autoreload 13884 2876 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\usuarios\models.py changed, reloading.
 INFO 2025-05-28 23:15:06,980 autoreload 14204 2400 Watching for file changes with StatReloader
+INFO 2025-05-28 23:26:03,185 basehttp 14204 13116 "GET /scanner/ HTTP/1.1" 200 5533
+INFO 2025-05-28 23:26:03,235 basehttp 14204 13116 "GET /static/core/css/style.css HTTP/1.1" 304 0
+INFO 2025-05-28 23:26:03,246 basehttp 14204 7584 "GET /static/css/scanner.css HTTP/1.1" 304 0
+INFO 2025-05-28 23:26:06,728 basehttp 14204 13116 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-28 23:26:06,767 basehttp 14204 13116 "GET /carrito/finalizar/ HTTP/1.1" 200 3715
+INFO 2025-05-28 23:26:06,815 basehttp 14204 10040 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-05-28 23:26:08,333 basehttp 14204 13116 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-28 23:26:08,416 basehttp 14204 13116 "GET /pagos/5/metodo/ HTTP/1.1" 200 6974
+WARNING 2025-05-28 23:26:08,474 basehttp 14204 7584 "GET /static/css/pagos.css HTTP/1.1" 404 1853
+INFO 2025-05-28 23:26:20,013 basehttp 14204 13116 "GET /usuarios/perfil/ HTTP/1.1" 200 16416
+INFO 2025-05-28 23:26:20,175 basehttp 14204 10040 "GET /static/css/usuarios.css HTTP/1.1" 200 21034
+INFO 2025-05-28 23:26:20,192 basehttp 14204 13116 "GET /media/perfiles/perfiles/user_3_20250529035650.png HTTP/1.1" 304 0
+WARNING 2025-05-28 23:26:20,298 log 14204 10040 Not Found: /favicon.ico
+INFO 2025-05-28 23:26:20,301 basehttp 14204 10040 - Broken pipe from ('127.0.0.1', 53387)
+INFO 2025-05-28 23:26:57,493 basehttp 14204 13116 "GET /scanner/ HTTP/1.1" 200 5533
+INFO 2025-05-28 23:27:01,171 basehttp 14204 13116 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-28 23:27:01,215 basehttp 14204 13116 "GET /carrito/finalizar/ HTTP/1.1" 200 3715
+INFO 2025-05-28 23:27:03,738 basehttp 14204 13116 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-28 23:27:03,776 basehttp 14204 13116 "GET /pagos/6/metodo/ HTTP/1.1" 200 6974
+INFO 2025-05-28 23:27:03,821 basehttp 14204 13116 "GET /static/css/pagos.css HTTP/1.1" 200 24115
+INFO 2025-05-28 23:27:26,145 basehttp 14204 13116 "POST /pagos/6/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-28 23:27:26,194 basehttp 14204 13116 "GET /pagos/movil/3/ HTTP/1.1" 200 5508
+INFO 2025-05-28 23:27:30,716 basehttp 14204 13116 "POST /pagos/6/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-28 23:27:30,752 basehttp 14204 13116 "GET /pagos/movil/3/ HTTP/1.1" 200 5897
+INFO 2025-05-28 23:27:35,149 basehttp 14204 13116 "POST /pagos/6/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-28 23:27:35,187 basehttp 14204 13116 "GET /pagos/movil/3/ HTTP/1.1" 200 5897
+INFO 2025-05-28 23:27:39,594 basehttp 14204 13116 "POST /pagos/6/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-28 23:27:39,622 basehttp 14204 13116 "GET /pagos/movil/3/ HTTP/1.1" 200 5897
+INFO 2025-05-28 23:27:44,178 basehttp 14204 13116 "POST /pagos/6/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-28 23:27:44,217 basehttp 14204 13116 "GET /pagos/movil/3/ HTTP/1.1" 200 5897
+ERROR 2025-05-28 23:28:02,784 log 14204 13116 Internal Server Error: /pagos/movil/3/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py", line 34, in generar_factura
+    return compra.factura
+           ^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 531, in __get__
+    raise self.RelatedObjectDoesNotExist(
+    ...<2 lines>...
+    )
+pagos.models.Compra.factura.RelatedObjectDoesNotExist: Compra has no factura.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: facturas_factura.numero
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\views.py", line 399, in pago_movil
+    generar_factura(compra)
+    ~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py", line 37, in generar_factura
+    factura = Factura.objects.create(compra=compra)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: facturas_factura.numero
+ERROR 2025-05-28 23:28:02,803 basehttp 14204 13116 "POST /pagos/movil/3/ HTTP/1.1" 500 178545
+INFO 2025-05-28 23:28:30,224 basehttp 14204 13116 "GET /pagos/movil/3/ HTTP/1.1" 200 5508
+INFO 2025-05-28 23:28:33,600 basehttp 14204 13116 "GET /scanner/ HTTP/1.1" 200 5533
+INFO 2025-05-28 23:28:36,849 basehttp 14204 13116 "GET /usuarios/perfil/ HTTP/1.1" 200 17821
+INFO 2025-05-28 23:28:42,669 basehttp 14204 13116 "GET /facturas/6/ HTTP/1.1" 200 6426
+INFO 2025-05-28 23:28:42,719 basehttp 14204 13116 "GET /static/css/detalle_compra.css HTTP/1.1" 304 0
+INFO 2025-05-28 23:28:42,751 basehttp 14204 7784 "GET /media/productos/camisetaNegra.jpg HTTP/1.1" 304 0
+INFO 2025-05-28 23:28:52,816 basehttp 14204 13116 "GET /usuarios/perfil/ HTTP/1.1" 200 17821
+INFO 2025-05-28 23:28:57,733 basehttp 14204 13116 "GET /facturas/5/ HTTP/1.1" 200 6839
+INFO 2025-05-28 23:29:02,435 basehttp 14204 13116 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-05-28 23:29:02,474 basehttp 14204 13116 "GET / HTTP/1.1" 200 4046
+INFO 2025-05-28 23:29:02,539 basehttp 14204 13116 - Broken pipe from ('127.0.0.1', 53385)
+INFO 2025-05-28 23:29:02,539 basehttp 14204 7784 - Broken pipe from ('127.0.0.1', 53403)
+INFO 2025-05-28 23:29:02,568 basehttp 14204 14808 - Broken pipe from ('127.0.0.1', 53404)
+INFO 2025-05-28 23:29:02,587 basehttp 14204 13988 - Broken pipe from ('127.0.0.1', 53405)
+INFO 2025-05-28 23:29:02,591 basehttp 14204 11132 - Broken pipe from ('127.0.0.1', 53406)
+INFO 2025-05-28 23:29:02,592 basehttp 14204 1716 - Broken pipe from ('127.0.0.1', 53407)
+INFO 2025-05-28 23:29:08,706 basehttp 14204 10852 "GET /usuarios/login/ HTTP/1.1" 200 3403
+INFO 2025-05-28 23:29:10,738 basehttp 14204 10852 "GET /usuarios/registro/ HTTP/1.1" 200 5154
+INFO 2025-05-29 09:50:24,516 autoreload 10124 9148 Watching for file changes with StatReloader
+INFO 2025-05-29 09:50:42,416 basehttp 10124 8220 "GET / HTTP/1.1" 200 4046
+INFO 2025-05-29 09:50:42,690 basehttp 10124 13180 "GET /static/core/img/icon-2.jpg HTTP/1.1" 200 32800
+INFO 2025-05-29 09:50:42,694 basehttp 10124 8220 "GET /static/core/css/style.css HTTP/1.1" 200 15177
+INFO 2025-05-29 09:50:42,694 basehttp 10124 13944 "GET /static/core/img/icon-3.jpg HTTP/1.1" 200 20577
+INFO 2025-05-29 09:50:42,716 basehttp 10124 13180 "GET /static/core/img/icon-5.jpg HTTP/1.1" 200 65157
+INFO 2025-05-29 09:50:42,717 basehttp 10124 14156 "GET /static/core/js/main.js HTTP/1.1" 200 0
+INFO 2025-05-29 09:50:42,724 basehttp 10124 6352 "GET /static/core/img/icon-1.jpg HTTP/1.1" 200 35675
+INFO 2025-05-29 09:50:42,727 basehttp 10124 14160 "GET /static/core/img/icon-4.jpg HTTP/1.1" 200 53334
+INFO 2025-05-29 09:50:42,739 basehttp 10124 13944 "GET /static/core/img/icon-6.jpg HTTP/1.1" 200 74363
+WARNING 2025-05-29 09:50:43,033 log 10124 13944 Not Found: /favicon.ico
+WARNING 2025-05-29 09:50:43,034 basehttp 10124 13944 "GET /favicon.ico HTTP/1.1" 404 4062
+INFO 2025-05-29 09:50:58,795 basehttp 10124 13944 "GET /contacto/ HTTP/1.1" 200 3600
+INFO 2025-05-29 09:59:43,745 basehttp 10124 13240 "GET /usuarios/login/ HTTP/1.1" 200 3403
+INFO 2025-05-29 09:59:43,783 basehttp 10124 13240 "GET /static/css/usuarios.css HTTP/1.1" 200 21034
+INFO 2025-05-29 09:59:54,528 basehttp 10124 13240 "POST /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-29 09:59:54,568 basehttp 10124 13240 "GET /scanner/ HTTP/1.1" 200 5688
+INFO 2025-05-29 09:59:54,613 basehttp 10124 13240 "GET /static/css/scanner.css HTTP/1.1" 200 17270
+INFO 2025-05-29 09:59:54,636 basehttp 10124 1864 "GET /static/js/scanner.js HTTP/1.1" 200 9538
+INFO 2025-05-29 10:00:00,796 basehttp 10124 1864 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-29 10:00:00,863 basehttp 10124 1864 "GET /usuarios/perfil/ HTTP/1.1" 200 22876
+INFO 2025-05-29 10:00:00,942 basehttp 10124 1864 "GET /media/perfiles/perfiles/user_3_20250529035650.png HTTP/1.1" 200 1952610
+INFO 2025-05-29 10:00:00,942 basehttp 10124 7940 "GET /static/js/scripts.js HTTP/1.1" 200 4588
+INFO 2025-05-29 10:00:00,950 basehttp 10124 13240 "GET /media/productos/camisetaNegra.jpg HTTP/1.1" 200 4307
+INFO 2025-05-29 10:00:14,916 basehttp 10124 1864 "GET /carrito/finalizar/ HTTP/1.1" 200 3515
+INFO 2025-05-29 10:00:14,948 basehttp 10124 1864 "GET /static/css/styles.css HTTP/1.1" 200 983
+INFO 2025-05-29 10:00:16,494 basehttp 10124 1864 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-29 10:00:16,532 basehttp 10124 1864 "GET /pagos/7/metodo/ HTTP/1.1" 200 6257
+INFO 2025-05-29 10:00:16,574 basehttp 10124 1864 "GET /static/css/pagos.css HTTP/1.1" 200 24115
+INFO 2025-05-29 10:00:16,591 basehttp 10124 13240 "GET /static/js/pagos.js HTTP/1.1" 200 18660
+INFO 2025-05-29 10:01:31,467 basehttp 10124 13240 "POST /pagos/7/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-29 10:01:31,507 basehttp 10124 13240 "GET /pagos/movil/4/ HTTP/1.1" 200 5571
+ERROR 2025-05-29 10:01:39,363 log 10124 13240 Internal Server Error: /pagos/movil/4/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py", line 34, in generar_factura
+    return compra.factura
+           ^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 531, in __get__
+    raise self.RelatedObjectDoesNotExist(
+    ...<2 lines>...
+    )
+pagos.models.Compra.factura.RelatedObjectDoesNotExist: Compra has no factura.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: facturas_factura.numero
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\views.py", line 399, in pago_movil
+    generar_factura(compra)
+    ~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py", line 37, in generar_factura
+    factura = Factura.objects.create(compra=compra)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: facturas_factura.numero
+ERROR 2025-05-29 10:01:39,377 basehttp 10124 13240 "POST /pagos/movil/4/ HTTP/1.1" 500 179174
+INFO 2025-05-29 10:31:16,012 autoreload 3952 7308 Watching for file changes with StatReloader
+INFO 2025-05-29 11:44:04,729 autoreload 3952 7308 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\utils.py changed, reloading.
+INFO 2025-05-29 11:44:06,712 autoreload 12148 11608 Watching for file changes with StatReloader
+INFO 2025-05-29 11:44:15,563 basehttp 12148 16256 "POST /pagos/movil/4/ HTTP/1.1" 200 6341
+INFO 2025-05-29 11:44:15,598 basehttp 12148 16256 "GET /static/core/css/style.css HTTP/1.1" 304 0
+INFO 2025-05-29 11:44:15,613 basehttp 12148 16256 "GET /static/css/pagos.css HTTP/1.1" 304 0
+INFO 2025-05-29 11:44:15,614 basehttp 12148 7016 "GET /static/js/pagos.js HTTP/1.1" 304 0
+INFO 2025-05-29 11:44:30,598 basehttp 12148 7016 "POST /pagos/movil/4/ HTTP/1.1" 200 6341
+INFO 2025-05-29 11:46:44,043 autoreload 12148 11608 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\urls.py changed, reloading.
+INFO 2025-05-29 11:46:45,596 autoreload 17364 12236 Watching for file changes with StatReloader
+INFO 2025-05-29 11:47:36,457 autoreload 17364 12236 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\urls.py changed, reloading.
+INFO 2025-05-29 11:47:38,414 autoreload 256 16872 Watching for file changes with StatReloader
+INFO 2025-05-29 11:48:52,474 autoreload 256 16872 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\views.py changed, reloading.
+INFO 2025-05-29 11:48:54,070 autoreload 7196 16676 Watching for file changes with StatReloader
+INFO 2025-05-29 11:48:56,155 basehttp 7196 17036 "POST /pagos/movil/4/ HTTP/1.1" 302 0
+INFO 2025-05-29 11:48:56,162 basehttp 7196 17036 "GET /pagos/confirmar/4/ HTTP/1.1" 302 0
+INFO 2025-05-29 11:48:56,181 basehttp 7196 17036 "GET /usuarios/login/?next=/pagos/confirmar/4/ HTTP/1.1" 200 3610
+INFO 2025-05-29 11:48:56,218 basehttp 7196 17036 "GET /static/css/usuarios.css HTTP/1.1" 304 0
+INFO 2025-05-29 11:49:09,315 basehttp 7196 17036 "GET /usuarios/login/ HTTP/1.1" 200 3403
+INFO 2025-05-29 11:49:11,048 basehttp 7196 17036 "GET /usuarios/login/ HTTP/1.1" 200 3403
+INFO 2025-05-29 11:49:20,222 basehttp 7196 17036 "POST /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-29 11:49:20,245 basehttp 7196 17036 "GET /scanner/ HTTP/1.1" 200 5688
+INFO 2025-05-29 11:49:20,276 basehttp 7196 17036 "GET /static/css/scanner.css HTTP/1.1" 304 0
+INFO 2025-05-29 11:49:26,844 basehttp 7196 17036 "GET /usuarios/perfil/ HTTP/1.1" 200 19226
+INFO 2025-05-29 11:49:26,886 basehttp 7196 17036 "GET /media/perfiles/perfiles/user_3_20250529035650.png HTTP/1.1" 304 0
+INFO 2025-05-29 11:49:33,113 basehttp 7196 17036 "GET /facturas/7/ HTTP/1.1" 200 6775
+INFO 2025-05-29 11:49:33,165 basehttp 7196 16788 "GET /media/productos/camisetaNegra.jpg HTTP/1.1" 304 0
+INFO 2025-05-29 11:49:33,282 basehttp 7196 17036 "GET /static/css/detalle_compra.css HTTP/1.1" 200 10918
+INFO 2025-05-29 11:49:33,320 basehttp 7196 3280 "GET /static/css/factura-print.css HTTP/1.1" 200 3936
+INFO 2025-05-29 11:49:33,353 basehttp 7196 7516 "GET /static/js/facturas.js HTTP/1.1" 200 8689
+INFO 2025-05-29 11:49:35,309 basehttp 7196 7516 "GET /facturas/7/descargar/ HTTP/1.1" 200 2503
+INFO 2025-05-29 11:50:23,192 basehttp 7196 7516 "GET /scanner/ HTTP/1.1" 200 5533
+INFO 2025-05-29 11:50:30,624 basehttp 7196 7516 "GET /usuarios/perfil/ HTTP/1.1" 200 19226
+INFO 2025-05-29 11:50:35,630 basehttp 7196 7516 "GET /facturas/5/ HTTP/1.1" 200 6839
+INFO 2025-05-29 11:50:39,008 basehttp 7196 7516 "POST /facturas/5/ HTTP/1.1" 200 6839
+INFO 2025-05-29 11:50:42,785 basehttp 7196 7516 "POST /facturas/5/ HTTP/1.1" 200 6839
+INFO 2025-05-29 11:50:47,168 basehttp 7196 7516 "POST /facturas/5/ HTTP/1.1" 200 6839
+INFO 2025-05-29 11:50:58,200 basehttp 7196 7516 "POST /facturas/5/ HTTP/1.1" 200 6839
+INFO 2025-05-29 11:51:00,133 basehttp 7196 7516 "GET / HTTP/1.1" 200 4193
+INFO 2025-05-29 11:51:02,794 basehttp 7196 7516 "GET /vision-mision/ HTTP/1.1" 200 2826
+INFO 2025-05-29 11:51:03,567 basehttp 7196 7516 "GET /contacto/ HTTP/1.1" 200 3747
+INFO 2025-05-29 11:51:04,046 basehttp 7196 7516 "GET /scanner/ HTTP/1.1" 200 5533
+INFO 2025-05-29 11:51:04,797 basehttp 7196 7516 "GET /usuarios/perfil/ HTTP/1.1" 200 19226
+INFO 2025-05-29 11:54:37,920 basehttp 7196 7516 "POST /usuarios/perfil/cambiar-password/ HTTP/1.1" 302 0
+INFO 2025-05-29 11:54:37,947 basehttp 7196 7516 "GET /usuarios/perfil/ HTTP/1.1" 200 19778
+INFO 2025-05-29 11:55:16,874 basehttp 7196 7516 "POST /usuarios/perfil/cambiar-password/ HTTP/1.1" 302 0
+INFO 2025-05-29 11:55:16,906 basehttp 7196 7516 "GET /usuarios/perfil/ HTTP/1.1" 200 19660
+INFO 2025-05-29 12:11:39,280 autoreload 7196 16676 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\scanner\views.py changed, reloading.
+INFO 2025-05-29 12:11:42,790 autoreload 12012 17068 Watching for file changes with StatReloader
+INFO 2025-05-29 12:12:02,274 basehttp 12012 16916 "GET /usuarios/perfil/ HTTP/1.1" 200 19226
+ERROR 2025-05-29 12:12:04,499 log 12012 16916 Internal Server Error: /scanner/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\scanner\views.py", line 192, in scanner
+    'total_productos': Producto.objects.filter(activo=True).count(),
+                       ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'activo' into field. Choices are: carritoitem, categoria, categoria_id, codigo, descripcion, detallecompra, fecha_actualizacion, fecha_creacion, id, imagen, nombre, precio, stock
+ERROR 2025-05-29 12:12:04,506 basehttp 12012 16916 "GET /scanner/ HTTP/1.1" 500 119966
+INFO 2025-05-29 12:14:44,624 autoreload 12012 17068 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\scanner\views.py changed, reloading.
+INFO 2025-05-29 12:14:46,335 autoreload 8312 9660 Watching for file changes with StatReloader
+INFO 2025-05-29 12:14:48,521 autoreload 8312 9660 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\scanner\views.py changed, reloading.
+INFO 2025-05-29 12:14:50,028 autoreload 16896 9104 Watching for file changes with StatReloader
+INFO 2025-05-29 12:14:50,713 basehttp 16896 14340 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 12:17:03,175 basehttp 16896 14340 "POST /scanner/ HTTP/1.1" 200 6521
+INFO 2025-05-29 12:17:37,770 basehttp 16896 14340 "GET /admin HTTP/1.1" 301 0
+INFO 2025-05-29 12:17:37,801 basehttp 16896 13020 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:17:37,946 basehttp 16896 13020 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 3743
+INFO 2025-05-29 12:17:38,237 basehttp 16896 13768 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+INFO 2025-05-29 12:17:38,239 basehttp 16896 13020 "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+INFO 2025-05-29 12:17:38,299 basehttp 16896 7764 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-05-29 12:17:38,328 basehttp 16896 9736 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-05-29 12:17:38,333 basehttp 16896 14652 "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+INFO 2025-05-29 12:17:38,359 basehttp 16896 17056 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2025-05-29 12:17:38,378 basehttp 16896 14652 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-05-29 12:17:41,533 basehttp 16896 14652 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:17:41,607 basehttp 16896 14652 "GET /admin/ HTTP/1.1" 200 13109
+INFO 2025-05-29 12:17:41,643 basehttp 16896 14652 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-05-29 12:17:41,664 basehttp 16896 17056 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-05-29 12:17:41,671 basehttp 16896 14652 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-05-29 12:17:48,058 basehttp 16896 14652 "GET /admin/productos/categoria/ HTTP/1.1" 200 12770
+INFO 2025-05-29 12:17:48,105 basehttp 16896 14652 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-05-29 12:17:48,171 basehttp 16896 13020 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-05-29 12:17:48,177 basehttp 16896 14652 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-05-29 12:17:48,195 basehttp 16896 17056 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-05-29 12:17:48,198 basehttp 16896 13768 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9097
+INFO 2025-05-29 12:17:48,204 basehttp 16896 7764 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-05-29 12:17:48,234 basehttp 16896 14652 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-05-29 12:17:48,234 basehttp 16896 13020 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-05-29 12:17:48,263 basehttp 16896 9736 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-05-29 12:17:48,268 basehttp 16896 7764 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-05-29 12:17:48,309 basehttp 16896 7764 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-05-29 12:17:48,390 basehttp 16896 17056 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-05-29 12:17:48,440 basehttp 16896 17056 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-05-29 12:17:53,295 basehttp 16896 17056 "GET /admin/productos/categoria/add/ HTTP/1.1" 200 13867
+INFO 2025-05-29 12:17:53,341 basehttp 16896 9736 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-05-29 12:17:53,346 basehttp 16896 17056 "GET /static/admin/css/forms.css HTTP/1.1" 200 8794
+INFO 2025-05-29 12:17:53,354 basehttp 16896 7764 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-05-29 12:17:53,373 basehttp 16896 9736 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11564
+INFO 2025-05-29 12:17:53,377 basehttp 16896 17056 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-05-29 12:18:20,009 basehttp 16896 17056 "POST /admin/productos/categoria/add/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:18:20,085 basehttp 16896 17056 "GET /admin/productos/categoria/ HTTP/1.1" 200 14574
+INFO 2025-05-29 12:18:20,125 basehttp 16896 17056 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-05-29 12:18:20,159 basehttp 16896 17056 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-05-29 12:18:27,104 basehttp 16896 17056 "GET /admin/productos/producto/add/ HTTP/1.1" 200 20177
+INFO 2025-05-29 12:18:27,146 basehttp 16896 17056 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+INFO 2025-05-29 12:18:27,154 basehttp 16896 9736 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-05-29 12:18:27,173 basehttp 16896 17056 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-05-29 12:19:30,409 basehttp 16896 17056 "POST /admin/productos/producto/add/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:19:30,467 basehttp 16896 17056 "GET /admin/productos/producto/ HTTP/1.1" 200 17237
+INFO 2025-05-29 12:19:30,510 basehttp 16896 17056 "GET /admin/jsi18n/ HTTP/1.1" 200 8691
+WARNING 2025-05-29 12:20:18,654 log 16896 17056 Forbidden (CSRF token from POST incorrect.): /scanner/
+WARNING 2025-05-29 12:20:18,681 basehttp 16896 17056 "POST /scanner/ HTTP/1.1" 403 2514
+WARNING 2025-05-29 12:21:33,388 log 16896 17056 Forbidden (CSRF token from POST incorrect.): /scanner/
+WARNING 2025-05-29 12:21:33,406 basehttp 16896 17056 "POST /scanner/ HTTP/1.1" 403 2514
+INFO 2025-05-29 12:22:37,226 basehttp 16896 17056 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 12:22:39,219 basehttp 16896 17056 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:22:39,250 basehttp 16896 17056 "GET / HTTP/1.1" 200 4046
+INFO 2025-05-29 12:22:40,921 basehttp 16896 17056 "GET /usuarios/login/ HTTP/1.1" 200 3403
+INFO 2025-05-29 12:22:51,280 basehttp 16896 17056 "POST /admin/logout/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:22:51,289 basehttp 16896 17056 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:22:51,307 basehttp 16896 17056 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4228
+INFO 2025-05-29 12:22:54,586 basehttp 16896 17056 "POST /usuarios/login/ HTTP/1.1" 200 3581
+INFO 2025-05-29 12:23:05,899 basehttp 16896 17056 "POST /usuarios/login/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:23:05,918 basehttp 16896 17056 "GET /scanner/ HTTP/1.1" 200 6508
+INFO 2025-05-29 12:23:42,532 basehttp 16896 17056 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:23:42,575 basehttp 16896 17056 "GET /usuarios/perfil/ HTTP/1.1" 200 24147
+INFO 2025-05-29 12:23:49,748 basehttp 16896 17056 "GET /carrito/finalizar/ HTTP/1.1" 200 3522
+INFO 2025-05-29 12:23:49,781 basehttp 16896 17056 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-05-29 12:23:51,727 basehttp 16896 17056 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:23:51,777 basehttp 16896 17056 "GET /pagos/8/metodo/ HTTP/1.1" 200 6257
+INFO 2025-05-29 12:23:55,183 basehttp 16896 17056 "POST /pagos/8/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:23:55,239 basehttp 16896 17056 "GET /pagos/movil/5/ HTTP/1.1" 200 5571
+INFO 2025-05-29 12:24:04,751 basehttp 16896 17056 "POST /pagos/movil/5/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:24:04,800 basehttp 16896 17056 "GET /pagos/confirmar/5/ HTTP/1.1" 200 5274
+INFO 2025-05-29 12:24:13,933 basehttp 16896 17056 "GET /facturas/8/ HTTP/1.1" 200 7040
+INFO 2025-05-29 12:24:23,187 basehttp 16896 17056 "GET /facturas/8/descargar/ HTTP/1.1" 200 2533
+INFO 2025-05-29 12:24:29,656 basehttp 16896 17056 "GET /usuarios/perfil/ HTTP/1.1" 200 20644
+INFO 2025-05-29 12:24:44,736 basehttp 16896 17056 "GET /facturas/8/ HTTP/1.1" 200 7040
+INFO 2025-05-29 12:24:53,749 basehttp 16896 17056 "GET /pagos/8/metodo/ HTTP/1.1" 200 5898
+INFO 2025-05-29 12:24:59,404 basehttp 16896 17056 "POST /pagos/8/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:24:59,428 basehttp 16896 17056 "GET /pagos/movil/5/ HTTP/1.1" 200 5960
+INFO 2025-05-29 12:25:06,972 basehttp 16896 17056 "POST /pagos/movil/5/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:25:07,005 basehttp 16896 17056 "GET /pagos/confirmar/5/ HTTP/1.1" 200 5274
+INFO 2025-05-29 12:25:13,614 basehttp 16896 17056 "GET /facturas/8/descargar/ HTTP/1.1" 200 2533
+INFO 2025-05-29 12:25:17,136 basehttp 16896 17056 "GET /facturas/8/ HTTP/1.1" 200 7040
+INFO 2025-05-29 12:35:30,010 basehttp 16896 796 "GET /facturas/8/ HTTP/1.1" 200 6958
+INFO 2025-05-29 12:35:30,058 basehttp 16896 796 "GET /static/css/facturas.css HTTP/1.1" 200 17209
+INFO 2025-05-29 12:35:46,507 basehttp 16896 796 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 12:35:49,279 basehttp 16896 796 "GET /usuarios/perfil/ HTTP/1.1" 200 20644
+INFO 2025-05-29 12:35:58,985 basehttp 16896 796 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 12:36:00,088 basehttp 16896 796 "GET /usuarios/perfil/ HTTP/1.1" 200 20644
+INFO 2025-05-29 12:36:00,787 basehttp 16896 796 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 12:36:02,087 basehttp 16896 796 "GET /usuarios/perfil/ HTTP/1.1" 200 20644
+INFO 2025-05-29 12:36:04,326 basehttp 16896 796 "GET /facturas/8/ HTTP/1.1" 200 6958
+INFO 2025-05-29 12:36:04,358 basehttp 16896 796 "GET /static/css/facturas.css HTTP/1.1" 304 0
+INFO 2025-05-29 12:36:22,891 basehttp 16896 796 "GET /usuarios/perfil/ HTTP/1.1" 200 20644
+INFO 2025-05-29 12:41:08,580 basehttp 16896 17204 "GET /usuarios/perfil/ HTTP/1.1" 200 20644
+INFO 2025-05-29 12:41:09,438 basehttp 16896 17204 "GET /usuarios/perfil/ HTTP/1.1" 200 20644
+INFO 2025-05-29 12:41:09,649 basehttp 16896 17204 "GET /usuarios/perfil/ HTTP/1.1" 200 20644
+INFO 2025-05-29 12:41:12,143 basehttp 16896 17204 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 12:41:14,665 basehttp 16896 17204 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 12:41:15,713 basehttp 16896 17204 "GET /usuarios/perfil/ HTTP/1.1" 200 20644
+INFO 2025-05-29 12:41:18,788 basehttp 16896 17204 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 12:43:14,103 basehttp 16896 17204 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 12:43:15,514 basehttp 16896 17204 "GET /usuarios/perfil/ HTTP/1.1" 200 20644
+INFO 2025-05-29 12:43:47,182 basehttp 16896 17204 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-05-29 12:43:47,187 basehttp 16896 17204 "GET / HTTP/1.1" 200 4046
+INFO 2025-05-29 12:44:36,905 autoreload 11028 11132 Watching for file changes with StatReloader

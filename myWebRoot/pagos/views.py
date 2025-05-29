@@ -6,7 +6,8 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from facturas.models import Factura
 from facturas.utils import generar_factura
-
+from django.db import transaction
+from django.utils import timezone
 from .models import Compra, MetodoPago, Pago
 from .tasks import enviar_correo_confirmacion
 
@@ -362,49 +363,47 @@ def pago_transferencia(request: HttpRequest, pago_id: int) -> HttpResponse:
     })
 
 
-@login_required
-def pago_movil(request: HttpRequest, pago_id: int) -> HttpResponse:
-    """
-    Gestiona el proceso de pago mediante aplicación móvil (Nequi).
-
-    Args:
-        request: La solicitud HTTP.
-        pago_id: ID del pago a procesar.
-
-    Returns:
-        HttpResponse: Página de pago móvil o redirección a confirmación.
-
-    """
-    pago = get_object_or_404(Pago, id=pago_id, compra__usuario=request.user)
-
-    if request.method == "POST":
-        # Procesamiento del pago móvil
-        numero_telefono = request.POST.get("numero_telefono")
-
+def pago_movil(request, pago_id):
+    """Vista para procesar pago móvil con Nequi."""
+    pago = get_object_or_404(Pago, id=pago_id)
+    
+    if request.method == 'POST':
+        numero_telefono = request.POST.get('numero_telefono')
+        
+        # Validar número de teléfono
         if not numero_telefono:
-            messages.error(request, "El número de teléfono es obligatorio")
-            return render(request, "pagos/pagoMovil.html", {"pago": pago})
-
-        # Simulamos procesamiento exitoso
-        pago.estado = "pagado"
-        pago.referencia = f"NEQ-{pago.id}"
-        pago.save()
-
-        # Actualizar estado de la compra
-        compra = pago.compra
-        compra.estado = "pagado"
-        compra.save()
-
-        # Generar factura
-        generar_factura(compra)
-
-        # Enviar correo de confirmación
-        enviar_correo_confirmacion.delay(compra.id)
-
-        messages.success(request, "Pago con Nequi procesado con éxito")
-        return redirect("pagos:confirmar_pago", pago_id=pago.id)
-
-    return render(request, "pagos/pagoMovil.html", {"pago": pago})
+            messages.error(request, 'Por favor ingrese un número de teléfono')
+            return render(request, 'pagos/pagoMovil.html', {'pago': pago})
+        
+        # Limpiar y validar formato del teléfono
+        telefono_limpio = numero_telefono.replace(' ', '').replace('-', '')
+        if len(telefono_limpio) != 10 or not telefono_limpio.isdigit():
+            messages.error(request, 'Por favor ingrese un número de teléfono válido (10 dígitos)')
+            return render(request, 'pagos/pagoMovil.html', {'pago': pago})
+        
+        try:
+            with transaction.atomic():
+                # Actualizar el pago
+                pago.referencia = numero_telefono
+                pago.estado = 'completado'
+                pago.fecha_actualizacion = timezone.now()
+                pago.save()
+                
+                # Generar factura usando la función de utils
+                try:
+                    factura = generar_factura(pago.compra)
+                    messages.success(request, f'Pago confirmado. Factura {factura.numero} generada exitosamente')
+                except Exception as e:
+                    # El pago se completó pero no se pudo generar la factura
+                    messages.warning(request, f'Pago confirmado, pero hubo un problema generando la factura: {str(e)}')
+                
+                return redirect('pagos:confirmar_pago', pago_id=pago.id)
+                
+        except Exception as e:
+            messages.error(request, f'Error al procesar el pago: {str(e)}')
+            print(f"Error en pago_movil: {e}")  # Para debug
+    
+    return render(request, 'pagos/pagoMovil.html', {'pago': pago})
 
 
 @login_required

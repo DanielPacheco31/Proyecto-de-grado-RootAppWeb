@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="{% static 'css/pagos.css' %}">
 {% endblock %}
 
+{% block extra_js %}
+<script src="{% static 'js/pagos.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <section id="confirmacion-pago" class="checkout-section">
     <div class="container">
@@ -49,7 +53,7 @@
             </div>
 
             {% if factura %}
-            <div class="factura-container">
+            <div class="factura-container animate-on-scroll">
                 <h3>Factura Electrónica</h3>
                 <p>Muestre esta factura al momento de retirar su producto en tienda.</p>
                 <a href="{% url 'facturas:descargar_factura' compra.id %}" class="btn-descargar-factura">
@@ -58,14 +62,14 @@
             </div>
             {% endif %}
 
-            <div class="instrucciones-retiro">
+            <div class="instrucciones-retiro animate-on-scroll">
                 <h3>Instrucciones para retirar su producto</h3>
                 <p>Con su factura, acérquese a la puerta de salida y muéstrela a la persona encargada de validar su compra.</p>
                 <p><strong>Horario de atención:</strong> Lunes a Viernes de 9:00 AM a 10:00 PM, Sábados de 10:00 AM a 10:00 PM.</p>
                 <p><strong>Importante:</strong> Presente factura (digital) al personal de la tienda.</p>
             </div>
             
-            <div class="acciones-confirmacion">
+            <div class="acciones-confirmacion animate-on-scroll">
                 <a href="{% url 'facturas:detalle_compra' compra.id %}" class="btn-ver-pedido">📋 Ver Detalles del Pedido</a>
                 <a href="{% url 'core:home' %}" class="btn-seguir-comprando">🛍️ Volver a la Tienda</a>
             </div>

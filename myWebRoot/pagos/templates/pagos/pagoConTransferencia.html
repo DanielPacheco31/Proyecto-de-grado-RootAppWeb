@@ -7,12 +7,16 @@
 <link rel="stylesheet" href="{% static 'css/pagos.css' %}">
 {% endblock %}
 
+{% block extra_js %}
+<script src="{% static 'js/pagos.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <section id="pago-transferencia" class="checkout-section">
     <div class="container">
         <h2>Pago por Transferencia Bancaria</h2>
         
-        <div class="resumen-compra">
+        <div class="resumen-compra animate-on-scroll">
             <div class="resumen-titulo">Resumen de tu Compra #{{ pago.compra.id }}</div>
             
             <div class="resumen-total">
@@ -21,7 +25,7 @@
             </div>
         </div>
         
-        <div class="transferencia-container">
+        <div class="transferencia-container animate-on-scroll">
             <div class="datos-bancarios">
                 <h3>🏦 Datos para realizar la transferencia</h3>
                 
@@ -86,26 +90,4 @@
         </div>
     </div>
 </section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const inputComprobante = document.getElementById('input-comprobante');
-    const btnExaminar = document.getElementById('btn-examinar');
-    const archivoSeleccionado = document.getElementById('archivo-seleccionado');
-    
-    btnExaminar.addEventListener('click', function() {
-        inputComprobante.click();
-    });
-    
-    inputComprobante.addEventListener('change', function() {
-        if (this.files && this.files[0]) {
-            archivoSeleccionado.textContent = '📎 ' + this.files[0].name;
-            archivoSeleccionado.style.color = '#0066FF';
-        } else {
-            archivoSeleccionado.textContent = 'Ningún archivo seleccionado';
-            archivoSeleccionado.style.color = '#666';
-        }
-    });
-});
-</script>
 {% endblock %}

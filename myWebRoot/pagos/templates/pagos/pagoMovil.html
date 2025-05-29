@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="{% static 'css/pagos.css' %}">
 {% endblock %}
 
+{% block extra_js %}
+<script src="{% static 'js/pagos.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <section id="pago-movil" class="checkout-section">
     <div class="container">
@@ -22,7 +26,7 @@
         </div>
         {% endif %}
         
-        <div class="pago-movil-container">
+        <div class="pago-movil-container animate-on-scroll">
             <div class="metodo-info">
                 <div class="metodo-icon">📱</div>
                 <div class="metodo-nombre">Nequi</div>
