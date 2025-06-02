@@ -134,7 +134,7 @@
             {% endif %}
             
             {% if compra.estado == 'pendiente' %}
-            <form method="post" action="#" class="form-cancelar">
+            <form method="post" action="{% url 'facturas:cancelar_compra' compra.id %}" class="form-cancelar">
                 {% csrf_token %}
                 <button type="submit" class="btn-cancelar">Cancelar Compra</button>
             </form>

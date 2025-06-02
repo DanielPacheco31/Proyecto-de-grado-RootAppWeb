@@ -11116,3 +11116,174 @@ INFO 2025-05-29 12:45:59,503 basehttp 11028 9660 "GET /static/css/facturas.css H
 INFO 2025-05-29 12:45:59,510 basehttp 11028 9660 "GET /static/js/facturas.js HTTP/1.1" 200 8689
 INFO 2025-05-29 12:46:11,305 basehttp 11028 9660 "POST /facturas/8/ HTTP/1.1" 200 6958
 INFO 2025-05-29 12:46:15,190 basehttp 11028 9660 "POST /facturas/8/ HTTP/1.1" 200 6958
+INFO 2025-05-29 12:48:00,659 basehttp 11028 9660 "POST /facturas/8/ HTTP/1.1" 200 6958
+INFO 2025-05-29 12:48:00,744 basehttp 11028 9660 "GET /static/css/facturas.css HTTP/1.1" 304 0
+INFO 2025-05-29 12:52:31,690 autoreload 11028 11132 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-29 12:52:33,167 autoreload 16272 7976 Watching for file changes with StatReloader
+INFO 2025-05-29 12:53:10,324 autoreload 16272 7976 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\urls.py changed, reloading.
+INFO 2025-05-29 12:53:11,870 autoreload 13676 9708 Watching for file changes with StatReloader
+INFO 2025-05-29 12:53:14,825 autoreload 13676 9708 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\urls.py changed, reloading.
+INFO 2025-05-29 12:53:16,288 autoreload 4084 17012 Watching for file changes with StatReloader
+INFO 2025-05-29 12:53:43,654 autoreload 4084 17012 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\urls.py changed, reloading.
+INFO 2025-05-29 12:53:45,104 autoreload 10876 6932 Watching for file changes with StatReloader
+INFO 2025-05-29 12:53:47,386 autoreload 10876 6932 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\urls.py changed, reloading.
+INFO 2025-05-29 12:53:48,855 autoreload 7092 17388 Watching for file changes with StatReloader
+INFO 2025-05-29 12:53:51,881 autoreload 7092 17388 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\urls.py changed, reloading.
+INFO 2025-05-29 12:53:53,203 autoreload 4472 11056 Watching for file changes with StatReloader
+INFO 2025-05-29 12:53:55,213 autoreload 4472 11056 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\urls.py changed, reloading.
+INFO 2025-05-29 12:53:56,583 autoreload 11524 5572 Watching for file changes with StatReloader
+INFO 2025-05-29 12:53:58,621 autoreload 11524 5572 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\urls.py changed, reloading.
+INFO 2025-05-29 12:54:00,101 autoreload 1820 2896 Watching for file changes with StatReloader
+INFO 2025-05-29 12:54:02,073 autoreload 1820 2896 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\urls.py changed, reloading.
+INFO 2025-05-29 12:54:03,390 autoreload 4620 11128 Watching for file changes with StatReloader
+INFO 2025-05-29 12:57:06,666 autoreload 4620 11128 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:57:08,191 autoreload 10800 10044 Watching for file changes with StatReloader
+INFO 2025-05-29 12:57:18,960 autoreload 10800 10044 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:57:20,503 autoreload 16788 6740 Watching for file changes with StatReloader
+INFO 2025-05-29 12:57:22,401 autoreload 16788 6740 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:57:23,977 autoreload 12252 5104 Watching for file changes with StatReloader
+INFO 2025-05-29 12:57:26,939 autoreload 12252 5104 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:57:28,534 autoreload 14000 4896 Watching for file changes with StatReloader
+INFO 2025-05-29 12:57:30,609 autoreload 14000 4896 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:57:32,242 autoreload 15960 6316 Watching for file changes with StatReloader
+INFO 2025-05-29 12:57:38,601 autoreload 15960 6316 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:57:40,105 autoreload 17304 684 Watching for file changes with StatReloader
+INFO 2025-05-29 12:57:49,784 autoreload 17304 684 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:57:51,272 autoreload 12704 8852 Watching for file changes with StatReloader
+INFO 2025-05-29 12:57:54,354 autoreload 12704 8852 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:57:55,751 autoreload 7220 11812 Watching for file changes with StatReloader
+INFO 2025-05-29 12:57:58,815 autoreload 7220 11812 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:58:00,259 autoreload 10572 15320 Watching for file changes with StatReloader
+INFO 2025-05-29 12:58:25,279 autoreload 10572 15320 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:58:26,806 autoreload 4412 12096 Watching for file changes with StatReloader
+INFO 2025-05-29 12:58:29,847 autoreload 4412 12096 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:58:31,213 autoreload 11268 12180 Watching for file changes with StatReloader
+INFO 2025-05-29 12:58:35,937 autoreload 11268 12180 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:58:37,405 autoreload 11964 1376 Watching for file changes with StatReloader
+INFO 2025-05-29 12:58:39,509 autoreload 11964 1376 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:58:41,301 autoreload 4496 15780 Watching for file changes with StatReloader
+INFO 2025-05-29 12:58:44,367 autoreload 4496 15780 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:58:46,044 autoreload 2452 16776 Watching for file changes with StatReloader
+INFO 2025-05-29 12:58:51,173 autoreload 2452 16776 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:58:52,628 autoreload 10924 5056 Watching for file changes with StatReloader
+INFO 2025-05-29 12:58:54,524 autoreload 10924 5056 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:58:55,968 autoreload 3248 8608 Watching for file changes with StatReloader
+INFO 2025-05-29 12:58:57,802 autoreload 3248 8608 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:58:59,403 autoreload 10304 9552 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:02,427 autoreload 10304 9552 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:04,052 autoreload 5988 10448 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:06,192 autoreload 5988 10448 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:07,732 autoreload 17020 6788 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:11,747 autoreload 17020 6788 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:13,316 autoreload 15260 14576 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:19,779 autoreload 15260 14576 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:21,462 autoreload 1304 684 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:24,489 autoreload 1304 684 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:26,170 autoreload 4120 15048 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:28,142 autoreload 4120 15048 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:29,574 autoreload 10804 12772 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:31,522 autoreload 10804 12772 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:33,062 autoreload 2912 10268 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:34,946 autoreload 2912 10268 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:36,394 autoreload 7480 11836 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:38,365 autoreload 7480 11836 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:39,743 autoreload 3556 2240 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:42,789 autoreload 3556 2240 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:44,429 autoreload 10876 4792 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:46,616 autoreload 10876 4792 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:48,318 autoreload 6956 17284 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:52,648 autoreload 6956 17284 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:54,057 autoreload 2016 10512 Watching for file changes with StatReloader
+INFO 2025-05-29 12:59:56,243 autoreload 2016 10512 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 12:59:58,120 autoreload 4152 16052 Watching for file changes with StatReloader
+INFO 2025-05-29 13:00:00,064 autoreload 4152 16052 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 13:00:01,563 autoreload 15652 15756 Watching for file changes with StatReloader
+INFO 2025-05-29 13:00:03,575 autoreload 15652 15756 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\models.py changed, reloading.
+INFO 2025-05-29 13:00:05,328 autoreload 16684 16984 Watching for file changes with StatReloader
+INFO 2025-05-29 13:00:12,338 basehttp 16684 3556 "POST /facturas/8/ HTTP/1.1" 200 6978
+INFO 2025-05-29 13:00:12,373 basehttp 16684 3556 "GET /static/css/facturas.css HTTP/1.1" 304 0
+ERROR 2025-05-29 13:00:17,111 log 16684 3556 Internal Server Error: /facturas/8/cancelar/
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py", line 115, in cancelar_compra
+    with transaction.atomic():
+         ^^^^^^^^^^^
+NameError: name 'transaction' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py", line 148, in cancelar_compra
+    return redirect('facturas:detalle_compra', compra_id=compra.id)
+           ^^^^^^^^
+NameError: name 'redirect' is not defined
+ERROR 2025-05-29 13:00:17,143 basehttp 16684 3556 "POST /facturas/8/cancelar/ HTTP/1.1" 500 79651
+INFO 2025-05-29 13:01:13,757 autoreload 16684 16984 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-29 13:01:15,333 autoreload 4440 10968 Watching for file changes with StatReloader
+INFO 2025-05-29 13:01:27,176 autoreload 4440 10968 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-29 13:01:28,761 autoreload 4396 7984 Watching for file changes with StatReloader
+INFO 2025-05-29 13:01:31,876 autoreload 4396 7984 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-29 13:01:33,268 autoreload 2280 15420 Watching for file changes with StatReloader
+INFO 2025-05-29 13:01:48,537 autoreload 2280 15420 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-29 13:01:50,024 autoreload 17100 5224 Watching for file changes with StatReloader
+INFO 2025-05-29 13:01:54,309 autoreload 17100 5224 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-29 13:01:55,657 autoreload 11444 2144 Watching for file changes with StatReloader
+INFO 2025-05-29 13:01:59,112 autoreload 11444 2144 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-29 13:02:00,660 autoreload 10924 16628 Watching for file changes with StatReloader
+INFO 2025-05-29 13:02:02,984 autoreload 10924 16628 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\facturas\views.py changed, reloading.
+INFO 2025-05-29 13:02:04,883 autoreload 9184 15672 Watching for file changes with StatReloader
+INFO 2025-05-29 13:02:05,715 basehttp 9184 17340 "POST /facturas/8/cancelar/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:02:05,786 basehttp 9184 17340 "GET /usuarios/perfil/ HTTP/1.1" 200 25991
+INFO 2025-05-29 13:02:18,344 basehttp 9184 17340 "GET /carrito/finalizar/ HTTP/1.1" 200 3515
+WARNING 2025-05-29 13:02:18,402 basehttp 9184 17340 "GET /static/css/styles.css HTTP/1.1" 404 1856
+INFO 2025-05-29 13:02:27,366 basehttp 9184 16768 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:02:27,397 basehttp 9184 16768 "GET /pagos/9/metodo/ HTTP/1.1" 200 6257
+INFO 2025-05-29 13:02:27,547 basehttp 9184 16768 "GET /static/css/pagos.css HTTP/1.1" 200 24115
+INFO 2025-05-29 13:02:27,560 basehttp 9184 8860 "GET /static/js/pagos.js HTTP/1.1" 200 18660
+INFO 2025-05-29 13:02:34,333 basehttp 9184 16768 "POST /pagos/9/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:02:34,365 basehttp 9184 16768 "GET /pagos/movil/6/ HTTP/1.1" 200 5571
+INFO 2025-05-29 13:02:43,732 basehttp 9184 16768 "POST /carrito/eliminar/13/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:02:43,770 basehttp 9184 16768 "GET /usuarios/perfil/ HTTP/1.1" 200 22505
+INFO 2025-05-29 13:02:51,996 basehttp 9184 16768 "GET /facturas/9/ HTTP/1.1" 200 6777
+INFO 2025-05-29 13:02:52,036 basehttp 9184 8860 "GET /static/css/facturas.css HTTP/1.1" 304 0
+INFO 2025-05-29 13:02:55,234 basehttp 9184 16768 "POST /facturas/9/cancelar/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:02:55,276 basehttp 9184 16768 "GET /usuarios/perfil/ HTTP/1.1" 200 22479
+INFO 2025-05-29 13:03:03,961 basehttp 9184 16768 "GET /facturas/5/ HTTP/1.1" 200 6777
+INFO 2025-05-29 13:03:07,480 basehttp 9184 16768 "POST /facturas/5/cancelar/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:03:07,531 basehttp 9184 16768 "GET /usuarios/perfil/ HTTP/1.1" 200 22479
+INFO 2025-05-29 13:03:12,027 basehttp 9184 16768 "GET /facturas/4/ HTTP/1.1" 200 6777
+INFO 2025-05-29 13:03:13,964 basehttp 9184 16768 "GET /pagos/4/metodo/ HTTP/1.1" 200 5898
+INFO 2025-05-29 13:03:16,595 basehttp 9184 16768 "POST /pagos/4/procesar/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:03:16,620 basehttp 9184 16768 "GET /pagos/movil/7/ HTTP/1.1" 200 5571
+INFO 2025-05-29 13:03:27,223 basehttp 9184 16768 "POST /pagos/movil/7/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:03:27,264 basehttp 9184 16768 "GET /pagos/confirmar/7/ HTTP/1.1" 200 5274
+INFO 2025-05-29 13:03:30,915 basehttp 9184 16768 "GET / HTTP/1.1" 200 4193
+INFO 2025-05-29 13:03:33,029 basehttp 9184 16768 "GET /usuarios/perfil/ HTTP/1.1" 200 22055
+INFO 2025-05-29 13:03:54,532 basehttp 9184 16768 "GET /usuarios/perfil/ HTTP/1.1" 200 22055
+INFO 2025-05-29 13:04:07,541 basehttp 9184 16768 "GET /facturas/9/ HTTP/1.1" 200 6344
+INFO 2025-05-29 13:04:13,118 basehttp 9184 16768 "GET /usuarios/perfil/ HTTP/1.1" 200 22055
+INFO 2025-05-29 13:04:17,452 basehttp 9184 16768 "GET /facturas/4/ HTTP/1.1" 200 7126
+INFO 2025-05-29 13:04:24,774 basehttp 9184 16768 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 13:04:24,830 basehttp 9184 8860 "GET /static/js/scanner.js HTTP/1.1" 304 0
+INFO 2025-05-29 13:04:27,814 basehttp 9184 16768 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:04:27,854 basehttp 9184 16768 "GET /usuarios/perfil/ HTTP/1.1" 200 27110
+INFO 2025-05-29 13:04:32,695 basehttp 9184 16768 "POST /carrito/eliminar/14/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:04:32,751 basehttp 9184 16768 "GET /usuarios/perfil/ HTTP/1.1" 200 22511
+INFO 2025-05-29 13:04:36,663 basehttp 9184 16768 "GET /scanner/ HTTP/1.1" 200 6353
+INFO 2025-05-29 13:04:40,986 basehttp 9184 16768 "POST /scanner/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:04:41,032 basehttp 9184 16768 "GET /usuarios/perfil/ HTTP/1.1" 200 27110
+INFO 2025-05-29 13:04:45,435 basehttp 9184 16768 "GET /carrito/finalizar/ HTTP/1.1" 200 3515
+WARNING 2025-05-29 13:04:45,481 basehttp 9184 8860 "GET /static/css/styles.css HTTP/1.1" 404 1856
+INFO 2025-05-29 13:05:46,370 basehttp 9184 16768 "GET /carrito/finalizar/ HTTP/1.1" 200 3515
+WARNING 2025-05-29 13:05:46,424 basehttp 9184 16768 "GET /static/css/styles.css HTTP/1.1" 404 1856
+INFO 2025-05-29 13:06:16,493 basehttp 9184 10128 "GET /carrito/finalizar/ HTTP/1.1" 200 3515
+WARNING 2025-05-29 13:06:16,541 basehttp 9184 10128 "GET /static/css/styles.css HTTP/1.1" 404 1856
+INFO 2025-05-29 13:08:44,862 basehttp 9184 16736 "GET /carrito/finalizar/ HTTP/1.1" 200 3516
+INFO 2025-05-29 13:08:44,894 basehttp 9184 16736 "GET /static/css/carrito.css HTTP/1.1" 200 15322
+INFO 2025-05-29 13:08:53,085 basehttp 9184 16736 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-05-29 13:08:53,121 basehttp 9184 16736 "GET /pagos/10/metodo/ HTTP/1.1" 200 6259

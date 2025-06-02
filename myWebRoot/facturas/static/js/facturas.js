@@ -287,3 +287,19 @@ function showConfirmModal(message, onConfirm, onCancel) {
     
     document.head.appendChild(styleEl);
 })();
+/* scripts para cancelar factura */
+
+function confirmarCancelacion() {
+    // Confirmación personalizada
+    if (confirm('¿Estás seguro de que deseas cancelar esta compra?\n\nEsta acción no se puede deshacer y:\n• Se cancelará la compra #{{ compra.id }}\n• Se restaurará el stock de los productos\n• No se realizará ningún pago')) {
+        
+        // Cambiar texto del botón mientras se procesa
+        const btnCancelar = document.querySelector('.btn-cancelar');
+        const textoOriginal = btnCancelar.textContent;
+        btnCancelar.textContent = 'Cancelando...';
+        btnCancelar.disabled = true;
+        
+        // Enviar formulario
+        document.getElementById('formCancelar').submit();
+    }
+}

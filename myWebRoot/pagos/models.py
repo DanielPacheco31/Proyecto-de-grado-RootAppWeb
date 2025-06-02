@@ -8,29 +8,13 @@ from productos.models import Producto
 class Compra(models.Model):
     """Modelo para registrar las compras de los usuarios."""
 
-    ESTADO_CHOICES = (
-        ("pendiente", "Pendiente"),
-        ("pagado", "Pagado"),
-        ("enviado", "Enviado"),
-        ("entregado", "Entregado"),
-        ("cancelado", "Cancelado"),
-    )
+    ESTADO_CHOICES = (("pendiente", "Pendiente"),("pagado", "Pagado"),("enviado", "Enviado"),("entregado", "Entregado"),("cancelado", "Cancelado"),)
 
-    usuario = models.ForeignKey(
-        settings.AUTH_USER_MODEL,  # Cambio principal aquí
-        on_delete=models.CASCADE, 
-        related_name="compras"
-    )
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name="compras")
     fecha_compra = models.DateTimeField(auto_now_add=True)
-    estado = models.CharField(
-        max_length=20,
-        choices=ESTADO_CHOICES,
-        default="pendiente",
-    )
+    estado = models.CharField(max_length=20,choices=ESTADO_CHOICES,default="pendiente",)
     total = models.DecimalField(max_digits=10, decimal_places=2)
-    # Cambiado null=True a default=""
     direccion_entrega = models.TextField(blank=True, default="")
-    # Cambiado null=True a default=""
     codigo_seguimiento = models.CharField(max_length=50, blank=True, default="")
 
     def __str__(self) -> str:
@@ -41,11 +25,7 @@ class Compra(models.Model):
 class DetalleCompra(models.Model):
     """Modelo para registrar los productos incluidos en una compra."""
 
-    compra = models.ForeignKey(
-        Compra,
-        on_delete=models.CASCADE,
-        related_name="detalles",
-    )
+    compra = models.ForeignKey(Compra, on_delete=models.CASCADE, related_name="detalles",)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField(default=1)
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
@@ -63,19 +43,10 @@ class DetalleCompra(models.Model):
 class MetodoPago(models.Model):
     """Modelo para definir los métodos de pago disponibles."""
 
-    TIPO_CHOICES = (
-        ("nequi", "Nequi"),
-        ("bancolombia", "Bancolombia"),
-        ("pse", "PSE"),
-        ("tarjeta", "Tarjeta de Crédito"),
-        ("movil", "Pago Móvil"),
-        ("transferencia", "Transferencia Bancaria"),
-    )
-
+    TIPO_CHOICES = (("nequi", "Nequi"),("bancolombia", "Bancolombia"),("pse", "PSE"),("tarjeta", "Tarjeta de Crédito"),("movil", "Pago Móvil"),("transferencia", "Transferencia Bancaria"),)
     nombre = models.CharField(max_length=100)
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
     activo = models.BooleanField(default=True)
-    # null=True es aceptable en JSONField
     configuracion = models.JSONField(blank=True, null=True)
 
     def __str__(self) -> str:
@@ -86,30 +57,12 @@ class MetodoPago(models.Model):
 class Pago(models.Model):
     """Modelo para registrar los pagos realizados por cada compra."""
 
-    ESTADO_CHOICES = (
-        ("pendiente", "Pendiente"),
-        ("pagado", "Pagado"),
-        ("cancelado", "Cancelado"),
-    )
-
-    compra = models.OneToOneField(
-        Compra,
-        on_delete=models.CASCADE,
-        related_name="pago",
-    )
-    metodo_pago = models.ForeignKey(
-        MetodoPago,
-        on_delete=models.PROTECT,
-        related_name="pagos",
-    )
+    ESTADO_CHOICES = (("pendiente", "Pendiente"),("pagado", "Pagado"),("cancelado", "Cancelado"),)
+    compra = models.OneToOneField(Compra,on_delete=models.CASCADE,related_name="pago",)
+    metodo_pago = models.ForeignKey(MetodoPago,on_delete=models.PROTECT,related_name="pagos",)
     monto = models.DecimalField(max_digits=10, decimal_places=2)
-    # Cambiado null=True a default=""
     referencia = models.CharField(max_length=100, blank=True, default="")
-    estado = models.CharField(
-        max_length=20,
-        choices=ESTADO_CHOICES,
-        default="pendiente",
-    )
+    estado = models.CharField(max_length=20,choices=ESTADO_CHOICES,default="pendiente",)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
 
