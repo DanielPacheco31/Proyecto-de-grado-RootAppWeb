@@ -4,12 +4,7 @@ from django.apps import AppConfig
 
 
 class CoreConfig(AppConfig):
-    """
-    Configuración para la aplicación principal de ROOT.
-
-    Esta aplicación gestiona las vistas principales como la página de inicio,
-    información institucional y contacto.
-    """
+    """Configuracion para la aplicacion principal de ROOT."""
 
     default_auto_field = "django.db.models.BigAutoField"
     name = "core"

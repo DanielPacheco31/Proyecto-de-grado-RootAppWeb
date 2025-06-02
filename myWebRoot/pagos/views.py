@@ -132,12 +132,7 @@ def _crear_pago(compra: Compra, metodo_pago: MetodoPago) -> tuple[Pago | None, s
 
     """
     try:
-        pago = Pago.objects.create(
-            compra=compra,
-            metodo_pago=metodo_pago,
-            monto=compra.total,
-            estado="pendiente",
-        )
+        pago = Pago.objects.create(compra=compra,metodo_pago=metodo_pago,monto=compra.total,estado="pendiente",)
     except (ValueError, TypeError, Pago.DoesNotExist, MetodoPago.DoesNotExist) as e:
         # Reemplazamos Exception por excepciones específicas
         return None, f"Error al procesar el pago: {e!s}"

@@ -25,7 +25,7 @@
                     <div class="perfil-foto-overlay">
                         <form method="post" action="{% url 'usuarios:actualizar_foto' %}" enctype="multipart/form-data" id="formFoto">
                             {% csrf_token %}
-                            <input type="file" name="foto" id="inputFoto" accept="image/*" style="display: none;">
+                            <input type="file" name="foto" id="inputFoto" accept="img/*" style="display: none;">
                             <button type="button" id="cambiarFoto" class="btn-cambiar-foto">
                                 <i data-lucide="camera" class="icono-cambiar"></i>
                             </button>

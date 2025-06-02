@@ -13,26 +13,10 @@ from .models import Carrito, CarritoItem
 
 @login_required
 def finalizar_compra(request: HttpRequest) -> HttpResponse:
-    """
-    Finaliza la compra de los productos en el carrito del usuario.
-
-    Transfiere los productos del carrito a una nueva compra y redirige al
-    proceso de pago.
-
-    Args:
-        request: La solicitud HTTP.
-
-    Returns:
-        HttpResponse: Redirección al perfil o proceso de pago.
-
-    """
+    """Finaliza la compra de los productos en el carrito del usuario."""
     # Usar select_related para cargar usuario en una sola consulta
     try:
-        carrito = Carrito.objects.select_related(
-            "usuario",
-        ).prefetch_related(
-            "items__producto",
-        ).get(usuario=request.user)
+        carrito = Carrito.objects.select_related("usuario",).prefetch_related("items__producto",).get(usuario=request.user)
     except Carrito.DoesNotExist:
         messages.error(request, "No tienes un carrito activo")
         return redirect("usuarios:perfil")
@@ -49,24 +33,14 @@ def finalizar_compra(request: HttpRequest) -> HttpResponse:
             # Obtener dirección de entrega del usuario si no se proporciona
             usuario_direccion = request.user.direccion or ""
 
-            compra = Compra.objects.create(
-                usuario=request.user,
-                estado="pendiente",
-                total=carrito.total,
-                direccion_entrega=direccion_entrega or usuario_direccion,
-            )
+            compra = Compra.objects.create(usuario=request.user, estado="pendiente", total=carrito.total, direccion_entrega=direccion_entrega or usuario_direccion,)
 
             # Crear todos los detalles de compra de una vez en lugar de uno por uno
             detalles_compra = []
             productos_actualizar = []
 
             for item in carrito.items.select_related("producto").all():
-                detalles_compra.append(DetalleCompra(
-                    compra=compra,
-                    producto=item.producto,
-                    cantidad=item.cantidad,
-                    precio_unitario=item.producto.precio,
-                ))
+                detalles_compra.append(DetalleCompra(compra=compra, producto=item.producto, cantidad=item.cantidad, precio_unitario=item.producto.precio,))
 
                 # Actualizar stock
                 producto = item.producto
@@ -91,20 +65,10 @@ def finalizar_compra(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def actualizar_cantidad(request: HttpRequest, item_id: int) -> HttpResponse:
-    """
-    Actualiza la cantidad de un producto en el carrito.
+    """Actualiza la cantidad de un producto en el carrito.
 
     Aumenta o disminuye la cantidad de un producto específico en el carrito
-    según la acción solicitada.
-
-    Args:
-        request: La solicitud HTTP.
-        item_id: ID del item del carrito a actualizar.
-
-    Returns:
-        HttpResponse: Redirección al perfil del usuario.
-
-    """
+    según la acción solicitada."""
     item = get_object_or_404(CarritoItem, id=item_id, carrito__usuario=request.user)
 
     if request.method == "POST":
@@ -112,14 +76,11 @@ def actualizar_cantidad(request: HttpRequest, item_id: int) -> HttpResponse:
 
         if accion == "sumar":
             # Verificar stock disponible antes de aumentar
-            if item.cantidad < item.producto.stock:
+            if item.cantidad < item.producto.stock: 
                 item.cantidad += 1
                 item.save()
             else:
-                messages.warning(
-                    request,
-                    f"No hay suficiente stock de {item.producto.nombre}",
-                )
+                messages.warning(request, f"No hay suficiente stock de {item.producto.nombre}",)
         elif accion == "restar" and item.cantidad > 1:
             item.cantidad -= 1
             item.save()
@@ -129,9 +90,7 @@ def actualizar_cantidad(request: HttpRequest, item_id: int) -> HttpResponse:
 
 @login_required
 def eliminar_item(request: HttpRequest, item_id: int) -> HttpResponse:
-    """
-    Elimina un producto del carrito de forma segura.
-    """
+    """Elimina un producto del carrito de forma segura."""
     if request.method == "POST":
         try:
             item = CarritoItem.objects.select_related('producto').get(id=item_id, carrito__usuario=request.user)

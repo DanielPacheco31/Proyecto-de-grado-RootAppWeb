@@ -29,38 +29,35 @@
             </div>
         </div>
         
-        <div class="info-compra">
-            <div class="seccion-info">
-                <h3>Información General</h3>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <div class="info-label">Fecha de compra:</div>
-                        <div class="info-valor">{{ compra.fecha_compra|date:"d/m/Y H:i" }}</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Usuario:</div>
-                        <div class="info-valor">{{ compra.usuario.get_full_name|default:compra.usuario.username }}</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Total:</div>
-                        <div class="info-valor total">${{ compra.total|floatformat:2 }}</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Estado:</div>
-                        <div class="info-valor">
-                            <span class="estado-badge estado-{{ compra.estado }}">
-                                {{ compra.get_estado_display }}
-                            </span>
-                        </div>
-                    </div>
+<div class="info-compra">
+    <div class="seccion-info">
+        <h3>Información General</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Fecha de compra:</div>
+                <div class="info-valor">{{ compra.fecha_compra|date:"d/m/Y H:i" }}</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Usuario:</div>
+                <div class="info-valor">{{ compra.usuario.get_full_name|default:compra.usuario.username }}</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Total:</div>
+                <div class="info-valor total">${{ compra.total|floatformat:2 }}</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Estado:</div>
+                <div class="info-valor">
+                    <span class="estado-badge estado-{{ compra.estado }}">
+                        {{ compra.get_estado_display }}
+                    </span>
                 </div>
             </div>
-            
-            <div class="seccion-info">
-                <h3>Dirección</h3>
-                <div class="direccion-entrega">
+            <div class="info-item direccion-item">
+                <div class="info-label">Dirección:</div>
+                <span class="info-valor direccion-entrega">
                     {{ compra.direccion_entrega|default:"No se ha especificado una dirección." }}
-                </div>
+                </span>
             </div>
             
             {% if compra.codigo_seguimiento %}
