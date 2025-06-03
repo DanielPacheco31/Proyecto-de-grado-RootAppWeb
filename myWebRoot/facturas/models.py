@@ -13,7 +13,7 @@ class Factura(models.Model):
     """
 
     # Usar una referencia de cadena para evitar importaciones circulares
-    compra = models.OneToOneField("pagos.Compra", on_delete=models.CASCADE, related_name="factura",)
+    compra = models.OneToOneField("pagos.Compra", on_delete=models.CASCADE, related_name="factura")
     numero = models.CharField(max_length=50, unique=True)
     fecha_emision = models.DateTimeField(auto_now_add=True)
     pdf = models.FileField(upload_to="facturas/", blank=True, null=True)
@@ -23,7 +23,7 @@ class Factura(models.Model):
         return f"Factura {self.numero}"
 
     class Meta:
-        ordering = ['-fecha_emision']
+        ordering = ["-fecha_emision"]
         verbose_name = "Factura"
         verbose_name_plural = "Facturas"
 

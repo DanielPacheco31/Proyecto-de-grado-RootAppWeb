@@ -2,12 +2,13 @@
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
 from facturas.models import Factura
 from facturas.utils import generar_factura
-from django.db import transaction
-from django.utils import timezone
+
 from .models import Compra, MetodoPago, Pago
 from .tasks import enviar_correo_confirmacion
 
@@ -132,7 +133,7 @@ def _crear_pago(compra: Compra, metodo_pago: MetodoPago) -> tuple[Pago | None, s
 
     """
     try:
-        pago = Pago.objects.create(compra=compra,metodo_pago=metodo_pago,monto=compra.total,estado="pendiente",)
+        pago = Pago.objects.create(compra=compra,metodo_pago=metodo_pago,monto=compra.total,estado="pendiente")
     except (ValueError, TypeError, Pago.DoesNotExist, MetodoPago.DoesNotExist) as e:
         # Reemplazamos Exception por excepciones específicas
         return None, f"Error al procesar el pago: {e!s}"
@@ -361,44 +362,43 @@ def pago_transferencia(request: HttpRequest, pago_id: int) -> HttpResponse:
 def pago_movil(request, pago_id):
     """Vista para procesar pago móvil con Nequi."""
     pago = get_object_or_404(Pago, id=pago_id)
-    
-    if request.method == 'POST':
-        numero_telefono = request.POST.get('numero_telefono')
-        
+
+    if request.method == "POST":
+        numero_telefono = request.POST.get("numero_telefono")
+
         # Validar número de teléfono
         if not numero_telefono:
-            messages.error(request, 'Por favor ingrese un número de teléfono')
-            return render(request, 'pagos/pagoMovil.html', {'pago': pago})
-        
+            messages.error(request, "Por favor ingrese un número de teléfono")
+            return render(request, "pagos/pagoMovil.html", {"pago": pago})
+
         # Limpiar y validar formato del teléfono
-        telefono_limpio = numero_telefono.replace(' ', '').replace('-', '')
+        telefono_limpio = numero_telefono.replace(" ", "").replace("-", "")
         if len(telefono_limpio) != 10 or not telefono_limpio.isdigit():
-            messages.error(request, 'Por favor ingrese un número de teléfono válido (10 dígitos)')
-            return render(request, 'pagos/pagoMovil.html', {'pago': pago})
-        
+            messages.error(request, "Por favor ingrese un número de teléfono válido (10 dígitos)")
+            return render(request, "pagos/pagoMovil.html", {"pago": pago})
+
         try:
             with transaction.atomic():
                 # Actualizar el pago
                 pago.referencia = numero_telefono
-                pago.estado = 'completado'
+                pago.estado = "completado"
                 pago.fecha_actualizacion = timezone.now()
                 pago.save()
-                
+
                 # Generar factura usando la función de utils
                 try:
                     factura = generar_factura(pago.compra)
-                    messages.success(request, f'Pago confirmado. Factura {factura.numero} generada exitosamente')
+                    messages.success(request, f"Pago confirmado. Factura {factura.numero} generada exitosamente")
                 except Exception as e:
                     # El pago se completó pero no se pudo generar la factura
-                    messages.warning(request, f'Pago confirmado, pero hubo un problema generando la factura: {str(e)}')
-                
-                return redirect('pagos:confirmar_pago', pago_id=pago.id)
-                
+                    messages.warning(request, f"Pago confirmado, pero hubo un problema generando la factura: {e!s}")
+
+                return redirect("pagos:confirmar_pago", pago_id=pago.id)
+
         except Exception as e:
-            messages.error(request, f'Error al procesar el pago: {str(e)}')
-            print(f"Error en pago_movil: {e}")  # Para debug
-    
-    return render(request, 'pagos/pagoMovil.html', {'pago': pago})
+            messages.error(request, f"Error al procesar el pago: {e!s}")
+
+    return render(request, "pagos/pagoMovil.html", {"pago": pago})
 
 
 @login_required

@@ -26,9 +26,9 @@
     --transition: all 0.3s ease;
     --spacing-xs: 8px;
     --spacing-sm: 16px;
-    --spacing-md: 24px;
+    --spacing-md: 10px;
     --spacing-lg: 32px;
-    --spacing-xl: 48px;
+    --spacing-xl: 20px;
 }
 
 body {
@@ -141,7 +141,7 @@ h1, h2, h3, h4, h5, h6 {
 #Producto {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: white;
-    padding: var(--spacing-xl) 5%;
+    padding: var(--spacing-xl) 1%;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -200,7 +200,6 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     font-size: 1.1rem;
     font-weight: 700;
-    margin: var(--spacing-md) 0;
     cursor: pointer;
     transition: var(--transition);
     border-radius: var(--radius-full);
@@ -386,7 +385,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-md);
     background: rgba(255, 255, 255, 0.1);
-    color: white;
+    color: red;
     font-size: 1rem;
     transition: var(--transition);
     box-sizing: border-box;

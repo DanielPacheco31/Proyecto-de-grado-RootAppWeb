@@ -8,7 +8,7 @@ from productos.models import Producto
 class Carrito(models.Model):
     """Modelo para almacenar el carrito de compras de un usuario."""
 
-    usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="carrito",)
+    usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="carrito")
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
@@ -37,4 +37,3 @@ class CarritoItem(models.Model):
     def __str__(self) -> str:
         """Representación de cadena del item en el carrito."""
         return f"{self.cantidad} x {self.producto.nombre}"
-        

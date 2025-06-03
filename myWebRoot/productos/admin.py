@@ -35,4 +35,4 @@ class ProductoAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         """Optimizar consultas incluyendo categoria."""
-        return super().get_queryset(request).select_related('categoria')
+        return super().get_queryset(request).select_related("categoria")

@@ -239,4 +239,3 @@ def cambiar_password(request: HttpRequest) -> HttpResponse:
                 messages.error(request, error)
 
     return redirect("usuarios:perfil")
-    
