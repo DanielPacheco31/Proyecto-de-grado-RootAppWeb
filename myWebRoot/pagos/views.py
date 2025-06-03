@@ -67,17 +67,8 @@ def inicializar_metodos_pago() -> int:
 def _verificar_pago_existente(
     request: HttpRequest, compra: Compra,
 ) -> HttpResponse | None:
-    """
-    Verifica si ya existe un pago para la compra y redirige según corresponda.
+    """Verifica si ya existe un pago para la compra y redirige según corresponda."""
 
-    Args:
-        request: La solicitud HTTP.
-        compra: Objeto Compra a verificar.
-
-    Returns:
-        HttpResponse o None: Redirección si existe un pago, None si no.
-
-    """
     try:
         pago_existente = Pago.objects.get(compra=compra)
         # Si ya existe, redirigir según el tipo de método de pago
@@ -95,16 +86,8 @@ def _verificar_pago_existente(
 
 
 def _obtener_metodo_pago(metodo_pago_id: str) -> MetodoPago | None:
-    """
-    Obtiene el método de pago basado en el ID proporcionado.
+    """ Obtiene el método de pago basado en el ID proporcionado."""
 
-    Args:
-        metodo_pago_id: ID del método de pago desde el formulario.
-
-    Returns:
-        MetodoPago o None: Instancia del método de pago o None si hay error.
-
-    """
     try:
         # Si es un ID numérico válido de la base de datos
         metodo_id = int(metodo_pago_id)
@@ -121,17 +104,8 @@ def _obtener_metodo_pago(metodo_pago_id: str) -> MetodoPago | None:
 
 
 def _crear_pago(compra: Compra, metodo_pago: MetodoPago) -> tuple[Pago | None, str]:
-    """
-    Crea un registro de pago para la compra.
+    """Crea un registro de pago para la compra."""
 
-    Args:
-        compra: Objeto Compra a pagar.
-        metodo_pago: Método de pago a utilizar.
-
-    Returns:
-        tuple: (Pago creado o None, mensaje de error o cadena vacía)
-
-    """
     try:
         pago = Pago.objects.create(compra=compra,metodo_pago=metodo_pago,monto=compra.total,estado="pendiente")
     except (ValueError, TypeError, Pago.DoesNotExist, MetodoPago.DoesNotExist) as e:
@@ -145,19 +119,8 @@ def _crear_pago(compra: Compra, metodo_pago: MetodoPago) -> tuple[Pago | None, s
 def _redirigir_segun_metodo_pago(
     request: HttpRequest, metodo_pago: MetodoPago, pago: Pago, compra_id: int,
 ) -> HttpResponse:
-    """
-    Redirige según el método de pago seleccionado.
+    """Redirige según el método de pago seleccionado."""
 
-    Args:
-        request: La solicitud HTTP.
-        metodo_pago: Método de pago seleccionado.
-        pago: Pago creado.
-        compra_id: ID de la compra.
-
-    Returns:
-        HttpResponse: Redirección a la página correspondiente.
-
-    """
     if metodo_pago.tipo == "nequi":
         return redirect("pagos:pago_movil", pago_id=pago.id)
     if metodo_pago.tipo == "bancolombia":
@@ -174,15 +137,7 @@ def _redirigir_segun_metodo_pago(
 def seleccionar_metodo_pago(request: HttpRequest, compra_id: int) -> HttpResponse:
     """
     Permite al usuario seleccionar un método de pago para su compra.
-
-    Args:
-        request: La solicitud HTTP.
-        compra_id: ID de la compra a pagar.
-
-    Returns:
-        HttpResponse: Página de selección de método de pago o redirección.
-
-    """
+"""
     # Asegurarse de que existan los métodos de pago
     if MetodoPago.objects.count() == 0:
         inicializar_metodos_pago()
