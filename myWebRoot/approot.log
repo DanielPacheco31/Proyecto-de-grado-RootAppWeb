@@ -12057,3 +12057,23 @@ INFO 2025-06-03 17:03:06,843 autoreload 15368 16124 C:\Users\ADMIN\OneDrive\Desk
 INFO 2025-06-03 17:03:08,153 autoreload 14988 7424 Watching for file changes with StatReloader
 INFO 2025-06-03 17:03:10,146 autoreload 14988 7424 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\pagos\views.py changed, reloading.
 INFO 2025-06-03 17:03:11,471 autoreload 11424 17972 Watching for file changes with StatReloader
+WARNING 2025-06-03 17:03:14,677 log 11424 9952 Forbidden (CSRF token from POST incorrect.): /scanner/
+WARNING 2025-06-03 17:03:14,695 basehttp 11424 9952 "POST /scanner/ HTTP/1.1" 403 2514
+WARNING 2025-06-03 17:03:17,146 log 11424 9952 Forbidden (CSRF token from POST incorrect.): /scanner/
+WARNING 2025-06-03 17:03:17,168 basehttp 11424 9952 "POST /scanner/ HTTP/1.1" 403 2514
+INFO 2025-06-03 17:03:21,481 basehttp 11424 9952 "GET / HTTP/1.1" 200 4251
+INFO 2025-06-03 17:03:22,969 basehttp 11424 9952 "GET /usuarios/perfil/ HTTP/1.1" 200 18115
+INFO 2025-06-03 17:03:23,151 basehttp 11424 8328 "GET /media/productos/camisetaNegra.jpg HTTP/1.1" 200 4307
+INFO 2025-06-03 17:03:23,217 basehttp 11424 9952 "GET /media/perfiles/perfiles/user_1_20250529020623.png HTTP/1.1" 200 1952610
+INFO 2025-06-03 17:03:26,347 basehttp 11424 9952 "GET /carrito/finalizar/ HTTP/1.1" 200 3516
+INFO 2025-06-03 17:03:27,897 basehttp 11424 9952 "POST /carrito/finalizar/ HTTP/1.1" 302 0
+INFO 2025-06-03 17:03:27,925 basehttp 11424 9952 "GET /pagos/13/metodo/ HTTP/1.1" 200 6259
+INFO 2025-06-03 17:03:30,633 basehttp 11424 9952 "POST /pagos/13/procesar/ HTTP/1.1" 302 0
+INFO 2025-06-03 17:03:30,660 basehttp 11424 9952 "GET /pagos/movil/10/ HTTP/1.1" 200 5573
+INFO 2025-06-03 17:03:34,169 basehttp 11424 9952 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-06-03 17:03:34,179 basehttp 11424 9952 "GET / HTTP/1.1" 200 4251
+INFO 2025-06-03 17:03:35,246 basehttp 11424 9952 "GET /usuarios/logout/ HTTP/1.1" 302 0
+INFO 2025-06-03 17:03:39,416 basehttp 11424 9952 "POST /admin/logout/ HTTP/1.1" 302 0
+INFO 2025-06-03 17:03:39,420 basehttp 11424 9952 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-06-03 17:03:39,447 basehttp 11424 9952 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4228
+INFO 2025-06-03 17:04:23,253 autoreload 11424 17972 C:\Users\ADMIN\OneDrive\Desktop\ROOTAPP\myWebRoot\myWebRoot\settings.py changed, reloading.

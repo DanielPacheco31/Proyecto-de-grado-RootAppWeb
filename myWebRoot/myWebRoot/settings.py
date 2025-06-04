@@ -134,10 +134,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = env("STATIC_URL", default="/static/")
 
 # Asegúrate de crear esta carpeta si no existe
@@ -186,44 +182,3 @@ CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 SESSION_COOKIE_AGE = 3600  # 1 hora por defecto
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Si no marcan "recordarme"
 SESSION_SAVE_EVERY_REQUEST = True
-
-#Monitoreo del Login
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
-            "style": "{",
-        },
-        "simple": {
-            "format": "{levelname} {message}",
-            "style": "{",
-        },
-    },
-    "handlers": {
-        "file": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": env("LOG_FILE", default="approot.log"),
-            "formatter": "verbose",
-        },
-        "console": {
-            "level": "DEBUG",
-            "class": "logging.StreamHandler",
-            "formatter": "simple",
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["file", "console"],
-            "level": env("DJANGO_LOG_LEVEL", default="INFO"),
-            "propagate": True,
-        },
-        "approot": {
-            "handlers": ["file", "console"],
-            "level": env("APP_LOG_LEVEL", default="DEBUG"),
-            "propagate": True,
-        },
-    },
-}
