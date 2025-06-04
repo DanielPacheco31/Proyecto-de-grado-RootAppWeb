@@ -1,5 +1,4 @@
-// SCANNER.JS CORREGIDO - Versión mejorada con debug y correcciones
-console.log('🚀 Scanner ROOT v2.0 - Versión Corregida');
+console.log('🚀 Scanner ROOT v2.1 - Detención Corregida');
 
 // Variables globales
 let currentScanType = 'barcode';
@@ -8,6 +7,7 @@ let quaggaInitialized = false;
 let stream = null;
 let scanningInterval = null;
 let qrScanActive = false;
+let qrAnimationFrame = null; // NUEVA: para controlar requestAnimationFrame
 
 // Elementos DOM
 let elements = {};
@@ -181,8 +181,10 @@ function handleStartButton() {
     debugLog(`Botón presionado. Scanner activo: ${scannerActive}`, 'info');
     
     if (scannerActive) {
+        debugLog('Deteniendo scanner por click del usuario', 'info');
         stopScanner();
     } else {
+        debugLog('Iniciando scanner por click del usuario', 'info');
         initScanner();
     }
 }
@@ -205,7 +207,7 @@ async function initScanner() {
         hideScanForm();
 
         // Detener scanner anterior si existe
-        stopScanner(false);
+        await forceStopAllScanners();
 
         // Solicitar acceso a la cámara
         debugLog('Solicitando acceso a cámara', 'info');
@@ -228,6 +230,60 @@ async function initScanner() {
         debugLog(`Error inicializando scanner: ${error.message}`, 'error');
         handleScannerError(error);
     }
+}
+
+// NUEVA FUNCIÓN: Forzar detención de todos los scanners
+async function forceStopAllScanners() {
+    debugLog('Forzando detención de todos los scanners', 'info');
+    
+    // Detener QR scanner
+    qrScanActive = false;
+    if (qrAnimationFrame) {
+        cancelAnimationFrame(qrAnimationFrame);
+        qrAnimationFrame = null;
+        debugLog('QR animation frame cancelado', 'info');
+    }
+    
+    // Detener Quagga
+    if (quaggaInitialized) {
+        try {
+            debugLog('Deteniendo Quagga...', 'info');
+            Quagga.stop();
+            Quagga.offDetected();
+            Quagga.offProcessed();
+            quaggaInitialized = false;
+            debugLog('Quagga detenido correctamente', 'success');
+        } catch (error) {
+            debugLog(`Error deteniendo Quagga: ${error.message}`, 'error');
+        }
+    }
+
+    // Detener stream de cámara
+    if (stream) {
+        debugLog('Deteniendo stream de cámara...', 'info');
+        stream.getTracks().forEach(track => {
+            track.stop();
+            debugLog(`Track detenido: ${track.kind} - estado: ${track.readyState}`, 'info');
+        });
+        stream = null;
+    }
+
+    // Limpiar video
+    if (elements.video && elements.video.srcObject) {
+        elements.video.srcObject = null;
+        debugLog('Video source object limpiado', 'info');
+    }
+
+    // Limpiar interval
+    if (scanningInterval) {
+        clearInterval(scanningInterval);
+        scanningInterval = null;
+        debugLog('Scanning interval limpiado', 'info');
+    }
+
+    // Pequeña pausa para asegurar limpieza
+    await new Promise(resolve => setTimeout(resolve, 100));
+    debugLog('Limpieza completa terminada', 'success');
 }
 
 // Solicitar acceso a la cámara
@@ -417,7 +473,7 @@ async function setupBarcodeScanner() {
     });
 }
 
-// Configurar scanner de códigos QR
+// Configurar scanner de códigos QR - VERSIÓN CORREGIDA
 function setupQRScanner() {
     debugLog('Configurando scanner QR con jsQR', 'info');
     
@@ -434,15 +490,17 @@ function setupQRScanner() {
     let frameCount = 0;
     
     function scanQRCode() {
+        // VERIFICACIÓN CRÍTICA: Solo continuar si el scanner sigue activo
         if (!qrScanActive || !scannerActive) {
-            debugLog('Scanner QR detenido', 'info');
+            debugLog('Scanner QR detenido - saliendo del bucle', 'info');
+            qrAnimationFrame = null;
             return;
         }
 
         try {
             // Verificar que el video esté listo
             if (!elements.video.videoWidth || !elements.video.videoHeight) {
-                requestAnimationFrame(scanQRCode);
+                qrAnimationFrame = requestAnimationFrame(scanQRCode);
                 return;
             }
 
@@ -474,28 +532,34 @@ function setupQRScanner() {
                 
                 if (qrCode.data.length >= 3) {
                     handleSuccessfulScan(qrCode.data);
-                    return;
+                    return; // IMPORTANTE: salir del bucle después de detectar
                 } else {
                     debugLog(`QR rechazado por longitud: "${qrCode.data}"`, 'warning');
                 }
             }
 
-            // Continuar escaneando
-            requestAnimationFrame(scanQRCode);
+            // Continuar escaneando SOLO si el scanner sigue activo
+            if (qrScanActive && scannerActive) {
+                qrAnimationFrame = requestAnimationFrame(scanQRCode);
+            } else {
+                debugLog('Scanner QR detenido durante escaneo', 'info');
+                qrAnimationFrame = null;
+            }
 
         } catch (error) {
             debugLog(`Error escaneando QR: ${error.message}`, 'error');
-            if (qrScanActive && frameCount < 10000) { // Continuar solo si no hay demasiados errores
-                requestAnimationFrame(scanQRCode);
+            if (qrScanActive && scannerActive && frameCount < 10000) { 
+                qrAnimationFrame = requestAnimationFrame(scanQRCode);
             } else {
-                debugLog('Deteniendo scanner QR por muchos errores', 'error');
+                debugLog('Deteniendo scanner QR por error o límite alcanzado', 'error');
                 qrScanActive = false;
+                qrAnimationFrame = null;
             }
         }
     }
 
     debugLog('Iniciando bucle de escaneo QR', 'info');
-    scanQRCode();
+    qrAnimationFrame = requestAnimationFrame(scanQRCode); // GUARDAMOS la referencia
 }
 
 // Manejar escaneo exitoso
@@ -530,16 +594,26 @@ function handleSuccessfulScan(code) {
     }
 }
 
-// Detener scanner
+// Detener scanner - VERSIÓN CORREGIDA
 function stopScanner(updateUI = true) {
-    debugLog('Deteniendo scanner', 'info');
+    debugLog('=== INICIANDO DETENCIÓN DEL SCANNER ===', 'info');
     
+    // PASO 1: Marcar como inactivo INMEDIATAMENTE
     scannerActive = false;
     qrScanActive = false;
+    debugLog('Variables de estado marcadas como inactivas', 'info');
 
-    // Detener Quagga
+    // PASO 2: Cancelar animation frame QR
+    if (qrAnimationFrame) {
+        cancelAnimationFrame(qrAnimationFrame);
+        qrAnimationFrame = null;
+        debugLog('QR animation frame cancelado', 'success');
+    }
+
+    // PASO 3: Detener Quagga
     if (quaggaInitialized) {
         try {
+            debugLog('Deteniendo Quagga...', 'info');
             Quagga.stop();
             Quagga.offDetected();
             Quagga.offProcessed();
@@ -550,32 +624,40 @@ function stopScanner(updateUI = true) {
         }
     }
 
-    // Detener stream de cámara
+    // PASO 4: Detener stream de cámara
     if (stream) {
+        debugLog('Deteniendo stream de cámara...', 'info');
         stream.getTracks().forEach(track => {
             track.stop();
-            debugLog(`Track detenido: ${track.kind}`, 'info');
+            debugLog(`Track detenido: ${track.kind} - estado: ${track.readyState}`, 'info');
         });
         stream = null;
+        debugLog('Stream de cámara limpiado', 'success');
     }
 
-    // Limpiar video
+    // PASO 5: Limpiar video
     if (elements.video && elements.video.srcObject) {
         elements.video.srcObject = null;
+        debugLog('Video source object limpiado', 'info');
     }
 
-    // Limpiar interval
+    // PASO 6: Limpiar interval (por si acaso)
     if (scanningInterval) {
         clearInterval(scanningInterval);
         scanningInterval = null;
+        debugLog('Scanning interval limpiado', 'info');
     }
 
+    // PASO 7: Actualizar UI si se solicita
     if (updateUI) {
         updateButtonState(false);
         updateCameraStatus('Detenida');
         showOverlay(false);
         updateStatusMessage('Scanner detenido. Presiona "Iniciar escáner" para volver a empezar.');
+        debugLog('UI actualizada', 'info');
     }
+
+    debugLog('=== DETENCIÓN DEL SCANNER COMPLETA ===', 'success');
 }
 
 // Manejar errores del scanner
@@ -619,10 +701,12 @@ function updateButtonState(isActive) {
         elements.startButton.textContent = 'Detener escáner';
         elements.startButton.disabled = false;
         elements.startButton.classList.add('active');
+        debugLog('Botón actualizado a estado ACTIVO', 'info');
     } else {
         elements.startButton.textContent = 'Iniciar escáner';
         elements.startButton.disabled = false;
         elements.startButton.classList.remove('active');
+        debugLog('Botón actualizado a estado INACTIVO', 'info');
     }
 }
 
@@ -708,9 +792,12 @@ window.scannerDebug = {
     elements,
     scannerActive,
     currentScanType,
+    qrScanActive,
+    quaggaInitialized,
     initScanner,
     stopScanner,
+    forceStopAllScanners,
     debugLog
 };
 
-debugLog('Scanner cargado y listo', 'success');
+debugLog('Scanner v2.1 cargado y listo - Problema de detención solucionado', 'success');;

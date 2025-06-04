@@ -140,9 +140,7 @@ STATIC_URL = env("STATIC_URL", default="/static/")
 STATIC_ROOT = Path(BASE_DIR, "staticfiles")
 
 # Corregida la ruta de STATICFILES_DIRS
-STATICFILES_DIRS = [
-    Path(BASE_DIR, "static"),  # Cambié mywWebRoot por static
-]
+STATICFILES_DIRS = [Path(BASE_DIR, "static"),]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -159,12 +157,7 @@ MEDIA_URL = env("MEDIA_URL", default="/media/")
 MEDIA_ROOT = Path(BASE_DIR, "media")
 
 # Cache settings
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": "unique-snowflake",
-    },
-}
+CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache","LOCATION": "unique-snowflake",},}
 
 # Configuración de Email
 EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
@@ -179,6 +172,6 @@ DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 
 # Configuración de sesión
-SESSION_COOKIE_AGE = 3600  # 1 hora por defecto
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Si no marcan "recordarme"
+SESSION_COOKIE_AGE = 3600 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SAVE_EVERY_REQUEST = True
