@@ -291,9 +291,14 @@ def pago_movil(request, pago_id):
             with transaction.atomic():
                 # Actualizar el pago
                 pago.referencia = numero_telefono
-                pago.estado = "completado"
+                pago.estado = "pagado"  # ✅ CORREGIDO: cambié de "completado" a "pagado"
                 pago.fecha_actualizacion = timezone.now()
                 pago.save()
+
+                # ✅ AGREGADO: Actualizar estado de la compra también
+                compra = pago.compra
+                compra.estado = "pagado"
+                compra.save()
 
                 # Generar factura usando la función de utils
                 try:
@@ -302,6 +307,13 @@ def pago_movil(request, pago_id):
                 except Exception as e:
                     # El pago se completó pero no se pudo generar la factura
                     messages.warning(request, f"Pago confirmado, pero hubo un problema generando la factura: {e!s}")
+
+                # ✅ AGREGADO: Enviar correo de confirmación
+                try:
+                    enviar_correo_confirmacion.delay(compra.id)
+                except Exception as e:
+                    # No es crítico si falla el correo
+                    print(f"Error enviando correo: {e}")
 
                 return redirect("pagos:confirmar_pago", pago_id=pago.id)
 
