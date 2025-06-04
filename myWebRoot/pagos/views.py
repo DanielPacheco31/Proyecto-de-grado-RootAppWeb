@@ -14,15 +14,7 @@ from .tasks import enviar_correo_confirmacion
 
 
 def inicializar_metodos_pago() -> int:
-    """
-    Función auxiliar para inicializar los métodos de pago predeterminados.
-
-    Puedes llamar a esta función manualmente o desde una vista.
-
-    Returns:
-        int: Número de métodos de pago inicializados.
-
-    """
+    """Función auxiliar para inicializar los métodos de pago predeterminados."""
     metodos_pago = [
         {
             "tipo": "nequi",
@@ -160,17 +152,8 @@ def seleccionar_metodo_pago(request: HttpRequest, compra_id: int) -> HttpRespons
 
 @login_required
 def procesar_pago(request: HttpRequest, compra_id: int) -> HttpResponse:
-    """
-    Procesa el pago de una compra según el método seleccionado.
+    """Procesa el pago de una compra según el método seleccionado."""
 
-    Args:
-        request: La solicitud HTTP.
-        compra_id: ID de la compra a procesar.
-
-    Returns:
-        HttpResponse: Redirección según el método de pago seleccionado.
-
-    """
     if request.method != "POST":
         return redirect("pagos:seleccionar_metodo_pago", compra_id=compra_id)
 
@@ -209,36 +192,18 @@ def procesar_pago(request: HttpRequest, compra_id: int) -> HttpResponse:
 
 
 def _get_tipo_metodo_por_id_frontend(id_frontend: str) -> str:
-    """
-    Mapea los IDs del frontend a tipos de método de pago.
-
-    Args:
-        id_frontend: ID del método de pago en el frontend.
-
-    Returns:
-        str: Tipo de método de pago correspondiente.
-
-    """
+    """Mapea los IDs del frontend a tipos de método de pago."""
+    
     mapa_ids = {
-        "1": "nequi",
-        "2": "bancolombia",
-        "3": "pse",
-        "4": "tarjeta",
-    }
+        "1": "nequi", "2": 
+        "bancolombia", 
+        "3": "pse", 
+        "4": "tarjeta",}
     return mapa_ids.get(id_frontend, "bancolombia")  # Por defecto bancolombia
 
 
 def _obtener_o_crear_metodo_pago(tipo_metodo: str) -> MetodoPago:
-    """
-    Obtiene o crea un método de pago por tipo.
-
-    Args:
-        tipo_metodo: Tipo de método de pago.
-
-    Returns:
-        MetodoPago: Instancia del método de pago.
-
-    """
+    """Obtiene o crea un método de pago por tipo."""
     nombres = {
         "nequi": "Nequi",
         "bancolombia": "Bancolombia",
@@ -258,17 +223,7 @@ def _obtener_o_crear_metodo_pago(tipo_metodo: str) -> MetodoPago:
 
 @login_required
 def pago_transferencia(request: HttpRequest, pago_id: int) -> HttpResponse:
-    """
-    Gestiona el proceso de pago mediante transferencia bancaria.
-
-    Args:
-        request: La solicitud HTTP.
-        pago_id: ID del pago a procesar.
-
-    Returns:
-        HttpResponse: Página de transferencia o redirección a confirmación.
-
-    """
+    """Gestiona el proceso de pago mediante transferencia bancaria."""
     pago = get_object_or_404(Pago, id=pago_id, compra__usuario=request.user)
 
     if request.method == "POST":
@@ -358,17 +313,7 @@ def pago_movil(request, pago_id):
 
 @login_required
 def confirmar_pago(request: HttpRequest, pago_id: int) -> HttpResponse:
-    """
-    Muestra la confirmación del pago realizado.
-
-    Args:
-        request: La solicitud HTTP.
-        pago_id: ID del pago confirmado.
-
-    Returns:
-        HttpResponse: Página de confirmación del pago.
-
-    """
+    """Muestra la confirmación del pago realizado."""
     pago = get_object_or_404(Pago, id=pago_id, compra__usuario=request.user)
     compra = pago.compra
 
@@ -378,8 +323,4 @@ def confirmar_pago(request: HttpRequest, pago_id: int) -> HttpResponse:
     except Factura.DoesNotExist:
         factura = None
 
-    return render(request, "pagos/confirmacionDePago.html", {
-        "pago": pago,
-        "compra": compra,
-        "factura": factura,
-    })
+    return render(request, "pagos/confirmacionDePago.html", {"pago": pago,"compra": compra,"factura": factura,})

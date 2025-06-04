@@ -21,16 +21,10 @@ class ProductoAdmin(admin.ModelAdmin):
     readonly_fields = ("fecha_creacion", "fecha_actualizacion")
 
     # Campos que se mostrarán al crear/editar un producto
-    fieldsets = (("Información Básica", {
-"fields": ("nombre", "codigo", "descripcion", "categoria"),
-        }),
-        ("Detalles de Precio y Stock", {
-            "fields": ("precio", "stock", "imagen"),
-        }),
-        ("Información de Sistema", {
-            "fields": ("fecha_creacion", "fecha_actualizacion"),
-            "classes": ("collapse",),
-        }),
+    fieldsets = (
+        ("Información Básica", {"fields": ("nombre", "codigo", "descripcion", "categoria"),}),
+        ("Detalles de Precio y Stock", {"fields": ("precio", "stock", "imagen"),}),
+        ("Información de Sistema", {"fields": ("fecha_creacion", "fecha_actualizacion"),"classes": ("collapse",),}),
     )
 
     def get_queryset(self, request):

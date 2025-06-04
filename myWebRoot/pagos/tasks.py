@@ -45,13 +45,7 @@ def enviar_correo_confirmacion(compra_id: int) -> bool | None:
         mensaje += f"\n\nTotal: ${compra.total}"
 
         # Enviar el correo
-        send_mail(
-            asunto,
-            mensaje,
-            settings.DEFAULT_FROM_EMAIL,
-            [compra.usuario.email],
-            fail_silently=False,
-        )
+        send_mail(asunto,mensaje,settings.DEFAULT_FROM_EMAIL,[compra.usuario.email],fail_silently=False,)
     except (Compra.DoesNotExist, ValueError, ConnectionError):
         # Especificamos excepciones concretas en lugar de Exception genérica
         return False

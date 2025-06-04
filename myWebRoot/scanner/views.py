@@ -15,16 +15,8 @@ logger = logging.getLogger("scanner")
 
 
 def validar_codigo_producto(codigo):
-    """
-    Valida que el código del producto tenga un formato válido.
-
-    Args:
-        codigo (str): Código a validar
-
-    Returns:
-        tuple: (es_valido, codigo_limpio, mensaje_error)
-
-    """
+    """Valida que el código del producto tenga un formato válido."""
+    
     if not codigo:
         return False, "", "Código vacío"
 
@@ -47,16 +39,8 @@ def validar_codigo_producto(codigo):
 
 
 def buscar_producto_por_codigo(codigo):
-    """
-    Busca un producto por su código en la base de datos.
+    """Busca un producto por su código en la base de datos."""
 
-    Args:
-        codigo (str): Código del producto
-
-    Returns:
-        Producto or None: Producto encontrado o None
-
-    """
     try:
         # Buscar exacto primero
         producto = Producto.objects.filter(codigo__iexact=codigo).first()
@@ -76,18 +60,8 @@ def buscar_producto_por_codigo(codigo):
 
 
 def agregar_producto_al_carrito(usuario, producto, cantidad=1):
-    """
-    Agrega un producto al carrito del usuario.
+    """Agrega un producto al carrito del usuario."""
 
-    Args:
-        usuario: Usuario propietario del carrito
-        producto: Producto a agregar
-        cantidad: Cantidad a agregar (default 1)
-
-    Returns:
-        tuple: (exito, mensaje, item_carrito)
-
-    """
     try:
         with transaction.atomic():
             # Obtener o crear carrito
@@ -117,6 +91,7 @@ def agregar_producto_al_carrito(usuario, producto, cantidad=1):
 @login_required
 def scanner(request):
     """Función principal del scanner de productos."""
+
     if request.method == "POST":
         # Obtener datos del formulario
         scanned_code = request.POST.get("scannedCode", "").strip()
@@ -179,22 +154,14 @@ def scanner(request):
             return render(request, "scanner/scanner.html")
 
     # GET request - mostrar página del scanner
-    context = {
-        "productos_recientes": obtener_productos_recientes(),
-        "total_productos": Producto.objects.count(),
-    }
+    context = {"productos_recientes": obtener_productos_recientes(),"total_productos": Producto.objects.count(),}
 
     return render(request, "scanner/scanner.html", context)
 
 
 def obtener_productos_recientes():
-    """
-    Obtiene una lista de productos recientes para mostrar como ejemplos.
+    """Obtiene una lista de productos recientes para mostrar como ejemplos."""
 
-    Returns:
-        QuerySet: Productos recientes
-
-    """
     try:
         return Producto.objects.filter(stock__gt=0).order_by("-fecha_creacion")[:5]
     except Exception as e:

@@ -65,12 +65,8 @@ def finalizar_compra(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def actualizar_cantidad(request: HttpRequest, item_id: int) -> HttpResponse:
-    """
-    Actualiza la cantidad de un producto en el carrito.
+    """Actualiza la cantidad de un producto en el carrito."""
 
-    Aumenta o disminuye la cantidad de un producto específico en el carrito
-    según la acción solicitada.
-    """
     item = get_object_or_404(CarritoItem, id=item_id, carrito__usuario=request.user)
 
     if request.method == "POST":
@@ -93,6 +89,7 @@ def actualizar_cantidad(request: HttpRequest, item_id: int) -> HttpResponse:
 @login_required
 def eliminar_item(request: HttpRequest, item_id: int) -> HttpResponse:
     """Elimina un producto del carrito de forma segura."""
+    
     if request.method == "POST":
         try:
             item = CarritoItem.objects.select_related("producto").get(id=item_id, carrito__usuario=request.user)

@@ -54,16 +54,7 @@ def registro_view(request: HttpRequest) -> HttpResponse:
 
         try:
             # Crear el usuario directamente con todos los campos
-            user = Usuario.objects.create_user(
-                username=username,
-                email=email,
-                password=password1,
-                first_name=first_name,
-                last_name=last_name,
-                telefono=telefono,
-                direccion=direccion,
-                id_documento=id_documento,
-            )
+            user = Usuario.objects.create_user(username=username,email=email,password=password1,first_name=first_name,last_name=last_name,telefono=telefono,direccion=direccion,id_documento=id_documento,)
 
             # Convertir y guardar la fecha de nacimiento
             if fecha_nacimiento:
@@ -94,6 +85,7 @@ def registro_view(request: HttpRequest) -> HttpResponse:
 
 def login_view(request: HttpRequest) -> HttpResponse:
     """Una vez el usuario esté autenticado lo redirige al scanner."""
+
     if request.user.is_authenticated:
         return redirect("scanner:scanner")
 
@@ -134,19 +126,12 @@ def logout_view(request: HttpRequest) -> HttpResponse:
 def perfil_view(request: HttpRequest) -> HttpResponse:
     """Función para la vista del perfil."""
     # Usar select_related para reducir consultas a la base de datos
-    carrito = Carrito.objects.select_related("usuario").prefetch_related(
-        "items__producto",
-    ).get_or_create(usuario=request.user)[0]
+    carrito = Carrito.objects.select_related("usuario").prefetch_related("items__producto",).get_or_create(usuario=request.user)[0]
 
     # Usar prefetch_related para cargar compras y sus detalles en una sola consulta
-    compras = request.user.compras.prefetch_related(
-        "detalles__producto",
-    ).order_by("-fecha_compra")
+    compras = request.user.compras.prefetch_related("detalles__producto",).order_by("-fecha_compra")
 
-    context = {
-        "compras": compras,
-        "carrito": carrito,
-    }
+    context = {"compras": compras,"carrito": carrito,}
 
     return render(request, "usuarios/perfil.html", context)
 

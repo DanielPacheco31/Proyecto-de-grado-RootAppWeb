@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "core",  # Ponemos core primero para priorizar sus templates
+    "core",
     "carrito",
     "facturas",
     "pagos",
@@ -80,7 +80,7 @@ ROOT_URLCONF = "myWebRoot.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [Path(BASE_DIR, "templates")],  # Añadimos directorio global de templates
+        "DIRS": [Path(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
