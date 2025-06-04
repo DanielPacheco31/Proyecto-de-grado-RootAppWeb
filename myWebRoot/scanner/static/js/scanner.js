@@ -1,3 +1,4 @@
+// SCANNER.JS CORREGIDO - Problema de detención solucionado
 console.log('🚀 Scanner ROOT v2.1 - Detención Corregida');
 
 // Variables globales
@@ -365,13 +366,16 @@ async function requestCameraAccess() {
     }
 }
 
-// Configurar scanner de códigos de barras
+// Configurar scanner de códigos de barras - VERSIÓN OPTIMIZADA
 async function setupBarcodeScanner() {
-    debugLog('Configurando Quagga para códigos de barras', 'info');
+    debugLog('Configurando Quagga para códigos de barras - Versión optimizada', 'info');
     
     if (!elements.video || !elements.video.videoWidth) {
         throw new Error('Video no está listo para Quagga');
     }
+
+    // Esperar un poco más para que el video esté completamente listo
+    await new Promise(resolve => setTimeout(resolve, 300));
 
     const config = {
         inputStream: {
@@ -385,30 +389,40 @@ async function setupBarcodeScanner() {
             }
         },
         locator: {
-            patchSize: "medium",
-            halfSample: true
+            patchSize: "medium",     // Tamaño de parche para detección
+            halfSample: true         // Reducir resolución para mejor rendimiento
         },
-        frequency: 10, // Procesar cada 10 frames
+        frequency: 5,                // Procesar cada 5 frames (más frecuente)
+        numOfWorkers: 2,             // Usar 2 workers para mejor rendimiento
         decoder: {
             readers: [
-                "ean_reader",
-                "ean_8_reader", 
-                "code_128_reader",
-                "code_39_reader",
-                "upc_reader",
-                "upc_e_reader"
+                "ean_reader",        // EAN-13 (códigos de barras comunes)
+                "ean_8_reader",      // EAN-8 (códigos más cortos)
+                "code_128_reader",   // Code 128 (muy común)
+                "code_39_reader",    // Code 39 (alfanumérico)
+                "code_39_vin_reader", // Code 39 para VIN
+                "codabar_reader",    // Codabar (usado en bibliotecas)
+                "upc_reader",        // UPC-A (común en EE.UU.)
+                "upc_e_reader",      // UPC-E (versión compacta)
+                "i2of5_reader"       // Interleaved 2 of 5
             ]
         },
-        locate: true
+        locate: true,
+        debug: {
+            drawBoundingBox: false,   // No dibujar cajas (mejor rendimiento)
+            showFrequency: false,     // No mostrar frecuencia
+            drawScanline: false,      // No dibujar línea de escaneo
+            showPattern: false        // No mostrar patrones
+        }
     };
 
-    debugLog(`Configuración Quagga: ${JSON.stringify(config, null, 2)}`, 'debug');
+    debugLog(`Configuración Quagga optimizada: ${JSON.stringify(config, null, 2)}`, 'debug');
 
     return new Promise((resolve, reject) => {
         const timeout = setTimeout(() => {
-            debugLog('Timeout inicializando Quagga', 'error');
+            debugLog('Timeout inicializando Quagga (20s)', 'error');
             reject(new Error('Timeout en inicialización de Quagga'));
-        }, 15000);
+        }, 20000); // Más tiempo para inicialización
         
         Quagga.init(config, (err) => {
             clearTimeout(timeout);
@@ -419,16 +433,16 @@ async function setupBarcodeScanner() {
                 return;
             }
 
-            debugLog('Quagga inicializado, configurando eventos', 'success');
+            debugLog('Quagga inicializado correctamente, configurando eventos', 'success');
             quaggaInitialized = true;
             
             try {
                 Quagga.start();
-                debugLog('Quagga iniciado correctamente', 'success');
+                debugLog('Quagga iniciado y escaneando', 'success');
 
-                // Configurar detección con logging
+                // Configurar detección con filtros mejorados
                 Quagga.onDetected((result) => {
-                    debugLog('¡Evento onDetected disparado!', 'info');
+                    debugLog('🎯 ¡Evento onDetected disparado!', 'info');
                     
                     if (!scannerActive || !result || !result.codeResult) {
                         debugLog('Detección ignorada (scanner inactivo o resultado inválido)', 'warning');
@@ -436,30 +450,67 @@ async function setupBarcodeScanner() {
                     }
 
                     const code = result.codeResult.code;
+                    const format = result.codeResult.format;
                     const quality = result.codeResult.quality || 0;
                     
-                    debugLog(`Código detectado: "${code}" (calidad: ${quality})`, 'success');
+                    debugLog(`📊 Código detectado: "${code}" | Formato: ${format} | Calidad: ${quality}`, 'success');
                     
-                    // Filtrar códigos de baja calidad
-                    if (quality < 50) {
-                        debugLog(`Código rechazado por baja calidad: ${quality}`, 'warning');
+                    // Filtros más permisivos para códigos de barras
+                    if (quality < 30) { // Calidad mínima reducida de 50 a 30
+                        debugLog(`⚠️ Código rechazado por baja calidad: ${quality} (mínimo: 30)`, 'warning');
                         return;
                     }
                     
                     if (!code || code.length < 3) {
-                        debugLog(`Código rechazado por longitud: "${code}"`, 'warning');
+                        debugLog(`⚠️ Código rechazado por longitud: "${code}" (mínimo: 3 caracteres)`, 'warning');
                         return;
                     }
 
+                    // Validación adicional por tipo de código
+                    let isValidBarcode = false;
+                    
+                    switch(format) {
+                        case 'ean_13':
+                        case 'ean_8':
+                            isValidBarcode = /^\d+$/.test(code); // Solo números
+                            break;
+                        case 'upc_a':
+                        case 'upc_e':
+                            isValidBarcode = /^\d+$/.test(code); // Solo números
+                            break;
+                        case 'code_128':
+                        case 'code_39':
+                            isValidBarcode = code.length >= 3; // Más flexible
+                            break;
+                        default:
+                            isValidBarcode = true; // Aceptar otros formatos
+                    }
+
+                    if (!isValidBarcode) {
+                        debugLog(`⚠️ Código rechazado por formato inválido: "${code}" (formato: ${format})`, 'warning');
+                        return;
+                    }
+
+                    debugLog(`✅ Código VÁLIDO aceptado: "${code}" (formato: ${format})`, 'success');
                     handleSuccessfulScan(code);
                 });
 
-                // Log de procesamiento (reducido para no saturar)
+                // Log de procesamiento más detallado
                 let frameCount = 0;
+                let detectionAttempts = 0;
+                
                 Quagga.onProcessed((result) => {
                     frameCount++;
-                    if (frameCount % 100 === 0) { // Log cada 100 frames
-                        debugLog(`Frames procesados: ${frameCount}`, 'debug');
+                    
+                    if (result && result.codeResult) {
+                        detectionAttempts++;
+                        if (detectionAttempts % 10 === 0) {
+                            debugLog(`🔍 Intentos de detección: ${detectionAttempts}`, 'debug');
+                        }
+                    }
+                    
+                    if (frameCount % 150 === 0) { // Log cada 150 frames (más espaciado)
+                        debugLog(`📹 Frames procesados: ${frameCount} | Intentos: ${detectionAttempts}`, 'debug');
                     }
                 });
                 
@@ -800,4 +851,4 @@ window.scannerDebug = {
     debugLog
 };
 
-debugLog('Scanner v2.1 cargado y listo - Problema de detención solucionado', 'success');;
+debugLog('Scanner v2.1 cargado y listo - Problema de detención solucionado', 'success');

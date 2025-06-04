@@ -1,0 +1,96 @@
+/* CSS para códigos QR en Admin de Productos */
+
+/* Mejorar la visualización de la columna QR en la lista */
+.column-qr_mini {
+    width: 50px;
+    text-align: center;
+}
+
+.column-acciones_qr {
+    width: 120px;
+    text-align: center;
+}
+
+/* Estilo para los botones de acción en la lista */
+.column-acciones_qr a.button {
+    display: inline-block;
+    font-size: 10px !important;
+    padding: 2px 6px !important;
+    margin: 1px !important;
+    border-radius: 3px !important;
+    text-decoration: none !important;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* Mejorar la visualización del QR en el formulario */
+.field-qr_code_display {
+    margin: 20px 0;
+}
+
+.field-qr_code_display .form-row {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 0;
+    border: 2px solid #0066FF;
+}
+
+/* Estilo para el fieldset de códigos QR */
+.collapse .field-qr_code_display,
+.collapse .field-qr_urls {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Mejorar los enlaces en qr_urls */
+.field-qr_urls a {
+    color: #0066FF !important;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+.field-qr_urls a:hover {
+    color: #0052CC !important;
+    background: rgba(0, 102, 255, 0.1);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .column-acciones_qr a.button {
+        display: block !important;
+        margin: 2px 0 !important;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .field-qr_code_display img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}
+
+/* Animación sutil para los QR mini */
+.column-qr_mini img {
+    transition: transform 0.2s ease;
+}
+
+.column-qr_mini img:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Estilo para los códigos en formato monospace */
+.field-qr_code_display span[style*="monospace"],
+.field-qr_urls span[style*="monospace"] {
+    background: #f8f9fa !important;
+    border: 1px solid #dee2e6 !important;
+    padding: 5px 10px !important;
+    border-radius: 4px !important;
+    font-family: 'Courier New', monospace !important;
+    font-weight: bold !important;
+}
