@@ -30,3 +30,13 @@ def contacto(request: HttpRequest) -> HttpResponse:
         return redirect("core:contacto")
 
     return render(request, "core/contacto.html")
+
+
+def error_404_view(request, exception=None):
+    """Vista personalizada para el error 404."""
+    return render(request, "core/404.html", status=404)
+
+
+def test_404_view(request):
+    """Vista para probar la página 404 en desarrollo."""
+    return render(request, "core/404.html")

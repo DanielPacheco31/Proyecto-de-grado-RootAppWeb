@@ -40,9 +40,9 @@ environ.Env.read_env(Path(BASE_DIR, ".env"))
 SECRET_KEY = env("SECRET_KEY", default="django-insecure-l0_w*4m-dr%0!h2o*gvoq3ht13e^5wj+smm1dx%67fm69nk=c4")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+DEBUG = False
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*']
 
 # Configuración del modelo de usuario personalizado
 AUTH_USER_MODEL = "usuarios.Usuario"
@@ -73,6 +73,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
 ]
 
 ROOT_URLCONF = "myWebRoot.urls"
@@ -175,3 +176,7 @@ CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 SESSION_COOKIE_AGE = 3600 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SAVE_EVERY_REQUEST = True
+
+ADMIN_SITE_HEADER = "ROOT - Administración"
+ADMIN_SITE_TITLE = "ROOT Admin" 
+ADMIN_INDEX_TITLE = "Panel de Administración ROOT"

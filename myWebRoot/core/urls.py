@@ -11,4 +11,5 @@ urlpatterns = [
     path("", cache_page(60 * 60)(views.home_view), name="home"),
     path("vision-mision/",cache_page(60 * 60 * 24)(views.vision_mision),name="vision_mision"),
     path("contacto/", views.contacto, name="contacto"),
+    path('test-404/', views.test_404_view, name='test_404'),
 ]
