@@ -1,19 +1,16 @@
 Scanner de Productos
 Una aplicación web desarrollada en Django para escanear y gestionar información de productos mediante códigos de barras.
+
 🚀 Características
 
 Escaneo de códigos de barras en tiempo real
 Base de datos de productos con información detallada
 Interfaz web intuitiva y responsive
-Gestión completa de inventario
-Búsqueda y filtrado de productos
-Panel de administración integrado
-API RESTful para integración con otros sistemas
 
 🛠️ Tecnologías Utilizadas
 
 Backend: Django 4.x
-Base de datos: SQLite (desarrollo) / PostgreSQL (producción)
+Base de datos: SQLite
 Frontend: HTML5, CSS3, JavaScript
 Scanner: JavaScript Web APIs (Camera)
 Estilos: Bootstrap 5
