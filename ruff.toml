@@ -25,13 +25,14 @@ exclude = [
    "dist",
    "node_modules",
    "site-packages",
-   "virtual", Es tu entorno virtual tiene bibliotecas que no puedo controlar y no debo modificar.
-   "migrations", Las migraciones son generadas automaticamente por Django. Modificarlas manualmente puede causar problemas graves en la base de datos.
-   ".gitignore", Es un archivo de configuración de Git, no codigo Python. Ruff no lo analiza.
-   "myWebRoot/manage.py", Es parte de la estructura estandar de Django. Su formato esta definido por el framework y no debe modificarse ni ser analizado.
+   "virtual", #Es tu entorno virtual tiene bibliotecas que no puedo controlar y no debo modificar.
+   "migrations", #Las migraciones son generadas automaticamente por Django. Modificarlas manualmente puede causar problemas graves en la base de datos.
+   ".gitignore", #Es un archivo de configuración de Git, no codigo Python. Ruff no lo analiza.
+   "myWebRoot/manage.py", #Es parte de la estructura estandar de Django. Su formato esta definido por el framework y no debe modificarse ni ser analizado.
    "PLR0911", 
-   "TRY300", estas dos ultimas reglas no encuetro como silenciarlas y a pesar que las ignoro siguen aparaciendo.
+   "TRY300", #estas dos ultimas reglas no encuetro como silenciarlas y a pesar que las ignoro siguen aparaciendo.
 ]
+
 
 # Same as Black.
 line-length = 250
