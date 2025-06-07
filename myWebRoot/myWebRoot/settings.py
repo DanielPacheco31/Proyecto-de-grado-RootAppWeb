@@ -40,9 +40,9 @@ environ.Env.read_env(Path(BASE_DIR, ".env"))
 SECRET_KEY = env("SECRET_KEY", default="django-insecure-l0_w*4m-dr%0!h2o*gvoq3ht13e^5wj+smm1dx%67fm69nk=c4")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Configuración del modelo de usuario personalizado
 AUTH_USER_MODEL = "usuarios.Usuario"

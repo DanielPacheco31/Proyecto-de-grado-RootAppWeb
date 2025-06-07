@@ -1,0 +1,1227 @@
+/* Variables optimizadas - Basadas en core */
+:root {
+    --primary-color: #0066FF; /* Azul más brillante y notable */
+    --primary-light: #4D94FF; /* Azul claro más vibrante */
+    --primary-lighter: #CCE5FF; /* Azul casi blanco más notable */
+    --primary-dark: #0052CC; /* Azul oscuro más intenso */
+    --primary-darker: #003D99; /* Azul muy oscuro más profundo */
+    
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --accent-gold: #FFD700;
+    
+    --text-dark: #1a1a2e;
+    --text-medium: #333b4f;
+    --text-light: #fff;
+    
+    --bg-light: #f5f9ff;
+    --bg-white: #ffffff;
+    --bg-gray: #f8fafc;
+    --border-color: #e1e8f0;
+    
+    --shadow-sm: 0 2px 4px rgba(0, 102, 255, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 102, 255, 0.15);
+    --shadow-lg: 0 8px 16px rgba(0, 102, 255, 0.2);
+    
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 50px;
+    
+    --transition: all 0.3s ease;
+    
+    /* Espaciados compactos */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 20px;
+}
+
+/* =====================================================
+   SECCIÓN PRINCIPAL DE DETALLE DE COMPRA
+   ===================================================== */
+
+.detalle-compra-section {
+    padding: var(--spacing-lg) 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    min-height: 85vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.detalle-compra-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.detalle-compra-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xs);
+    position: relative;
+    z-index: 1;
+}
+
+.detalle-compra-section h2 {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-lg);
+    font-weight: 800;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.detalle-compra-section h2::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-gold), rgba(255, 215, 0, 0.5));
+    bottom: -var(--spacing-sm);
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--radius-full);
+}
+
+/* =====================================================
+   CONTENEDORES PRINCIPALES
+   ===================================================== */
+
+.estado-compra,
+.info-compra .seccion-info,
+.seccion-productos,
+.factura-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+.estado-compra::before,
+.seccion-info::before,
+.seccion-productos::before,
+.factura-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light), var(--accent-gold));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* =====================================================
+   ESTADO DE LA COMPRA
+   ===================================================== */
+
+.estado-titulo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-dark);
+}
+
+.progreso-estado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    margin: 0 var(--spacing-lg);
+}
+
+.paso-estado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.numero-paso {
+    width: 32px;
+    height: 32px;
+    background-color: var(--bg-gray);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--text-medium);
+    margin-bottom: var(--spacing-xs);
+    transition: var(--transition);
+    border: 2px solid var(--border-color);
+}
+
+.texto-paso {
+    font-size: 0.8rem;
+    color: var(--text-medium);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.linea-estado {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    width: 100px;
+    height: 2px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+.paso-estado.activo .numero-paso {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.paso-estado.activo .texto-paso {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.estado-pagado .linea-estado {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+}
+
+/* Estados específicos */
+.estado-badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.estado-badge.estado-pendiente {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.estado-badge.estado-pagado {
+    background: rgba(0, 102, 255, 0.1);
+    color: var(--primary-color);
+    border: 1px solid rgba(0, 102, 255, 0.3);
+}
+
+.estado-badge.estado-entregado {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.estado-badge.estado-cancelado {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* =====================================================
+   INFORMACIÓN DE LA COMPRA
+   ===================================================== */
+
+.info-compra {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* ✅ ASIMÉTRICO: 1:2 */
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.seccion-info h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary-dark);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-xs) 0;
+}
+
+.info-label {
+    font-size: 0.8rem;
+    color: var(--text-medium);
+    font-weight: 500;
+}
+
+.info-valor {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.info-valor.total {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+/* Estilos para elementos integrados */
+.info-item.direccion-item {
+    grid-column: 1 / -1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+}
+
+.info-item.direccion-item .direccion-entrega {
+    background: var(--bg-light);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--primary-color);
+    width: 100%;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+
+.info-item.seguimiento-item {
+    grid-column: 1 / -1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+}
+
+.info-item.seguimiento-item .codigo-seguimiento {
+    background: var(--bg-light);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: var(--primary-color);
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* =====================================================
+   TABLA DE PRODUCTOS
+   ===================================================== */
+
+.seccion-productos h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-dark);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.tabla-productos th {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tabla-productos td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-medium);
+}
+
+.tabla-productos tbody tr:hover {
+    background: rgba(0, 102, 255, 0.05);
+}
+
+.tabla-productos tfoot td {
+    padding: var(--spacing-md);
+    font-weight: 700;
+    background: var(--bg-light);
+}
+
+.producto-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.producto-imagen {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+}
+
+.producto-nombre {
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+}
+
+.producto-codigo {
+    font-size: 0.7rem;
+    color: var(--text-medium);
+    font-family: 'Courier New', monospace;
+}
+
+.total-label {
+    text-align: right;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.total-valor {
+    font-weight: 800;
+    color: var(--primary-color);
+    font-size: 1rem;
+    text-align: right;
+}
+
+/* =====================================================
+   FACTURA
+   ===================================================== */
+
+.factura-container {
+    background: linear-gradient(135deg, var(--primary-lighter), rgba(255, 255, 255, 0.9));
+    border-left: 4px solid var(--primary-color);
+}
+
+.factura-container h3 {
+    color: var(--primary-dark);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 700;
+}
+
+.factura-container p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-medium);
+    font-size: 0.85rem;
+}
+
+.btn-descargar-factura {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    text-decoration: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-descargar-factura:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-descargar-factura span {
+    font-size: 1rem;
+}
+
+/* =====================================================
+   ACCIONES DE COMPRA
+   ===================================================== */
+
+.acciones-compra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-lg);
+    gap: var(--spacing-md);
+}
+
+.btn-volver {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    backdrop-filter: blur(10px);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-volver::before {
+    content: '←';
+    font-size: 1.1rem;
+}
+
+.btn-volver:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-pagar {
+    background: linear-gradient(135deg, var(--success-color), #34d399);
+    color: white;
+    text-decoration: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-pagar:hover {
+    background: linear-gradient(135deg, #059669, var(--success-color));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-cancelar {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+    border: 2px solid var(--danger-color);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-cancelar:hover {
+    background: linear-gradient(135deg, var(--danger-color), #ff6b7a);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.form-cancelar {
+    margin: 0;
+}
+
+/* =====================================================
+   ESTILOS PARA IMPRESIÓN
+   ===================================================== */
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .detalle-compra-section {
+        background: white !important;
+        padding: 0 !important;
+        min-height: auto !important;
+    }
+    
+    .detalle-compra-section::before {
+        display: none !important;
+    }
+    
+    .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    .estado-compra,
+    .seccion-info,
+    .seccion-productos,
+    .factura-container {
+        background: white !important;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        backdrop-filter: none !important;
+    }
+    
+    .tabla-productos th {
+        background: #f5f5f5 !important;
+        color: #333 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    .acciones-compra {
+        display: none !important;
+    }
+    
+    h2 {
+        color: #333 !important;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 768px) {
+    :root {
+        --spacing-xs: 3px;
+        --spacing-sm: 6px;
+        --spacing-md: 10px;
+        --spacing-lg: 14px;
+        --spacing-xl: 18px;
+    }
+
+    .detalle-compra-section {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .detalle-compra-section .container {
+        padding: 0 var(--spacing-xs);
+        max-width: 100%;
+    }
+
+    .detalle-compra-section h2 {
+        font-size: 1.6rem;
+    }
+
+    .info-compra {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .progreso-estado {
+        gap: var(--spacing-lg);
+        margin: 0;
+    }
+
+    .numero-paso {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+
+    .texto-paso {
+        font-size: 0.7rem;
+    }
+
+    .linea-estado {
+        width: 60px;
+        top: 14px;
+    }
+
+    .acciones-compra {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .btn-volver,
+    .btn-pagar,
+    .btn-cancelar {
+        width: 100%;
+        justify-content: center;
+        padding: var(--spacing-md);
+    }
+
+    .producto-imagen {
+        width: 35px;
+        height: 35px;
+    }
+
+    .tabla-productos th,
+    .tabla-productos td {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.75rem;
+    }
+
+    .producto-info {
+        gap: var(--spacing-xs);
+    }
+
+    .producto-nombre {
+        font-size: 0.8rem;
+    }
+
+    .producto-codigo {
+        font-size: 0.65rem;
+    }
+
+    .info-item.direccion-item,
+    .info-item.seguimiento-item {
+        grid-column: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .detalle-compra-section h2 {
+        font-size: 1.4rem;
+    }
+
+    .progreso-estado {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .linea-estado {
+        display: none;
+    }
+
+    .tabla-contenedor {
+        font-size: 0.7rem;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .estado-compra,
+    .seccion-info,
+    .seccion-productos,
+    .factura-container {
+        padding: var(--spacing-md);
+    }
+}
+
+.estado-badge.estado-pendiente {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.estado-badge.estado-pagado {
+    background: rgba(0, 102, 255, 0.1);
+    color: var(--primary-color);
+    border: 1px solid rgba(0, 102, 255, 0.3);
+}
+
+.estado-badge.estado-entregado {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.estado-badge.estado-cancelado {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* =====================================================
+   INFORMACIÓN DE LA COMPRA
+   ===================================================== */
+
+.info-compra {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.seccion-info h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary-dark);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-xs) 0;
+}
+
+.info-label {
+    font-size: 0.8rem;
+    color: var(--text-medium);
+    font-weight: 500;
+}
+
+.info-valor {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.info-valor.total {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.direccion-entrega {
+    line-height: 1.4;
+    color: var(--text-medium);
+    font-size: 0.9rem;
+    padding: var(--spacing-sm);
+    background: var(--bg-light);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--primary-color);
+}
+
+.codigo-seguimiento {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--bg-light);
+    border-radius: var(--radius-md);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: var(--primary-color);
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+}
+
+/* =====================================================
+   TABLA DE PRODUCTOS
+   ===================================================== */
+
+.seccion-productos h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-dark);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.tabla-productos th {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tabla-productos td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-medium);
+}
+
+.tabla-productos tbody tr:hover {
+    background: rgba(0, 102, 255, 0.05);
+}
+
+.tabla-productos tfoot td {
+    padding: var(--spacing-md);
+    font-weight: 700;
+    background: var(--bg-light);
+}
+
+.producto-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.producto-imagen {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+}
+
+.producto-nombre {
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+}
+
+.producto-codigo {
+    font-size: 0.7rem;
+    color: var(--text-medium);
+    font-family: 'Courier New', monospace;
+}
+
+.total-label {
+    text-align: right;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.total-valor {
+    font-weight: 800;
+    color: var(--primary-color);
+    font-size: 1rem;
+    text-align: right;
+}
+
+/* =====================================================
+   FACTURA
+   ===================================================== */
+
+.factura-container {
+    background: linear-gradient(135deg, var(--primary-lighter), rgba(255, 255, 255, 0.9));
+    border-left: 4px solid var(--primary-color);
+}
+
+.factura-container h3 {
+    color: var(--primary-dark);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 700;
+}
+
+.factura-container p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-medium);
+    font-size: 0.85rem;
+}
+
+.btn-descargar-factura {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    text-decoration: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-descargar-factura:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-descargar-factura span {
+    font-size: 1rem;
+}
+
+/* =====================================================
+   ACCIONES DE COMPRA
+   ===================================================== */
+
+.acciones-compra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-lg);
+    gap: var(--spacing-md);
+}
+
+.btn-volver {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    backdrop-filter: blur(10px);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-volver::before {
+    content: '←';
+    font-size: 1.1rem;
+}
+
+.btn-volver:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-pagar {
+    background: linear-gradient(135deg, var(--success-color), #34d399);
+    color: white;
+    text-decoration: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-pagar:hover {
+    background: linear-gradient(135deg, #059669, var(--success-color));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-cancelar {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+    border: 2px solid var(--danger-color);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-cancelar:hover {
+    background: linear-gradient(135deg, var(--danger-color), #ff6b7a);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.form-cancelar {
+    margin: 0;
+}
+
+/* =====================================================
+   ESTILOS PARA IMPRESIÓN
+   ===================================================== */
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .detalle-compra-section {
+        background: white !important;
+        padding: 0 !important;
+        min-height: auto !important;
+    }
+    
+    .detalle-compra-section::before {
+        display: none !important;
+    }
+    
+    .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    .estado-compra,
+    .seccion-info,
+    .seccion-productos,
+    .factura-container {
+        background: white !important;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        backdrop-filter: none !important;
+    }
+    
+    .tabla-productos th {
+        background: #f5f5f5 !important;
+        color: #333 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    .acciones-compra {
+        display: none !important;
+    }
+    
+    h2 {
+        color: #333 !important;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 768px) {
+    :root {
+        --spacing-xs: 3px;
+        --spacing-sm: 6px;
+        --spacing-md: 10px;
+        --spacing-lg: 14px;
+        --spacing-xl: 18px;
+    }
+
+    .detalle-compra-section {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .detalle-compra-section .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    .detalle-compra-section h2 {
+        font-size: 1.6rem;
+    }
+
+    .info-compra {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .progreso-estado {
+        gap: var(--spacing-lg);
+        margin: 0;
+    }
+
+    .numero-paso {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+
+    .texto-paso {
+        font-size: 0.7rem;
+    }
+
+    .linea-estado {
+        width: 60px;
+        top: 14px;
+    }
+
+    .acciones-compra {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .btn-volver,
+    .btn-pagar,
+    .btn-cancelar {
+        width: 100%;
+        justify-content: center;
+        padding: var(--spacing-md);
+    }
+
+    .producto-imagen {
+        width: 35px;
+        height: 35px;
+    }
+
+    .tabla-productos th,
+    .tabla-productos td {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.75rem;
+    }
+
+    .producto-info {
+        gap: var(--spacing-xs);
+    }
+
+    .producto-nombre {
+        font-size: 0.8rem;
+    }
+
+    .producto-codigo {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .detalle-compra-section h2 {
+        font-size: 1.4rem;
+    }
+
+    .progreso-estado {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .linea-estado {
+        display: none;
+    }
+
+    .tabla-contenedor {
+        font-size: 0.7rem;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .estado-compra,
+    .seccion-info,
+    .seccion-productos,
+    .factura-container {
+        padding: var(--spacing-md);
+    }
+}
