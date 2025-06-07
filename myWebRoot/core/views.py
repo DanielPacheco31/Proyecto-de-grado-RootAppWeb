@@ -1,5 +1,6 @@
 """Vistas para la aplicación principal de ROOT."""
 
+
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
@@ -32,11 +33,12 @@ def contacto(request: HttpRequest) -> HttpResponse:
     return render(request, "core/contacto.html")
 
 
-def error_404_view(request, exception=None):
+def error_404_view(request: HttpRequest, exception: Exception | None = None) -> HttpResponse:
     """Vista personalizada para el error 404."""
+    del exception  # Indica explícitamente que no se usa
     return render(request, "core/404.html", status=404)
 
 
-def test_404_view(request):
+def test_404_view(request: HttpRequest) -> HttpResponse:
     """Vista para probar la página 404 en desarrollo."""
     return render(request, "core/404.html")

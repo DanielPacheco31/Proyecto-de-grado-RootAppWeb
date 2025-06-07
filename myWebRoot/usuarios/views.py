@@ -1,7 +1,7 @@
 """Vistas actualizadas para usar el modelo Usuario personalizado."""
 import contextlib
-import os
 from datetime import datetime
+from pathlib import Path
 
 from carrito.models import Carrito
 from django.contrib import messages
@@ -17,6 +17,47 @@ from django.utils import timezone
 from .models import Usuario  # Cambio importante: usar tu modelo personalizado
 
 
+def _validar_datos_registro(username: str, email: str, password1: str, password2: str) -> str | None:
+    """Valida los datos de registro y retorna error si hay alguno."""
+    if not username or not email or not password1 or not password2:
+        return "Todos los campos son obligatorios"
+
+    if password1 != password2:
+        return "Las contraseñas no coinciden"
+
+    if Usuario.objects.filter(username=username).exists():
+        return "El nombre de usuario ya está en uso"
+
+    if Usuario.objects.filter(email=email).exists():
+        return "El correo electrónico ya está registrado"
+
+    return None
+
+
+def _crear_usuario(datos_usuario: dict) -> Usuario:
+    """Crea un usuario con los datos proporcionados."""
+    user = Usuario.objects.create_user(
+        username=datos_usuario["username"],
+        email=datos_usuario["email"],
+        password=datos_usuario["password1"],
+        first_name=datos_usuario["first_name"],
+        last_name=datos_usuario["last_name"],
+        telefono=datos_usuario["telefono"],
+        direccion=datos_usuario["direccion"],
+        id_documento=datos_usuario["id_documento"],
+    )
+
+    # Convertir y guardar la fecha de nacimiento
+    if datos_usuario.get("fecha_nacimiento"):
+        try:
+            user.fecha_nacimiento = datetime.strptime(datos_usuario["fecha_nacimiento"], "%Y-%m-%d").replace(tzinfo=timezone.get_current_timezone()).date()
+            user.save()
+        except ValueError:
+            pass  # Se omite la fecha si hay error
+
+    return user
+
+
 def registro_view(request: HttpRequest) -> HttpResponse:
     """Vista para el registro de usuarios."""
     if request.user.is_authenticated:
@@ -24,45 +65,34 @@ def registro_view(request: HttpRequest) -> HttpResponse:
 
     if request.method == "POST":
         # Obtener datos del formulario
-        username = request.POST.get("nombre_usuario")
-        first_name = request.POST.get("nombre")
-        last_name = request.POST.get("apellido")
-        email = request.POST.get("correo_electronico")
-        id_documento = request.POST.get("cedula")
-        fecha_nacimiento = request.POST.get("fecha_nacimiento")
-        telefono = request.POST.get("telefono")
-        direccion = request.POST.get("direccion")
-        password1 = request.POST.get("contraseña1")
-        password2 = request.POST.get("contraseña2")
+        datos_usuario = {
+            "username": request.POST.get("nombre_usuario"),
+            "first_name": request.POST.get("nombre"),
+            "last_name": request.POST.get("apellido"),
+            "email": request.POST.get("correo_electronico"),
+            "id_documento": request.POST.get("cedula"),
+            "fecha_nacimiento": request.POST.get("fecha_nacimiento"),
+            "telefono": request.POST.get("telefono"),
+            "direccion": request.POST.get("direccion"),
+            "password1": request.POST.get("contraseña1"),
+            "password2": request.POST.get("contraseña2"),
+        }
 
-        # Validaciones básicas
-        if not username or not email or not password1 or not password2:
-            messages.error(request, "Todos los campos son obligatorios")
-            return redirect("usuarios:registro")
+        # Validar datos
+        error = _validar_datos_registro(
+            datos_usuario["username"],
+            datos_usuario["email"],
+            datos_usuario["password1"],
+            datos_usuario["password2"],
+        )
 
-        if password1 != password2:
-            messages.error(request, "Las contraseñas no coinciden")
-            return redirect("usuarios:registro")
-
-        if Usuario.objects.filter(username=username).exists():
-            messages.error(request, "El nombre de usuario ya está en uso")
-            return redirect("usuarios:registro")
-
-        if Usuario.objects.filter(email=email).exists():
-            messages.error(request, "El correo electrónico ya está registrado")
+        if error:
+            messages.error(request, error)
             return redirect("usuarios:registro")
 
         try:
-            # Crear el usuario directamente con todos los campos
-            user = Usuario.objects.create_user(username=username,email=email,password=password1,first_name=first_name,last_name=last_name,telefono=telefono,direccion=direccion,id_documento=id_documento)
-
-            # Convertir y guardar la fecha de nacimiento
-            if fecha_nacimiento:
-                try:
-                    user.fecha_nacimiento = datetime.strptime(fecha_nacimiento, "%Y-%m-%d").date()
-                    user.save()
-                except ValueError:
-                    messages.warning(request, "Formato de fecha de nacimiento inválido. Se omitió este campo.")
+            # Crear el usuario
+            user = _crear_usuario(datos_usuario)
 
             # Crear carrito para el usuario
             Carrito.objects.create(usuario=user)
@@ -70,13 +100,13 @@ def registro_view(request: HttpRequest) -> HttpResponse:
             messages.success(request, "Registro exitoso. Ahora puedes iniciar sesión.")
 
             # Iniciar sesión automáticamente después del registro
-            user = authenticate(request, username=username, password=password1)
+            user = authenticate(request, username=datos_usuario["username"], password=datos_usuario["password1"])
             if user:
                 login(request, user)
                 return redirect("usuarios:perfil")
             return redirect("usuarios:login")
 
-        except Exception as e:
+        except (ValueError, TypeError) as e:
             messages.error(request, f"Error al crear el usuario: {e!s}")
             return redirect("usuarios:registro")
 
@@ -151,7 +181,7 @@ def actualizar_perfil(request: HttpRequest) -> HttpResponse:
         fecha_str = request.POST.get("fecha_nacimiento", "")
         if fecha_str:
             with contextlib.suppress(ValueError):
-                user.fecha_nacimiento = datetime.strptime(fecha_str, "%Y-%m-%d").date()
+                user.fecha_nacimiento = datetime.strptime(fecha_str, "%Y-%m-%d").replace(tzinfo=timezone.get_current_timezone()).date()
 
         user.save()
 
@@ -168,7 +198,7 @@ def actualizar_foto(request: HttpRequest) -> HttpResponse:
 
         # Validar tipo de archivo (imágenes solamente)
         valid_extensions = [".jpg", ".jpeg", ".png", ".gif"]
-        ext = os.path.splitext(foto.name)[1].lower()
+        ext = Path(foto.name).suffix.lower()
 
         if ext not in valid_extensions:
             messages.error(request, "El archivo debe ser una imagen (JPG, PNG o GIF)")

@@ -1,5 +1,7 @@
 """Modelos para la aplicación de facturas."""
 
+from typing import ClassVar
+
 from django.db import models
 
 
@@ -18,12 +20,13 @@ class Factura(models.Model):
     fecha_emision = models.DateTimeField(auto_now_add=True)
     pdf = models.FileField(upload_to="facturas/", blank=True, null=True)
 
-    def __str__(self) -> str:
-        """Representación de cadena de la factura."""
-        return f"Factura {self.numero}"
-
     class Meta:
-        ordering = ["-fecha_emision"]
+        """Metadatos del modelo Factura."""
+
+        ordering: ClassVar[list[str]] = ["-fecha_emision"]
         verbose_name = "Factura"
         verbose_name_plural = "Facturas"
 
+    def __str__(self) -> str:
+        """Representación de cadena de la factura."""
+        return f"Factura {self.numero}"

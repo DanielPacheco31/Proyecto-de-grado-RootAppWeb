@@ -1,5 +1,8 @@
 """Vistas para la aplicación de pagos."""
 
+import contextlib
+import logging
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
@@ -11,6 +14,12 @@ from facturas.utils import generar_factura
 
 from .models import Compra, MetodoPago, Pago
 from .tasks import enviar_correo_confirmacion
+
+# Constante para evitar magic number
+TELEFONO_DIGITS = 10
+
+# Logger para el módulo
+logger = logging.getLogger(__name__)
 
 
 def inicializar_metodos_pago() -> int:
@@ -261,7 +270,7 @@ def pago_transferencia(request: HttpRequest, pago_id: int) -> HttpResponse:
     })
 
 
-def pago_movil(request, pago_id):
+def pago_movil(request: HttpRequest, pago_id: int) -> HttpResponse:
     """Vista para procesar pago móvil con Nequi."""
     pago = get_object_or_404(Pago, id=pago_id)
 
@@ -275,8 +284,8 @@ def pago_movil(request, pago_id):
 
         # Limpiar y validar formato del teléfono
         telefono_limpio = numero_telefono.replace(" ", "").replace("-", "")
-        if len(telefono_limpio) != 10 or not telefono_limpio.isdigit():
-            messages.error(request, "Por favor ingrese un número de teléfono válido (10 dígitos)")
+        if len(telefono_limpio) != TELEFONO_DIGITS or not telefono_limpio.isdigit():
+            messages.error(request, f"Por favor ingrese un número de teléfono válido ({TELEFONO_DIGITS} dígitos)")
             return render(request, "pagos/pagoMovil.html", {"pago": pago})
 
         try:
@@ -296,20 +305,17 @@ def pago_movil(request, pago_id):
                 try:
                     factura = generar_factura(pago.compra)
                     messages.success(request, f"Pago confirmado. Factura {factura.numero} generada exitosamente")
-                except Exception as e:
+                except (ValueError, TypeError, AttributeError) as e:
                     # El pago se completó pero no se pudo generar la factura
                     messages.warning(request, f"Pago confirmado, pero hubo un problema generando la factura: {e!s}")
 
                 # ✅ AGREGADO: Enviar correo de confirmación
-                try:
+                with contextlib.suppress(Exception):
                     enviar_correo_confirmacion.delay(compra.id)
-                except Exception:
-                    # No es crítico si falla el correo
-                    pass
 
                 return redirect("pagos:confirmar_pago", pago_id=pago.id)
 
-        except Exception as e:
+        except (ValueError, TypeError, AttributeError) as e:
             messages.error(request, f"Error al procesar el pago: {e!s}")
 
     return render(request, "pagos/pagoMovil.html", {"pago": pago})

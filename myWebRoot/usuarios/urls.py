@@ -1,3 +1,5 @@
+"""Rutas de los usuarios."""
+
 from django.urls import path
 
 from . import views

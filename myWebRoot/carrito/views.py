@@ -98,7 +98,7 @@ def eliminar_item(request: HttpRequest, item_id: int) -> HttpResponse:
         except CarritoItem.DoesNotExist:
             messages.info(request, "El producto ya no está disponible en tu carrito")
 
-        except Exception:
+        except (ValueError, TypeError, AttributeError):
             messages.error(request, "Ocurrió un error al eliminar el producto")
 
     return redirect("usuarios:perfil")

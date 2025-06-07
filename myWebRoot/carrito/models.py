@@ -1,5 +1,7 @@
 """Modelos para la aplicación de carrito de compras."""
 
+from decimal import Decimal
+
 from django.conf import settings
 from django.db import models
 from productos.models import Producto
@@ -16,7 +18,7 @@ class Carrito(models.Model):
         return f"Carrito de {self.usuario.username}"
 
     @property
-    def total(self):
+    def total(self) -> Decimal:
         """Calcula el total del carrito."""
         return sum(item.cantidad * item.producto.precio for item in self.items.all())
 

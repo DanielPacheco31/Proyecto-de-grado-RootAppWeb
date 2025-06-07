@@ -1,5 +1,6 @@
 """Utilidades para la generacion de facturas y archivos PDF."""
 
+import logging
 import time
 import uuid
 from io import BytesIO
@@ -18,8 +19,15 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 if TYPE_CHECKING:
     from .models import Factura
 
+# Logger para el módulo
+logger = logging.getLogger(__name__)
 
-def generar_numero_factura_unico(compra=None):
+
+class FacturaCreationError(Exception):
+    """Excepción personalizada para errores en la creación de facturas."""
+
+
+def generar_numero_factura_unico(compra: Compra | None = None) -> str:
     """Genera un numero de factura único usando multiples estrategias."""
     from .models import Factura
 
@@ -28,19 +36,10 @@ def generar_numero_factura_unico(compra=None):
 
     # Estrategias de numeración en orden de preferencia
     estrategias = [
-        # Formato: F20250529-1735471234567
         f"F{fecha.year}{fecha.month:02d}{fecha.day:02d}-{timestamp}",
-
-        # Formato: FAC-123-1735471234567 (con ID de compra)
         f"FAC-{compra.id}-{timestamp}" if compra else f"FAC-NEW-{timestamp}",
-
-        # Formato: ROOT-1735471234567-123
         f"ROOT-{timestamp}-{compra.id if compra else 'NEW'}",
-
-        # Formato: F20250529-ABC12345 (con UUID corto)
         f"F{fecha.strftime('%Y%m%d')}-{str(uuid.uuid4())[:8].upper()}",
-
-        # Formato simple: INV1735471234567
         f"INV{timestamp}",
     ]
 
@@ -53,7 +52,7 @@ def generar_numero_factura_unico(compra=None):
     return f"F-{uuid.uuid4()!s}"
 
 
-def crear_factura_segura(compra):
+def crear_factura_segura(compra: Compra) -> "Factura":
     """Crea una factura de forma segura con manejo de errores."""
     from .models import Factura
 
@@ -105,95 +104,132 @@ def generar_factura(compra: Compra) -> "Factura":
             return compra.factura
         except Factura.DoesNotExist:
             msg = "No se pudo crear la factura después de múltiples intentos"
-            raise Exception(msg)
+            raise FacturaCreationError(msg) from None
     except Exception:
         raise
+
+
+def _crear_encabezado_factura(factura: "Factura", elements: list, styles: dict) -> None:
+    """Crea el encabezado de la factura."""
+    elements.append(Paragraph(f"FACTURA #{factura.numero}", styles["Title"]))
+    elements.append(Spacer(1, 20))
+
+    # Información de la empresa
+    elements.append(Paragraph("ROOTAPP S.A.", styles["Heading1"]))
+    elements.append(Paragraph("NIT: 900.123.456-7", styles["Normal"]))
+    elements.append(Paragraph("Dirección: Calle Principal #123", styles["Normal"]))
+    elements.append(Paragraph("Teléfono: +57 3105816209", styles["Normal"]))
+    elements.append(Paragraph("Email: info@rootapp.com", styles["Normal"]))
+    elements.append(Spacer(1, 20))
+
+
+def _crear_datos_cliente(compra: Compra, elements: list, styles: dict) -> None:
+    """Crea la sección de datos del cliente."""
+    elements.append(Paragraph("Datos del Cliente", styles["Heading1"]))
+    elements.append(Paragraph(f"Nombre: {compra.usuario.get_full_name() or compra.usuario.username}", styles["Normal"]))
+    elements.append(Paragraph(f"Documento: {getattr(compra.usuario, 'id_documento', 'No registrado') or 'No registrado'}", styles["Normal"]))
+    elements.append(Paragraph(f"Dirección: {getattr(compra, 'direccion_entrega', 'No especificada') or 'No especificada'}", styles["Normal"]))
+    elements.append(Paragraph(f"Email: {compra.usuario.email}", styles["Normal"]))
+    elements.append(Spacer(1, 20))
+
+
+def _crear_detalles_compra(compra: Compra, elements: list, styles: dict) -> None:
+    """Crea la sección de detalles de compra."""
+    elements.append(Paragraph("Detalles de la Compra", styles["Heading1"]))
+    elements.append(Paragraph(f"Compra #: {compra.id}", styles["Normal"]))
+    elements.append(Paragraph(f"Fecha: {compra.fecha_compra.strftime('%d/%m/%Y %H:%M')}", styles["Normal"]))
+    elements.append(Spacer(1, 10))
+
+
+def _crear_tabla_productos(compra: Compra, elements: list) -> None:
+    """Crea la tabla de productos de la compra."""
+    data = [["Producto", "Código", "Cantidad", "Precio Unitario", "Subtotal"]]
+
+    detalles = compra.detalles.all() if hasattr(compra, "detalles") else []
+
+    if detalles:
+        data.extend([
+            [
+                detalle.producto.nombre,
+                getattr(detalle.producto, "codigo", "N/A"),
+                str(detalle.cantidad),
+                f"${detalle.precio_unitario:.2f}",
+                f"${detalle.subtotal:.2f}",
+            ]
+            for detalle in detalles
+        ])
+    else:
+        data.append([
+            "Compra general",
+            f"COMP-{compra.id}",
+            "1",
+            f"${compra.total:.2f}",
+            f"${compra.total:.2f}",
+        ])
+
+    data.append(["", "", "", "TOTAL", f"${compra.total:.2f}"])
+
+    table = Table(data)
+    table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
+        ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
+        ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("FONTSIZE", (0, 0), (-1, 0), 12),
+        ("BOTTOMPADDING", (0, 0), (-1, 0), 12),
+        ("BACKGROUND", (0, -1), (-1, -1), colors.beige),
+        ("FONTNAME", (0, -1), (-1, -1), "Helvetica-Bold"),
+        ("GRID", (0, 0), (-1, -1), 1, colors.black),
+        ("ALIGN", (3, 1), (-1, -1), "RIGHT"),
+    ]))
+
+    elements.append(table)
+    elements.append(Spacer(1, 20))
+
+
+def _crear_comentarios_finales(elements: list, styles: dict) -> None:
+    """Crea los comentarios finales de la factura."""
+    elementos_finales = [
+        "Gracias por tu compra.",
+        "Esta factura es valida como comprobante de pago.",
+        "Muestra tu factura al personal encargado en la salida del establecimiento.",
+        "Muchas Gracias Por Tu Compra .",
+    ]
+
+    elements.extend(Paragraph(comentario, styles["Normal"]) for comentario in elementos_finales)
 
 
 def generar_pdf_factura(factura: "Factura") -> None:
     """Genera el archivo PDF para una factura."""
     try:
         compra = factura.compra
-
-        # Crea un espacio de memoria para el pdf
         buffer = BytesIO()
-
-        # Valida que el docmumento se creo
         doc = SimpleDocTemplate(buffer, pagesize=letter)
         elements = []
-
         styles = getSampleStyleSheet()
-        style_title = styles["Title"]
-        style_heading = styles["Heading1"]
-        style_normal = styles["Normal"]
 
-        # Titulo de la factura
-        elements.append(Paragraph(f"FACTURA #{factura.numero}", style_title))
-        elements.append(Spacer(1, 20))
+        # Crear secciones de la factura
+        _crear_encabezado_factura(factura, elements, styles)
+        _crear_datos_cliente(compra, elements, styles)
+        _crear_detalles_compra(compra, elements, styles)
+        _crear_tabla_productos(compra, elements)
+        _crear_comentarios_finales(elements, styles)
 
-        # Informacion de la empresa que emite la factua
-        elements.append(Paragraph("ROOTAPP S.A.", style_heading))
-        elements.append(Paragraph("NIT: 900.123.456-7", style_normal))
-        elements.append(Paragraph("Dirección: Calle Principal #123", style_normal))
-        elements.append(Paragraph("Teléfono: +57 3105816209", style_normal))
-        elements.append(Paragraph("Email: info@rootapp.com", style_normal))
-        elements.append(Spacer(1, 20))
-
-        # Informacion del usuario o cliente
-        elements.append(Paragraph("Datos del Cliente", style_heading))
-        elements.append(Paragraph(f"Nombre: {compra.usuario.get_full_name() or compra.usuario.username}",style_normal))
-        elements.append(Paragraph(f"Documento: {getattr(compra.usuario, 'id_documento', 'No registrado') or 'No registrado'}",style_normal))
-        elements.append(Paragraph(f"Dirección: {getattr(compra, 'direccion_entrega', 'No especificada') or 'No especificada'}",style_normal))
-        elements.append(Paragraph(f"Email: {compra.usuario.email}", style_normal))
-        elements.append(Spacer(1, 20))
-
-        # Informacion Relevante de la compra realizada
-        elements.append(Paragraph("Detalles de la Compra", style_heading))
-        elements.append(Paragraph(f"Compra #: {compra.id}", style_normal))
-        elements.append(Paragraph(f"Fecha: {compra.fecha_compra.strftime('%d/%m/%Y %H:%M')}", style_normal))
-        elements.append(Spacer(1, 10))
-
-        # Tabla del producto que se compro
-        data = [["Producto", "Código", "Cantidad", "Precio Unitario", "Subtotal"]]
-
-        # Valida si hay detalle de una compra para poder imprimirlo
-        detalles = compra.detalles.all() if hasattr(compra, "detalles") else []
-
-        if detalles:
-            # Usar list comprehension para optimizar el bucle
-            data.extend([[detalle.producto.nombre,getattr(detalle.producto, "codigo", "N/A"),str(detalle.cantidad),f"${detalle.precio_unitario:.2f}",f"${detalle.subtotal:.2f}"]for detalle in detalles])
-        else:
-            # Si no encuentra detalles, muestra la informacion basica
-            data.append(["Compra general",f"COMP-{compra.id}","1",f"${compra.total:.2f}",f"${compra.total:.2f}"])
-
-        # Agrega el total
-        data.append(["", "", "", "TOTAL", f"${compra.total:.2f}"])
-
-        # Crea la tabla
-        table = Table(data)
-        table.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, 0), colors.grey),("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),("ALIGN", (0, 0), (-1, -1), "CENTER"),("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),("FONTSIZE", (0, 0), (-1, 0), 12),("BOTTOMPADDING", (0, 0), (-1, 0), 12),("BACKGROUND", (0, -1), (-1, -1), colors.beige),("FONTNAME", (0, -1), (-1, -1), "Helvetica-Bold"),("GRID", (0, 0), (-1, -1), 1, colors.black),("ALIGN", (3, 1), (-1, -1), "RIGHT")]))
-
-        elements.append(table)
-        elements.append(Spacer(1, 20))
-
-        # Comentarios finales
-        elements.append(Paragraph("Gracias por tu compra.", style_normal))
-        elements.append(Paragraph("Esta factura es valida como comprobante de pago.",style_normal))
-        elements.append(Paragraph("Muestra tu factura al personal encargado en la salida del establecimiento.",style_normal))
-        elements.append(Paragraph("Muchas Gracias Por Tu Compra .",style_normal))
-
-        # Generar el DOC PDF
+        # Generar el documento PDF
         doc.build(elements)
 
-        # Guarda el PDF en el campo de la factura
-        factura.pdf.save(f"factura_{factura.numero}.pdf",ContentFile(buffer.getvalue()),save=False)  # No trigger save() nuevamente)
+        # Guardar el PDF
+        factura.pdf.save(
+            f"factura_{factura.numero}.pdf",
+            ContentFile(buffer.getvalue()),
+            save=False,
+        )
 
-        # Guarda solo el campo PDF
+        # Actualizar solo el campo PDF
         from .models import Factura
         Factura.objects.filter(id=factura.id).update(pdf=factura.pdf)
-
         buffer.close()
 
     except Exception:
-    # Log del error pero continúa ejecución
-        pass
+        logger.exception("Error generando PDF de factura %s", factura.numero)
+        raise

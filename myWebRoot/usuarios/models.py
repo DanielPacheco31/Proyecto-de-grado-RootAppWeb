@@ -14,8 +14,11 @@ class Usuario(AbstractUser):
     preferencias_notificacion = models.BooleanField(default=True, verbose_name="Recibir notificaciones")
 
     class Meta:
+        """Metadatos del modelo Usuario."""
+
         verbose_name = "Usuario"
         verbose_name_plural = "Usuarios"
 
     def __str__(self) -> str:
+        """Retorna la representación en cadena del usuario."""
         return self.username

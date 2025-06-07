@@ -1,5 +1,7 @@
 """Modelos para la aplicación de pagos."""
 
+from decimal import Decimal
+
 from django.conf import settings
 from django.db import models
 from productos.models import Producto
@@ -35,7 +37,7 @@ class DetalleCompra(models.Model):
         return f"{self.cantidad} x {self.producto.nombre}"
 
     @property
-    def subtotal(self):
+    def subtotal(self) -> Decimal:
         """Calcula el subtotal del detalle de compra."""
         return self.cantidad * self.precio_unitario
 

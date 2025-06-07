@@ -7,14 +7,21 @@ from carrito.models import Carrito, CarritoItem
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.db.models import QuerySet
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from productos.models import Producto
+from usuarios.models import Usuario
 
 # Crear un logger para esta aplicación
 logger = logging.getLogger("scanner")
 
+# Constantes para evitar magic numbers
+MIN_CODIGO_LENGTH = 3
+MAX_CODIGO_LENGTH = 50
 
-def validar_codigo_producto(codigo):
+
+def validar_codigo_producto(codigo: str | None) -> tuple[bool, str, str]:
     """Valida que el código del producto tenga un formato válido."""
     if not codigo:
         return False, "", "Código vacío"
@@ -23,11 +30,11 @@ def validar_codigo_producto(codigo):
     codigo_limpio = str(codigo).strip().upper()
 
     # Validar longitud
-    if len(codigo_limpio) < 3:
-        return False, codigo_limpio, "Código muy corto (mínimo 3 caracteres)"
+    if len(codigo_limpio) < MIN_CODIGO_LENGTH:
+        return False, codigo_limpio, f"Código muy corto (mínimo {MIN_CODIGO_LENGTH} caracteres)"
 
-    if len(codigo_limpio) > 50:
-        return False, codigo_limpio, "Código muy largo (máximo 50 caracteres)"
+    if len(codigo_limpio) > MAX_CODIGO_LENGTH:
+        return False, codigo_limpio, f"Código muy largo (máximo {MAX_CODIGO_LENGTH} caracteres)"
 
     # Validar caracteres permitidos (alfanuméricos y algunos símbolos comunes en códigos)
     patron_valido = re.compile(r"^[A-Z0-9\-_]+$")
@@ -37,7 +44,7 @@ def validar_codigo_producto(codigo):
     return True, codigo_limpio, ""
 
 
-def buscar_producto_por_codigo(codigo):
+def buscar_producto_por_codigo(codigo: str) -> Producto | None:
     """Busca un producto por su código en la base de datos."""
     try:
         # Buscar exacto primero
@@ -46,18 +53,18 @@ def buscar_producto_por_codigo(codigo):
         if not producto:
             # Buscar por códigos similares (sin guiones, espacios, etc.)
             codigo_simple = re.sub(r"[^A-Z0-9]", "", codigo)
-            if len(codigo_simple) >= 3:
-                producto = Producto.objects.filter(
+            if len(codigo_simple) >= MIN_CODIGO_LENGTH:
+                return Producto.objects.filter(
                     codigo__regex=f"^{re.escape(codigo_simple)}$",
                 ).first()
-
+            return None  # Si no encontró nada
         return producto
-    except Exception as e:
-        logger.exception(f"Error buscando producto por código {codigo}: {e}")
+    except Exception:
+        logger.exception("Error buscando producto por código %s", codigo)
         return None
 
 
-def agregar_producto_al_carrito(usuario, producto, cantidad=1):
+def agregar_producto_al_carrito(usuario: Usuario, producto: Producto, cantidad: int = 1) -> tuple[bool, str, CarritoItem | None]:
     """Agrega un producto al carrito del usuario."""
     try:
         with transaction.atomic():
@@ -80,13 +87,43 @@ def agregar_producto_al_carrito(usuario, producto, cantidad=1):
             # Nuevo item agregado
             return True, f'Producto "{producto.nombre}" agregado al carrito', item
 
-    except Exception as e:
-        logger.exception(f"Error agregando producto {producto.id} al carrito del usuario {usuario.id}: {e}")
-        return False, f"Error interno al agregar el producto: {e!s}", None
+    except Exception:
+        logger.exception("Error agregando producto %s al carrito del usuario %s", producto.id, usuario.id)
+        return False, "Error interno al agregar el producto", None
+
+
+def _procesar_accion_add(request: HttpRequest, producto: Producto) -> HttpResponse:
+    """Procesa la acción de agregar al carrito."""
+    exito, mensaje, item = agregar_producto_al_carrito(request.user, producto)
+
+    if exito:
+        messages.success(request, mensaje)
+        logger.info("Producto '%s' agregado al carrito del usuario %s", producto.nombre, request.user.username)
+        return redirect("usuarios:perfil")
+    messages.error(request, mensaje)
+    return render(request, "scanner/scanner.html")
+
+
+def _procesar_accion_pay(request: HttpRequest, producto: Producto) -> HttpResponse:
+    """Procesa la acción de pagar directamente."""
+    exito, mensaje, item = agregar_producto_al_carrito(request.user, producto)
+
+    if exito:
+        messages.success(request, f'Producto "{producto.nombre}" listo para pagar')
+        logger.info("Producto '%s' agregado para pago directo por usuario %s", producto.nombre, request.user.username)
+        return redirect("carrito:finalizar_compra")
+    messages.error(request, mensaje)
+    return render(request, "scanner/scanner.html")
+
+
+def _procesar_accion_invalida(request: HttpRequest) -> HttpResponse:
+    """Procesa acciones no válidas."""
+    messages.error(request, "Acción no válida")
+    return render(request, "scanner/scanner.html")
 
 
 @login_required
-def scanner(request):
+def scanner(request: HttpRequest) -> HttpResponse:
     """Función principal del scanner de productos."""
     if request.method == "POST":
         # Obtener datos del formulario
@@ -94,14 +131,14 @@ def scanner(request):
         action = request.POST.get("action", "add")
 
         # Log del intento de escaneo
-        logger.info(f"Código escaneado: '{scanned_code}' por usuario: {request.user.username}, acción: {action}")
+        logger.info("Código escaneado: '%s' por usuario: %s, acción: %s", scanned_code, request.user.username, action)
 
         # Validar código
         es_valido, codigo_limpio, error_validacion = validar_codigo_producto(scanned_code)
 
         if not es_valido:
             messages.error(request, f"Código inválido: {error_validacion}")
-            logger.warning(f"Código inválido '{scanned_code}' por usuario {request.user.username}: {error_validacion}")
+            logger.warning("Código inválido '%s' por usuario %s: %s", scanned_code, request.user.username, error_validacion)
             return render(request, "scanner/scanner.html")
 
         # Buscar producto
@@ -109,43 +146,23 @@ def scanner(request):
 
         if not producto:
             messages.error(request, f'Producto con código "{codigo_limpio}" no encontrado en nuestro sistema')
-            logger.info(f"Producto no encontrado para código '{codigo_limpio}' por usuario {request.user.username}")
+            logger.info("Producto no encontrado para código '%s' por usuario %s", codigo_limpio, request.user.username)
             return render(request, "scanner/scanner.html")
 
         # Verificar stock (sin campo activo por ahora)
         if producto.stock is not None and producto.stock <= 0:
             messages.warning(request, f'El producto "{producto.nombre}" está agotado')
-            logger.info(f"Producto agotado '{producto.nombre}' escaneado por usuario {request.user.username}")
+            logger.info("Producto agotado '%s' escaneado por usuario %s", producto.nombre, request.user.username)
             return render(request, "scanner/scanner.html")
 
         # Procesar según la acción
         try:
             if action == "add":
-                # Agregar al carrito
-                exito, mensaje, item = agregar_producto_al_carrito(request.user, producto)
+                return _procesar_accion_add(request, producto)
+            return _procesar_accion_pay(request, producto) if action == "pay" else _procesar_accion_invalida(request)
 
-                if exito:
-                    messages.success(request, mensaje)
-                    logger.info(f"Producto '{producto.nombre}' agregado al carrito del usuario {request.user.username}")
-                    return redirect("usuarios:perfil")
-                messages.error(request, mensaje)
-                return render(request, "scanner/scanner.html")
-
-            if action == "pay":
-                # Agregar al carrito y redirigir a pago
-                exito, mensaje, item = agregar_producto_al_carrito(request.user, producto)
-
-                if exito:
-                    messages.success(request, f'Producto "{producto.nombre}" listo para pagar')
-                    logger.info(f"Producto '{producto.nombre}' agregado para pago directo por usuario {request.user.username}")
-                    return redirect("carrito:finalizar_compra")
-                messages.error(request, mensaje)
-                return render(request, "scanner/scanner.html")
-            messages.error(request, "Acción no válida")
-            return render(request, "scanner/scanner.html")
-
-        except Exception as e:
-            logger.exception(f"Error procesando acción '{action}' para producto '{producto.nombre}' por usuario {request.user.username}: {e}")
+        except Exception:
+            logger.exception("Error procesando acción '%s' para producto '%s' por usuario %s", action, producto.nombre, request.user.username)
             messages.error(request, "Error procesando la solicitud. Inténtelo nuevamente.")
             return render(request, "scanner/scanner.html")
 
@@ -155,10 +172,10 @@ def scanner(request):
     return render(request, "scanner/scanner.html", context)
 
 
-def obtener_productos_recientes():
+def obtener_productos_recientes() -> QuerySet[Producto]:
     """Obtiene una lista de productos recientes para mostrar como ejemplos."""
     try:
         return Producto.objects.filter(stock__gt=0).order_by("-fecha_creacion")[:5]
-    except Exception as e:
-        logger.exception(f"Error obteniendo productos recientes: {e}")
+    except Exception:
+        logger.exception("Error obteniendo productos recientes")
         return Producto.objects.none()

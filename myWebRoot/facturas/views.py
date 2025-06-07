@@ -1,16 +1,20 @@
 """Vistas para la aplicación de facturas."""
 
+import logging
 from pathlib import Path
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db import transaction
+from django.db import IntegrityError, transaction
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from pagos.models import Compra
 
 from .models import Factura
-from .utils import generar_factura, generar_pdf_factura
+from .utils import FacturaCreationError, generar_factura, generar_pdf_factura
+
+# Logger para el módulo
+logger = logging.getLogger(__name__)
 
 
 @login_required
@@ -38,7 +42,7 @@ def descargar_factura(request: HttpRequest, compra_id: int) -> HttpResponse:
         try:
             factura = generar_factura(compra)
             messages.success(request, f"Factura {factura.numero} generada exitosamente")
-        except Exception as e:
+        except (FacturaCreationError, IntegrityError, ValueError) as e:
             messages.error(request, f"error al realizar la factura: {e!s}")
             return render(request, "facturas/detalle_compra.html", {"compra": compra,"factura": None})
 
@@ -55,12 +59,12 @@ def descargar_factura(request: HttpRequest, compra_id: int) -> HttpResponse:
             response["Content-Disposition"] = disposition
             return response
 
-    except Exception as e:
+    except (OSError, ValueError) as e:
         messages.error(request, f"Error al ubicar al PDF: {e!s}")
         return render(request, "facturas/detalle_compra.html", {"compra": compra,"factura": factura})
 
 @login_required
-def cancelar_compra(request, compra_id):
+def cancelar_compra(request: HttpRequest, compra_id: int) -> HttpResponse:
     """Para cancelar una compra en estado pendiente."""
     compra = get_object_or_404(Compra, id=compra_id, usuario=request.user)
 
@@ -87,7 +91,7 @@ def cancelar_compra(request, compra_id):
 
                 return redirect("usuarios:perfil")
 
-        except Exception as e:
+        except (IntegrityError, ValueError, AttributeError) as e:
             messages.error(request, f"Error al cancelar la compra: {e!s}")
 
             if request.headers.get("X-Requested-With") == "XMLHttpRequest":
@@ -98,7 +102,7 @@ def cancelar_compra(request, compra_id):
     return render(request, "facturas/confirmar_cancelacion.html", {"compra": compra})
 
 
-def restaurar_stock_productos(compra) -> None:
+def restaurar_stock_productos(compra: Compra) -> None:
     """Devuelve el producto cancelado al stock."""
     try:
         for detalle in compra.detalles.all():
@@ -106,5 +110,5 @@ def restaurar_stock_productos(compra) -> None:
             if hasattr(producto, "stock"):
                 producto.stock += detalle.cantidad
                 producto.save()
-    except Exception:  # ✅ 4 espacios - CORRECTO
-        pass
+    except (AttributeError, ValueError, TypeError) as e:
+        logger.warning("Error restaurando stock para compra %s: %s", compra.id, e)
