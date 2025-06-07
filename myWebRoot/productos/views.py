@@ -25,7 +25,7 @@ def lista_productos(request: HttpRequest) -> HttpResponse:
 
     categorias = Categoria.objects.all()
 
-    return render(request, "productos/lista_productos.html", {"productos": productos,"categorias": categorias,"busqueda": busqueda,"categoria_seleccionada": categoria_id,})
+    return render(request, "productos/lista_productos.html", {"productos": productos,"categorias": categorias,"busqueda": busqueda,"categoria_seleccionada": categoria_id})
 
 
 @login_required
@@ -33,7 +33,7 @@ def detalle_producto(request: HttpRequest, producto_id: int) -> HttpResponse:
     """Detalle de un producto específico."""
     producto = get_object_or_404(Producto, id=producto_id)
 
-    return render(request, "productos/detalle_producto.html", {"producto": producto,})
+    return render(request, "productos/detalle_producto.html", {"producto": producto})
 
 
 @login_required
@@ -51,12 +51,12 @@ def crear_producto(request: HttpRequest) -> HttpResponse:
 
         # Validar datos
         if not nombre or not codigo or not precio or not stock:
-            messages.error(request,"Por favor, complete todos los campos obligatorios.",)
+            messages.error(request,"Por favor, complete todos los campos obligatorios.")
             return redirect("productos:crear")
 
         # Verificar que el código sea único
         if Producto.objects.filter(codigo=codigo).exists():
-            messages.error(request,"El código ya existe. Por favor, use un código único.",)
+            messages.error(request,"El código ya existe. Por favor, use un código único.")
             return redirect("productos:crear")
 
         try:
@@ -64,7 +64,7 @@ def crear_producto(request: HttpRequest) -> HttpResponse:
             stock = int(stock)
 
             # Crear el producto
-            producto = Producto(nombre=nombre,codigo=codigo,precio=precio,stock=stock,descripcion=descripcion,imagen=imagen,)
+            producto = Producto(nombre=nombre,codigo=codigo,precio=precio,stock=stock,descripcion=descripcion,imagen=imagen)
 
             # Asignar categoría si se proporciona
             if categoria_id and categoria_id.isdigit():
@@ -75,16 +75,16 @@ def crear_producto(request: HttpRequest) -> HttpResponse:
                     pass
 
             producto.save()
-            messages.success(request,f"El producto {nombre} ha sido creado exitosamente.",)
+            messages.success(request,f"El producto {nombre} ha sido creado exitosamente.")
             return redirect("productos:detalle", producto_id=producto.id)
 
         except (ValueError, TypeError):
-            messages.error(request,"Por favor, ingrese valores válidos para precio y stock.",)
+            messages.error(request,"Por favor, ingrese valores válidos para precio y stock.")
             return redirect("productos:crear")
 
     # Si es GET, mostrar el formulario
     categorias = Categoria.objects.all()
-    return render(request, "productos:crear_producto.html", {"categorias": categorias,})
+    return render(request, "productos:crear_producto.html", {"categorias": categorias})
 
 
 @login_required
@@ -104,12 +104,12 @@ def editar_producto(request: HttpRequest, producto_id: int) -> HttpResponse:
 
         # Validar datos
         if not nombre or not codigo or not precio or not stock:
-            messages.error(request,"Por favor, complete todos los campos obligatorios.",)
+            messages.error(request,"Por favor, complete todos los campos obligatorios.")
             return redirect("productos:editar", producto_id=producto.id)
 
         # Verificar que el código sea único (excepto para este producto)
         if Producto.objects.filter(codigo=codigo).exclude(id=producto_id).exists():
-            messages.error(request,"El código ya existe en otro producto. Por favor, use un código único.",)
+            messages.error(request,"El código ya existe en otro producto. Por favor, use un código único.")
             return redirect("productos:editar", producto_id=producto.id)
 
         try:
@@ -138,16 +138,16 @@ def editar_producto(request: HttpRequest, producto_id: int) -> HttpResponse:
                 producto.categoria = None
 
             producto.save()
-            messages.success(request,f"El producto {nombre} ha sido actualizado exitosamente.",)
+            messages.success(request,f"El producto {nombre} ha sido actualizado exitosamente.")
             return redirect("productos:detalle", producto_id=producto.id)
 
         except (ValueError, TypeError):
-            messages.error(request,"Por favor, ingrese valores válidos para precio y stock.",)
+            messages.error(request,"Por favor, ingrese valores válidos para precio y stock.")
             return redirect("productos:editar", producto_id=producto.id)
 
     # Si es GET, mostrar el formulario con los datos del producto
     categorias = Categoria.objects.all()
-    return render(request, "productos/editar_producto.html", {"producto": producto,"categorias": categorias,})
+    return render(request, "productos/editar_producto.html", {"producto": producto,"categorias": categorias})
 
 
 @login_required

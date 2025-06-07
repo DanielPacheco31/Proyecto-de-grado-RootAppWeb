@@ -106,5 +106,5 @@ def restaurar_stock_productos(compra) -> None:
             if hasattr(producto, "stock"):
                 producto.stock += detalle.cantidad
                 producto.save()
-    except Exception:
+    except Exception:  # ✅ 4 espacios - CORRECTO
         pass

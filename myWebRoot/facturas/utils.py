@@ -195,5 +195,5 @@ def generar_pdf_factura(factura: "Factura") -> None:
         buffer.close()
 
     except Exception:
+    # Log del error pero continúa ejecución
         pass
-        # No falla completamente la factura existe pero sin PDF

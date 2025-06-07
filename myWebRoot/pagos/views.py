@@ -60,7 +60,6 @@ def _verificar_pago_existente(
     request: HttpRequest, compra: Compra,
 ) -> HttpResponse | None:
     """Verifica si ya existe un pago para la compra y redirige según corresponda."""
-
     try:
         pago_existente = Pago.objects.get(compra=compra)
         # Si ya existe, redirigir según el tipo de método de pago
@@ -78,8 +77,7 @@ def _verificar_pago_existente(
 
 
 def _obtener_metodo_pago(metodo_pago_id: str) -> MetodoPago | None:
-    """ Obtiene el método de pago basado en el ID proporcionado."""
-
+    """Obtiene el método de pago basado en el ID proporcionado."""
     try:
         # Si es un ID numérico válido de la base de datos
         metodo_id = int(metodo_pago_id)
@@ -97,7 +95,6 @@ def _obtener_metodo_pago(metodo_pago_id: str) -> MetodoPago | None:
 
 def _crear_pago(compra: Compra, metodo_pago: MetodoPago) -> tuple[Pago | None, str]:
     """Crea un registro de pago para la compra."""
-
     try:
         pago = Pago.objects.create(compra=compra,metodo_pago=metodo_pago,monto=compra.total,estado="pendiente")
     except (ValueError, TypeError, Pago.DoesNotExist, MetodoPago.DoesNotExist) as e:
@@ -112,7 +109,6 @@ def _redirigir_segun_metodo_pago(
     request: HttpRequest, metodo_pago: MetodoPago, pago: Pago, compra_id: int,
 ) -> HttpResponse:
     """Redirige según el método de pago seleccionado."""
-
     if metodo_pago.tipo == "nequi":
         return redirect("pagos:pago_movil", pago_id=pago.id)
     if metodo_pago.tipo == "bancolombia":
@@ -127,9 +123,7 @@ def _redirigir_segun_metodo_pago(
 
 @login_required
 def seleccionar_metodo_pago(request: HttpRequest, compra_id: int) -> HttpResponse:
-    """
-    Permite al usuario seleccionar un método de pago para su compra.
-"""
+    """Permite al usuario seleccionar un método de pago para su compra."""
     # Asegurarse de que existan los métodos de pago
     if MetodoPago.objects.count() == 0:
         inicializar_metodos_pago()
@@ -153,7 +147,6 @@ def seleccionar_metodo_pago(request: HttpRequest, compra_id: int) -> HttpRespons
 @login_required
 def procesar_pago(request: HttpRequest, compra_id: int) -> HttpResponse:
     """Procesa el pago de una compra según el método seleccionado."""
-
     if request.method != "POST":
         return redirect("pagos:seleccionar_metodo_pago", compra_id=compra_id)
 
@@ -193,12 +186,11 @@ def procesar_pago(request: HttpRequest, compra_id: int) -> HttpResponse:
 
 def _get_tipo_metodo_por_id_frontend(id_frontend: str) -> str:
     """Mapea los IDs del frontend a tipos de método de pago."""
-    
     mapa_ids = {
-        "1": "nequi", "2": 
-        "bancolombia", 
-        "3": "pse", 
-        "4": "tarjeta",}
+        "1": "nequi", "2":
+        "bancolombia",
+        "3": "pse",
+        "4": "tarjeta"}
     return mapa_ids.get(id_frontend, "bancolombia")  # Por defecto bancolombia
 
 
@@ -311,9 +303,9 @@ def pago_movil(request, pago_id):
                 # ✅ AGREGADO: Enviar correo de confirmación
                 try:
                     enviar_correo_confirmacion.delay(compra.id)
-                except Exception as e:
+                except Exception:
                     # No es crítico si falla el correo
-                    print(f"Error enviando correo: {e}")
+                    pass
 
                 return redirect("pagos:confirmar_pago", pago_id=pago.id)
 
@@ -335,4 +327,4 @@ def confirmar_pago(request: HttpRequest, pago_id: int) -> HttpResponse:
     except Factura.DoesNotExist:
         factura = None
 
-    return render(request, "pagos/confirmacionDePago.html", {"pago": pago,"compra": compra,"factura": factura,})
+    return render(request, "pagos/confirmacionDePago.html", {"pago": pago,"compra": compra,"factura": factura})

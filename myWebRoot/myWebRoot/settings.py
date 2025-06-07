@@ -42,7 +42,7 @@ SECRET_KEY = env("SECRET_KEY", default="django-insecure-l0_w*4m-dr%0!h2o*gvoq3ht
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 # Configuración del modelo de usuario personalizado
 AUTH_USER_MODEL = "usuarios.Usuario"
@@ -73,7 +73,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    
+
 ]
 
 ROOT_URLCONF = "myWebRoot.urls"
@@ -141,7 +141,7 @@ STATIC_URL = env("STATIC_URL", default="/static/")
 STATIC_ROOT = Path(BASE_DIR, "staticfiles")
 
 # Corregida la ruta de STATICFILES_DIRS
-STATICFILES_DIRS = [Path(BASE_DIR, "static"),]
+STATICFILES_DIRS = [Path(BASE_DIR, "static")]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -158,7 +158,7 @@ MEDIA_URL = env("MEDIA_URL", default="/media/")
 MEDIA_ROOT = Path(BASE_DIR, "media")
 
 # Cache settings
-CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache","LOCATION": "unique-snowflake",},}
+CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache","LOCATION": "unique-snowflake"}}
 
 # Configuración de Email
 EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
@@ -173,10 +173,10 @@ DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 
 # Configuración de sesión
-SESSION_COOKIE_AGE = 3600 
+SESSION_COOKIE_AGE = 3600
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SAVE_EVERY_REQUEST = True
 
 ADMIN_SITE_HEADER = "ROOT - Administración"
-ADMIN_SITE_TITLE = "ROOT Admin" 
+ADMIN_SITE_TITLE = "ROOT Admin"
 ADMIN_INDEX_TITLE = "Panel de Administración ROOT"
