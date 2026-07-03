@@ -1,0 +1,28 @@
+# Entornos virtuales
+virtual/
+venv/
+env/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Django
+myWebRoot/.env
+myWebRoot/db.sqlite3
+myWebRoot/staticfiles/
+myWebRoot/media/
+myWebRoot/approot.log
+*.log
+
+# Ruff / linters
+.ruff_cache/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
